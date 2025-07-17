@@ -7,7 +7,7 @@
     src: url("PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Playfair-Italic-Font';
+    font-family: 'Italic-Font';
     src: url("PlayfairDisplay-Italic-VariableFont_wght.ttf") format("truetype");
 }
 
@@ -32,7 +32,6 @@ h3{
     font-size:30px;
     text-align:center;
     color:#00254b;
-    font-style:italic;
     margin:0.1px;
 }
 h4{
