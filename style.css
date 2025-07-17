@@ -60,9 +60,6 @@ a{
 img {
   border-radius: 8px;
 }
-img:hover {
-  transform: scaleX(-1);
-}
 
 body {
     background-color: rgb(236, 250, 255);
