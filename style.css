@@ -1,8 +1,10 @@
 @font-face {
-    font-family: 'VeganFont';
+    font-family: 'Vegan-Font';
     src: url("VeganStylePersonalUse-5Y5*.ttf") format("truetype");
 }
 
 h1{
-    font-family: 'VeganFont';
+    font-family: 'Vegan-Font';
+    font-size: 50px;
+    text-align: center;
 }
