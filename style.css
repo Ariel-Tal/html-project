@@ -43,7 +43,7 @@ h6{
     font-family:'Cambria';
     font-size:25px;
     text-align:center;
-    color: #2a57b1;
+    color: #04122e;
     margin:0.1px;
     display:inline;
 }
@@ -53,6 +53,8 @@ a{
     text-align:center;
     margin:0.1px;
     font-weight:bold;
+    text-decoration: none;
+    color:#137ee9
 }
 body {
     background-color: rgb(236, 250, 255);
