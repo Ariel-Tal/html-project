@@ -6,6 +6,11 @@
     font-family: 'Playfair-Font';
     src: url("PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
 }
+@font-face {
+    font-family: 'Playfair-Italic-Font';
+    src: url("PlayfairDisplay-Italic-VariableFont_wght.ttf") format("truetype");
+}
+
 
 h1{
     font-family: 'Vegan-Font';
@@ -23,7 +28,7 @@ h2{
     margin:0.1px;
 }
 h3{
-    font-family:'Playfair-Font';
+    font-family:'Playfair-Italic-Font';
     font-size:30px;
     text-align:center;
     color:#00254b;
