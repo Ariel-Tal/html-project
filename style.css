@@ -39,6 +39,12 @@ h5{
     color:#474357;
     margin:0.1;
 }
+a{
+    font-family:'Cambria';
+    font-size:25px;
+    text-align:center;
+    margin:0.1
+}
 body {
     background-color: rgb(236, 250, 255);
 }
