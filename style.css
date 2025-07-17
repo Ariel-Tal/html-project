@@ -8,14 +8,14 @@ h1{
     font-size: 50px;
     text-align: center;
     color: #0080ff;
-    line-height:1.1;
+    margin:0.1;
 }
 h2{
     font-family:'Cambria';
     font-size:40px;
     text-align:center;
     color: #5b70b4;
-    line-height:1.1;
+    margin:0.1;
 }
 h3{
     font-family:'Cambria';
@@ -23,20 +23,21 @@ h3{
     text-align:center;
     color:#00254b;
     font-style:italic;
+    margin:0.1;
 }
 h4{
     font-family:'Cambria';
     font-size:25px;
     text-align:center;
     color:#2b4258;
-    line-height:1.1;
+    margin:0.1;
 }
 h5{
     font-family:'Cambria';
     font-size:18px;
     text-align:center;
     color:#474357;
-    line-height:1.1;
+    margin:0.1;
 }
 body {
     background-color: rgb(236, 250, 255);
