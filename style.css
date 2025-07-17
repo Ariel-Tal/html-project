@@ -13,7 +13,8 @@ h2{
     font-family:'Cambria';
     font-size:40px;
     text-align:center;
-    color: #5b70b4
+    color: #5b70b4;
+    text-spacing-trim: 5px;
 }
 h3{
     font-family:'Cambria';
