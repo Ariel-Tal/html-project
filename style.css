@@ -15,6 +15,24 @@ h2{
     text-align:center;
     color: #5b70b4
 }
+h3{
+    font-family:'Cambria';
+    font-size:30px;
+    text-align:center;
+    color:#00254b
+}
+h4{
+    font-family:'Cambria';
+    font-size:25px;
+    text-align:center;
+    color:#2b4258
+}
+h5{
+    font-family:'Cambria';
+    font-size:18px;
+    text-align:center;
+    color:#474357
+}
 body {
     background-color: rgb(236, 250, 255);
 }
