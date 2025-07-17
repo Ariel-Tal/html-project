@@ -42,7 +42,8 @@ h5{
 h6{
     font-family:'Cambria';
     font-size:25px;
-    text-align:left;
+    text-align:center;
+    color: #2a57b1;
     margin:0.1;
     display:inline;
 }
