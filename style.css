@@ -48,6 +48,12 @@ h6{
     margin:0.1px;
     display:inline;
 }
+.center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 a{
     font-family:'Cambria';
     font-size:25px;
