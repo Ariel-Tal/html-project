@@ -97,7 +97,7 @@ header {
 }
 
 .header-logo {
-    width: 60px;               /* Small fixed size for the header logo */
+    width: 20px;               /* Small fixed size for the header logo */
     height: auto;
     margin-right: 20px;        /* Space between logo and navigation */
 }
@@ -136,7 +136,7 @@ nav ul li a:hover {
 /* --- New Style for the Main Page Logo --- */
 .main-page-logo {
     display: block;            /* Make it a block element to center it */
-    margin: 40px auto;         /* Top/bottom margin, and auto left/right for centering */
+    margin: 10px auto;         /* Top/bottom margin, and auto left/right for centering */
     width: 50%;                /* Adjust size as needed, e.g., 60% or 40% */
     max-width: 450px;          /* Prevent it from becoming too large */
     height: auto;              /* Maintain aspect ratio */
