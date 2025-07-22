@@ -98,7 +98,7 @@ header {
 }
 
 .header-logo {
-    width: 30px;               /* Small fixed size for the header logo */
+    width: 60px;               /* Small fixed size for the header logo */
     height: auto;
     margin-right: 20px;        /* Space between logo and navigation */
 }
@@ -107,7 +107,7 @@ nav {
     /* Ensure nav does not take up extra space and allows its content to dictate width */
     flex-grow: 0;
     flex-shrink: 0;
-    width: fit-content; /* NEW: Explicitly tells nav to be only as wide as its content */
+    width: fit-content; /* Explicitly tells nav to be only as wide as its content */
 }
 
 nav ul {
@@ -118,6 +118,10 @@ nav ul {
     justify-content: flex-start; /* Aligns items to the start of the nav ul */
     align-items: center;       /* Vertically align items and stars */
     flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens if needed */
+}
+
+nav ul li {
+    /* No additional margins here to prevent spreading */
 }
 
 nav ul li a {
@@ -160,8 +164,8 @@ nav ul li a:not(.active-page):hover {
 /* --- New Style for the Main Page Logo --- */
 .main-page-logo {
     display: block;            /* Make it a block element to center it */
-    margin-top: 40px;          /* Keep space above the logo */
-    margin-bottom: 10px;       /* Reduced space below the logo to 10px */
+    margin-top: 15px;          /* ADJUSTED: Reduced space above the logo */
+    margin-bottom: 0px;        /* Reduced space below the logo to 0px */
     margin-left: auto;         /* Center horizontally */
     margin-right: auto;        /* Center horizontally */
     width: 50%;                /* Adjust size as needed, e.g., 60% or 40% */
@@ -192,6 +196,11 @@ main {
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* To stack image and text vertically within the link */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center image and text horizontally within the link */
+    padding-bottom: 10px; /* Add some padding at the bottom of the link box */
 }
 
 .recipe-link:hover {
@@ -201,10 +210,23 @@ main {
 
 .recipe-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 200px; /* Set a fixed height for all recipe images */
+    object-fit: cover; /* Ensures images cover the area without distortion */
     display: block;
+    margin-bottom: 20px; /* More space between image and text */
 }
+
+/* Styling for the recipe title text */
+.recipe-title {
+    font-family: 'Cambria';
+    font-size: 20px; /* Slightly smaller font size */
+    color: #00254b; /* Match text color to other headings or links */
+    text-align: center;
+    margin: 0; /* Remove default paragraph margins */
+    padding: 0 10px; /* Add horizontal padding if needed */
+    font-weight: bold;
+}
+
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
@@ -219,6 +241,9 @@ main {
     }
     .recipe-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .recipe-title {
+        font-size: 18px; /* Adjusted for responsive */
     }
 }
 
@@ -250,5 +275,8 @@ main {
     }
     main {
         padding: 10px;
+    }
+    .recipe-title {
+        font-size: 16px; /* Adjusted for responsive */
     }
 }
