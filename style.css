@@ -120,10 +120,6 @@ nav ul {
     flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens if needed */
 }
 
-nav ul li {
-    /* No additional margins here to prevent spreading */
-}
-
 nav ul li a {
     font-family: 'Cambria';   /* Match your general link font */
     font-size: 20px;          /* Adjusted size for navigation links */
@@ -151,7 +147,7 @@ nav ul li a.active-page {
 
 /* Ensure active page doesn't change color on hover */
 nav ul li a.active-page:hover {
-    color: #C71585; /* Keep the same color on hover for the active page */
+    color: #c71585; /* Keep the same color on hover for the active page */
     text-decoration: underline; /* Keep the same underline on hover for active page */
 }
 
