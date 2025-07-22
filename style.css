@@ -102,9 +102,6 @@ header {
     margin-right: 20px;        /* Space between logo and navigation */
 }
 
-nav {
-    /* No flex-grow here, as we want nav to stay near logo */
-}
 
 nav ul {
     list-style: none;
@@ -113,10 +110,6 @@ nav ul {
     display: flex;             /* Keep nav items in a row */
     align-items: center;       /* Vertically align items and stars */
     flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens */
-}
-
-nav ul li {
-    /* No margin-right here, nav-separator handles spacing */
 }
 
 nav ul li a {
