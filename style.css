@@ -5,6 +5,7 @@
 
 body {
     font-family: sans-serif;
+    font-family: 'Unna-Font';
     margin: 0;
     padding: 0;
     background-color: rgb(236, 250, 255);
@@ -208,8 +209,13 @@ main {
 }
 
 .recipe-title {
+<<<<<<< HEAD
     font-family: 'Cambria';
     font-size: 20px;
+=======
+    font-family: 'Unna-Font';
+    font-size: 24px;
+>>>>>>> 153142f18b870563e4966d4d6958cfc7057077e5
     color: #00254b;
     text-align: center;
     margin: 0;
@@ -247,8 +253,8 @@ main {
 }
 
 .recipe-details p {
-    font-family: sans-serif;
-    font-size: 18px;
+    font-family: 'Unna-Font';
+    font-size: 22px;
     line-height: 1.6;
     color: #333;
     margin-bottom: 20px;
@@ -256,8 +262,8 @@ main {
 
 .recipe-details ul,
 .recipe-details ol {
-    font-family: sans-serif;
-    font-size: 18px;
+    font-family: 'Unna-Font';
+    font-size: 22px;
     line-height: 1.6;
     color: #333;
     margin-left: 25px; /* Indent lists */
@@ -302,8 +308,13 @@ main {
 }
 
 .recipe-details .instructions ol {
+<<<<<<< HEAD
     font-family: 'Cambria'; /* Change font for instruction steps */
     font-size: 19px; /* Slightly larger font size for readability */
+=======
+    font-family: 'Unna-Font'; /* Change font for instruction steps */
+    font-size: 22px; /* Slightly larger font size for readability */
+>>>>>>> 153142f18b870563e4966d4d6958cfc7057077e5
     color: #2b4258; /* Darker blue/grey for instruction text */
     padding-left: 20px; /* Ensure numbers are visible */
 }
@@ -353,7 +364,7 @@ footer .footer.text:hover {
         height: 200px;
     }
     .recipe-title {
-        font-size: 18px;
+        font-size: 22px;
     }
 
     /* Responsive for Recipe Details */
@@ -376,7 +387,7 @@ footer .footer.text:hover {
         padding: 15px;
     }
     .recipe-details .instructions ol {
-        font-size: 17px;
+        font-size: 22px;
     }
 }
 
