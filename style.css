@@ -1,28 +1,17 @@
 @font-face {
-    font-family: 'VeganStyle-Font';
+    font-family: 'Vegan-Font';
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
 }
 
-@font-face {
-    font-family: 'Unna-Font';
-    src: url("Unna-Regular.ttf") format("truetype");
-}
-
-/* Add this to your body styles */
 body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
     background-color: rgb(236, 250, 255);
-
-    /* --- ADD THESE THREE LINES FOR STICKY FOOTER --- */
-    display: flex; /* Make body a flex container */
-    flex-direction: column; /* Stack children vertically */
-    min-height: 100vh; /* Ensure body takes at least the full viewport height */
 }
 
 h1 {
-    font-family: 'VeganStyle-Font';
+    font-family: 'Vegan-Font';
     font-size: 50px;
     text-align: center;
     color: #0080ff;
@@ -31,7 +20,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 35px;
     text-align: center;
     color: #C71585;
@@ -40,7 +29,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 30px;
     text-align: center;
     color: #00254b;
@@ -49,7 +38,7 @@ h3 {
 }
 
 h4 {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 25px;
     text-align: center;
     color: #2b4258;
@@ -57,7 +46,7 @@ h4 {
 }
 
 h5 {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 18px;
     text-align: center;
     color: #474357;
@@ -65,7 +54,7 @@ h5 {
 }
 
 h6 {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 25px;
     text-align: center;
     color: #04122e;
@@ -84,7 +73,7 @@ h6 {
 }
 
 a {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 25px;
     text-align: center;
     margin: 0.1px;
@@ -106,30 +95,6 @@ header {
     padding: 20px 20px;
     background-color: rgb(255, 240, 245);
     border-bottom: 3px solid #C71585;
-}
-
-/* Update the footer rule to center its content */
-/* Your existing footer styles (no changes needed here, just for context) */
-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; /* As per our previous discussion for centering text */
-    padding: 20px 20px;
-    background-color: rgb(255, 240, 245);
-    border-top: 3px solid #C71585;
-    /* The footer will naturally stick to the bottom because 'main' takes all excess space */
-}
-
-/* Your existing .footer.text style */
-.footer.text {
-    font-family: 'Unna-Font';
-    font-size: 20px;
-    text-decoration: none;
-    color: #C71585;
-    font-weight: bold;
-    padding: 0 5px;
-    white-space: nowrap;
 }
 
 .header-logo {
@@ -159,8 +124,8 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: 'Unna-Font';
-    font-size: 22px; /* Adjusted font size for navigation links */
+    font-family: 'Cambria';
+    font-size: 20px; /* Adjusted font size for navigation links */
     text-decoration: none;
     color: #012E52;
     font-weight: bold;
@@ -182,11 +147,6 @@ nav ul li a.active-page {
     pointer-events: none;
 }
 
-nav ul li a.active-page:hover {
-    color: #C71585;
-    text-decoration: underline;
-}
-
 nav ul li a:not(.active-page):hover {
     color: #007bff;
 }
@@ -206,11 +166,8 @@ nav ul li a:not(.active-page):hover {
 }
 
 /* --- Main Content Area Styling --- */
-/* Add this new rule for your main content area */
 main {
     padding: 20px;
-    flex-grow: 1; /* This is the magic line! */
-    /* It tells 'main' to grow and take up all available space */
 }
 
 /* --- Recipe Grid Layout (for index.html) --- */
@@ -251,7 +208,7 @@ main {
 }
 
 .recipe-title {
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 20px;
     color: #00254b;
     text-align: center;
@@ -260,7 +217,7 @@ main {
     font-weight: bold;
 }
 
-/* --- NEW: Recipe Content Specific Styling (for recipe1.html, etc.) --- */
+/* --- Recipe Content Specific Styling (for recipe1.html, etc.) --- */
 .recipe-details {
     max-width: 800px;
     margin: 40px auto;
@@ -271,15 +228,15 @@ main {
 }
 
 .recipe-details h1 {
-    font-family: 'VeganStyle-Font'; /* Use your special font for the main recipe title */
+    font-family: 'Vegan-Font'; /* Use your special font for the main recipe title */
     font-size: 45px;
-    color: #C71585; /* Match your H1 color */
+    color: #C71585; /* Changed to a pink color for recipe titles */
     text-align: center;
     margin-bottom: 30px;
 }
 
 .recipe-details h3 { /* For Description, Ingredients, Instructions, Notes headings */
-    font-family: 'Unna-Font';
+    font-family: 'Cambria';
     font-size: 28px;
     color: #00254b;
     text-align: left; /* Align these headings to the left */
@@ -320,6 +277,14 @@ main {
     list-style-type: decimal; /* Numbers for instructions */
 }
 
+/* To left-align sub-headings within the ingredients section */
+.recipe-details .ingredients h4 {
+    text-align: left;
+    color: #00254b; /* Keeping a consistent color with other headings */
+    margin-top: 20px; /* Add some space above these sub-headings */
+    margin-bottom: 10px; /* Add some space below these sub-headings */
+}
+
 /* Specific styling for the Instructions section */
 .recipe-details .instructions {
     background-color: rgb(255, 240, 245); /* A light pink background */
@@ -337,7 +302,7 @@ main {
 }
 
 .recipe-details .instructions ol {
-    font-family: 'Unna-Font'; /* Change font for instruction steps */
+    font-family: 'Cambria'; /* Change font for instruction steps */
     font-size: 19px; /* Slightly larger font size for readability */
     color: #2b4258; /* Darker blue/grey for instruction text */
     padding-left: 20px; /* Ensure numbers are visible */
@@ -345,6 +310,24 @@ main {
 
 .recipe-details .instructions ol li {
     margin-bottom: 12px; /* More space between instruction steps */
+}
+
+/* --- Specific styling for the footer text link --- */
+footer .footer.text {
+    font-family: sans-serif; /* Revert to a more standard font if desired, or keep Cambria */
+    font-size: 15px; /* Smaller, more appropriate size for a footer */
+    text-align: center; /* Center the text within the footer */
+    color: #555; /* A softer, common footer color */
+    text-decoration: none; /* Remove underline by default */
+    display: block; /* Make it a block element to center it correctly */
+    padding: 20px; /* Add some padding around the footer text */
+    background-color: rgb(255, 240, 245); /* Match header/body background if desired, or use a darker shade */
+    border-top: 1px solid #ddd; /* Subtle top border */
+    margin-top: 40px; /* Space above the footer */
+}
+
+footer .footer.text:hover {
+    color: #007bff; /* A subtle hover effect */
 }
 
 
