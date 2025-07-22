@@ -1,6 +1,11 @@
 @font-face {
-    font-family: 'Vegan-Font';
+    font-family: 'VeganStyle-Font';
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Unna-Font';
+    src: url("Unna-Regular.ttf") format("truetype");
 }
 
 /* Add this to your body styles */
@@ -17,7 +22,7 @@ body {
 }
 
 h1 {
-    font-family: 'Vegan-Font';
+    font-family: 'VeganStyle-Font';
     font-size: 50px;
     text-align: center;
     color: #0080ff;
@@ -26,7 +31,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 35px;
     text-align: center;
     color: #C71585;
@@ -35,7 +40,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 30px;
     text-align: center;
     color: #00254b;
@@ -44,7 +49,7 @@ h3 {
 }
 
 h4 {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 25px;
     text-align: center;
     color: #2b4258;
@@ -52,7 +57,7 @@ h4 {
 }
 
 h5 {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 18px;
     text-align: center;
     color: #474357;
@@ -60,7 +65,7 @@ h5 {
 }
 
 h6 {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 25px;
     text-align: center;
     color: #04122e;
@@ -79,7 +84,7 @@ h6 {
 }
 
 a {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 25px;
     text-align: center;
     margin: 0.1px;
@@ -118,7 +123,7 @@ footer {
 
 /* Your existing .footer.text style */
 .footer.text {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 20px;
     text-decoration: none;
     color: #C71585;
@@ -154,7 +159,7 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 22px; /* Adjusted font size for navigation links */
     text-decoration: none;
     color: #012E52;
@@ -246,7 +251,7 @@ main {
 }
 
 .recipe-title {
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 20px;
     color: #00254b;
     text-align: center;
@@ -266,7 +271,7 @@ main {
 }
 
 .recipe-details h1 {
-    font-family: 'Vegan-Font'; /* Use your special font for the main recipe title */
+    font-family: 'VeganStyle-Font'; /* Use your special font for the main recipe title */
     font-size: 45px;
     color: #C71585; /* Match your H1 color */
     text-align: center;
@@ -274,7 +279,7 @@ main {
 }
 
 .recipe-details h3 { /* For Description, Ingredients, Instructions, Notes headings */
-    font-family: 'Cambria';
+    font-family: 'Unna-Font';
     font-size: 28px;
     color: #00254b;
     text-align: left; /* Align these headings to the left */
@@ -332,7 +337,7 @@ main {
 }
 
 .recipe-details .instructions ol {
-    font-family: 'Cambria'; /* Change font for instruction steps */
+    font-family: 'Unna-Font'; /* Change font for instruction steps */
     font-size: 19px; /* Slightly larger font size for readability */
     color: #2b4258; /* Darker blue/grey for instruction text */
     padding-left: 20px; /* Ensure numbers are visible */
