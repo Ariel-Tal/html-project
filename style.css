@@ -92,7 +92,7 @@ header {
     flex-direction: row;
     align-items: center;       /* Vertically align items */
     justify-content: flex-start; /* Align logo and nav to the start (left) */
-    padding: 5px 20px;        /* Adjusted: Reduced vertical padding to 5px */
+    padding: 20px 20px;        /* Adjusted: Reduced vertical padding to 5px */
     background-color: rgb(255, 240, 245); /* Light pink background for header */
     border-bottom: 1px solid #eee; /* Optional subtle line */
 }
@@ -122,9 +122,9 @@ nav ul {
 
 nav ul li a {
     font-family: 'Cambria';   /* Match your general link font */
-    font-size: 20px;          /* Adjusted size for navigation links */
+    font-size: 25px;          /* Adjusted size for navigation links */
     text-decoration: none;
-    color: #000080;           /* Darker blue for nav text */
+    color: #012E52;           /* Darker blue for nav text */
     font-weight: bold;
     padding: 0 5px;           /* Small padding around link text for spacing */
     white-space: nowrap;      /* Prevent nav links from breaking onto multiple lines */
