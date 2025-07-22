@@ -21,9 +21,9 @@ h1 {
 
 h2 {
     font-family: 'Cambria';
-    font-size: 35px; /* Your custom size */
+    font-size: 35px;
     text-align: center;
-    color: #C71585; /* Your custom color */
+    color: #C71585;
     margin-top: 0px;
     margin-bottom: 30px;
 }
@@ -125,7 +125,7 @@ nav ul li {
 
 nav ul li a {
     font-family: 'Cambria';
-    font-size: 25px;
+    font-size: 20px; /* Adjusted font size for navigation links */
     text-decoration: none;
     color: #012E52;
     font-weight: bold;
@@ -135,7 +135,7 @@ nav ul li a {
 
 .nav-separator {
     display: inline-block;
-    margin: 0 8px;
+    margin: 0 6px; /* Adjusted margin around stars */
 }
 
 /* --- Active Page Styling --- */
@@ -175,7 +175,7 @@ main {
     padding: 20px;
 }
 
-/* --- Recipe Grid Layout --- */
+/* --- Recipe Grid Layout (for index.html) --- */
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -196,7 +196,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px; /* This padding applies to the whole link box, keeping text from bottom border */
+    padding-bottom: 10px;
 }
 
 .recipe-link:hover {
@@ -209,18 +209,104 @@ main {
     height: 250px;
     object-fit: cover;
     display: block;
-    margin-bottom: 5px; /* ADJUSTED: Reduced space below the image */
+    margin-bottom: 5px;
 }
 
-/* Styling for the recipe title text */
 .recipe-title {
     font-family: 'Cambria';
     font-size: 20px;
     color: #00254b;
     text-align: center;
-    margin: 0; /* Ensures no default margin on the paragraph */
+    margin: 0;
     padding: 0 10px;
     font-weight: bold;
+}
+
+/* --- NEW: Recipe Content Specific Styling (for recipe1.html, etc.) --- */
+.recipe-details {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff; /* White background for the main recipe box */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.recipe-details h1 {
+    font-family: 'Vegan-Font'; /* Use your special font for the main recipe title */
+    font-size: 45px;
+    color: #0080ff; /* Match your H1 color */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.recipe-details h3 { /* For Description, Ingredients, Instructions, Notes headings */
+    font-family: 'Cambria';
+    font-size: 28px;
+    color: #00254b;
+    text-align: left; /* Align these headings to the left */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #eee; /* Subtle separator */
+    padding-bottom: 5px;
+}
+
+.recipe-details p {
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.recipe-details ul,
+.recipe-details ol {
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-left: 25px; /* Indent lists */
+    margin-bottom: 20px;
+}
+
+.recipe-details ul li,
+.recipe-details ol li {
+    margin-bottom: 8px; /* Space between list items */
+}
+
+.recipe-details ul {
+    list-style-type: disc; /* Bullet points for ingredients/notes */
+}
+
+.recipe-details ol {
+    list-style-type: decimal; /* Numbers for instructions */
+}
+
+/* Specific styling for the Instructions section */
+.recipe-details .instructions {
+    background-color: rgb(255, 240, 245); /* A light pink background */
+    padding: 20px; /* Add padding inside the pink box */
+    border-radius: 8px; /* Slightly rounded corners for the box */
+    margin-top: 30px; /* Space above the instructions box */
+    margin-bottom: 30px; /* Space below the instructions box */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow */
+}
+
+.recipe-details .instructions h3 {
+    color: #C71585; /* Pink heading color for instructions */
+    border-bottom: 2px solid #C71585; /* Stronger border under instructions heading */
+    font-style: normal; /* Remove italic from this specific heading */
+}
+
+.recipe-details .instructions ol {
+    font-family: 'Cambria'; /* Change font for instruction steps */
+    font-size: 19px; /* Slightly larger font size for readability */
+    color: #2b4258; /* Darker blue/grey for instruction text */
+    padding-left: 20px; /* Ensure numbers are visible */
+}
+
+.recipe-details .instructions ol li {
+    margin-bottom: 12px; /* More space between instruction steps */
 }
 
 
@@ -229,8 +315,11 @@ main {
     .header-logo {
         width: 50px;
     }
-    nav ul li a, .nav-separator {
-        font-size: 18px;
+    nav ul li a {
+        font-size: 16px;
+    }
+    .nav-separator {
+        margin: 0 4px;
     }
     .main-page-logo {
         width: 60%;
@@ -244,6 +333,29 @@ main {
     }
     .recipe-title {
         font-size: 18px;
+    }
+
+    /* Responsive for Recipe Details */
+    .recipe-details {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    .recipe-details h1 {
+        font-size: 35px;
+    }
+    .recipe-details h3 {
+        font-size: 24px;
+    }
+    .recipe-details p,
+    .recipe-details ul,
+    .recipe-details ol {
+        font-size: 16px;
+    }
+    .recipe-details .instructions {
+        padding: 15px;
+    }
+    .recipe-details .instructions ol {
+        font-size: 17px;
     }
 }
 
@@ -281,6 +393,29 @@ main {
         height: 150px;
     }
     .recipe-title {
+        font-size: 16px;
+    }
+
+    /* Responsive for Recipe Details */
+    .recipe-details {
+        margin: 10px;
+        padding: 10px;
+    }
+    .recipe-details h1 {
+        font-size: 30px;
+    }
+    .recipe-details h3 {
+        font-size: 20px;
+    }
+    .recipe-details p,
+    .recipe-details ul,
+    .recipe-details ol {
+        font-size: 15px;
+    }
+    .recipe-details .instructions {
+        padding: 10px;
+    }
+    .recipe-details .instructions ol {
         font-size: 16px;
     }
 }
