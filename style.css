@@ -3,11 +3,17 @@
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
 }
 
+/* Add this to your body styles */
 body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
     background-color: rgb(236, 250, 255);
+
+    /* --- ADD THESE THREE LINES FOR STICKY FOOTER --- */
+    display: flex; /* Make body a flex container */
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100vh; /* Ensure body takes at least the full viewport height */
 }
 
 h1 {
@@ -97,6 +103,30 @@ header {
     border-bottom: 3px solid #C71585;
 }
 
+/* Update the footer rule to center its content */
+/* Your existing footer styles (no changes needed here, just for context) */
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* As per our previous discussion for centering text */
+    padding: 20px 20px;
+    background-color: rgb(255, 240, 245);
+    border-top: 3px solid #C71585;
+    /* The footer will naturally stick to the bottom because 'main' takes all excess space */
+}
+
+/* Your existing .footer.text style */
+.footer.text {
+    font-family: 'Cambria';
+    font-size: 20px;
+    text-decoration: none;
+    color: #C71585;
+    font-weight: bold;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+
 .header-logo {
     width: 40px;
     height: auto;
@@ -171,8 +201,11 @@ nav ul li a:not(.active-page):hover {
 }
 
 /* --- Main Content Area Styling --- */
+/* Add this new rule for your main content area */
 main {
     padding: 20px;
+    flex-grow: 1; /* This is the magic line! */
+    /* It tells 'main' to grow and take up all available space */
 }
 
 /* --- Recipe Grid Layout (for index.html) --- */
