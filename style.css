@@ -98,7 +98,7 @@ header {
 }
 
 .header-logo {
-    width: 60px;               /* Small fixed size for the header logo */
+    width: 40px;               /* Small fixed size for the header logo */
     height: auto;
     margin-right: 20px;        /* Space between logo and navigation */
 }
