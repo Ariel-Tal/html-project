@@ -21,9 +21,9 @@ h1 {
 
 h2 {
     font-family: 'Cambria';
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
-    color: #5b70b4;
+    color: #C71585;
     margin-top: 0px; /* Adjusted to reduce space above h2 */
     margin-bottom: 30px;
 }
@@ -147,7 +147,7 @@ nav ul li a.active-page {
 
 /* Ensure active page doesn't change color on hover */
 nav ul li a.active-page:hover {
-    color: #c71585; /* Keep the same color on hover for the active page */
+    color: #C71585; /* Keep the same color on hover for the active page */
     text-decoration: underline; /* Keep the same underline on hover for active page */
 }
 
