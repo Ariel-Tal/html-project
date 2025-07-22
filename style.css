@@ -3,74 +3,241 @@
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
 }
 
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(236, 250, 255);
+}
 
-h1{
+h1 {
     font-family: 'Vegan-Font';
     font-size: 50px;
     text-align: center;
     color: #0080ff;
-    margin:0.1px;
-    font-weight:normal
+    margin: 0.1px;
+    font-weight: normal;
 }
-h2{
-    font-family:'Cambria';
-    font-size:40px;
-    text-align:center;
+
+h2 {
+    font-family: 'Cambria';
+    font-size: 40px;
+    text-align: center;
     color: #5b70b4;
-    margin:0.1px;
+    margin: 0.1px;
 }
-h3{
-    font-family:'Cambria';
-    font-size:30px;
-    text-align:center;
-    color:#00254b;
-    font-style:italic;
-    margin:0.1px;
+
+h3 {
+    font-family: 'Cambria';
+    font-size: 30px;
+    text-align: center;
+    color: #00254b;
+    font-style: italic;
+    margin: 0.1px;
 }
-h4{
-    font-family:'Cambria';
-    font-size:25px;
-    text-align:center;
-    color:#2b4258;
-    margin:0.1px;
+
+h4 {
+    font-family: 'Cambria';
+    font-size: 25px;
+    text-align: center;
+    color: #2b4258;
+    margin: 0.1px;
 }
-h5{
-    font-family:'Cambria';
-    font-size:18px;
-    text-align:center;
-    color:#474357;
-    margin:0.1px;
+
+h5 {
+    font-family: 'Cambria';
+    font-size: 18px;
+    text-align: center;
+    color: #474357;
+    margin: 0.1px;
 }
-h6{
-    font-family:'Cambria';
-    font-size:25px;
-    text-align:center;
+
+h6 {
+    font-family: 'Cambria';
+    font-size: 25px;
+    text-align: center;
     color: #04122e;
-    margin:0.1px;
-    display:inline-block;
+    margin: 0.1px;
+    display: inline-block;
 }
-.center-img {
+
+.center-img { /* This class is general for centering images that are not the header or main page logo */
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 50%;
     padding: 20px;
 }
-a{
-    font-family:'Cambria';
-    font-size:25px;
-    text-align:center;
-    margin:0.1px;
-    font-weight:bold;
+
+a { /* General link styling */
+    font-family: 'Cambria';
+    font-size: 25px;
+    text-align: center;
+    margin: 0.1px;
+    font-weight: bold;
     text-decoration: none;
-    color:#137ee9
-}
-img {
-  border-radius: 8px;
+    color: #137ee9;
 }
 
-body {
-    background-color: rgb(236, 250, 255);
+img {
+    border-radius: 8px;
+}
+
+/* --- Header & Navigation Styling (matching your desired top-left look) --- */
+header {
+    display: flex;             /* Horizontal layout for logo and nav */
+    flex-direction: row;
+    align-items: center;       /* Vertically align items */
+    justify-content: flex-start; /* Align logo and nav to the start (left) */
+    padding: 10px 20px;        /* Padding around the header content */
+    background-color: rgb(255, 240, 245); /* Light pink background for header */
+    border-bottom: 1px solid #eee; /* Optional subtle line */
+}
+
+.header-logo {
+    width: 60px;               /* Small fixed size for the header logo */
+    height: auto;
+    margin-right: 20px;        /* Space between logo and navigation */
+}
+
+nav {
+    /* No flex-grow here, as we want nav to stay near logo */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;             /* Keep nav items in a row */
+    align-items: center;       /* Vertically align items and stars */
+    flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens */
+}
+
+nav ul li {
+    /* No margin-right here, nav-separator handles spacing */
+}
+
+nav ul li a {
+    font-family: 'Cambria';   /* Match your general link font */
+    font-size: 20px;          /* Adjusted size for navigation links */
+    text-decoration: none;
+    color: #000080;           /* Darker blue for nav text */
+    font-weight: bold;
+    padding: 0 5px;           /* Small padding around link text */
+    white-space: nowrap;      /* Prevent nav links from breaking onto multiple lines */
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+.nav-separator {
+    color: #000080;           /* Color for the stars, matching nav links */
+    font-size: 18px;          /* Size of the stars */
+    margin: 0 8px;            /* Space around the stars */
+    font-weight: bold;
+}
+
+/* --- New Style for the Main Page Logo --- */
+.main-page-logo {
+    display: block;            /* Make it a block element to center it */
+    margin: 40px auto;         /* Top/bottom margin, and auto left/right for centering */
+    width: 50%;                /* Adjust size as needed, e.g., 60% or 40% */
+    max-width: 450px;          /* Prevent it from becoming too large */
+    height: auto;              /* Maintain aspect ratio */
+}
+
+/* --- Main Content Area Styling --- */
+main {
+    padding: 20px;
+}
+
+h2 { /* Re-applying h2 styles for consistency and to ensure correct margins */
+    font-family: 'Cambria';
+    font-size: 40px;
+    text-align: center;
+    color: #5b70b4;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* --- Recipe Grid Layout --- */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the entire grid */
+}
+
+.recipe-link {
+    display: block;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.recipe-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .header-logo {
+        width: 50px; /* Adjust logo size for tablets */
+    }
+    nav ul li a, .nav-separator {
+        font-size: 18px; /* Slightly smaller nav text */
+    }
+    .main-page-logo {
+        width: 60%; /* Adjust main logo size for tablets */
+    }
+    .recipe-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column; /* Stack logo and nav vertically on very small screens */
+        padding: 10px;
+    }
+    .header-logo {
+        width: 80px; /* Make logo a bit larger when stacked */
+        margin-bottom: 10px; /* Space between logo and nav when stacked */
+        margin-right: 0; /* Remove horizontal margin when stacked */
+    }
+    nav ul {
+        flex-direction: column; /* Stack nav items vertically */
+    }
+    nav ul li {
+        margin-bottom: 5px; /* Space between stacked nav items */
+    }
+    nav ul li:last-child {
+        margin-bottom: 0;
+    }
+    .nav-separator {
+        display: none; /* Hide stars when stacking nav items for cleaner look */
+    }
+    .main-page-logo {
+        width: 70%; /* Adjust main logo size for mobile */
+        margin: 20px auto;
+    }
+    main {
+        padding: 10px;
+    }
 }
