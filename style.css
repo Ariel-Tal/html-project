@@ -24,7 +24,8 @@ h2 {
     font-size: 40px;
     text-align: center;
     color: #5b70b4;
-    margin: 0.1px;
+    margin-top: 0px; /* Adjusted to reduce space above h2 */
+    margin-bottom: 30px;
 }
 
 h3 {
@@ -91,25 +92,36 @@ header {
     flex-direction: row;
     align-items: center;       /* Vertically align items */
     justify-content: flex-start; /* Align logo and nav to the start (left) */
-    padding: 10px 20px;        /* Padding around the header content */
+    padding: 5px 20px;        /* Adjusted: Reduced vertical padding to 5px */
     background-color: rgb(255, 240, 245); /* Light pink background for header */
     border-bottom: 1px solid #eee; /* Optional subtle line */
 }
 
 .header-logo {
-    width: 20px;               /* Small fixed size for the header logo */
+    width: 60px;               /* Small fixed size for the header logo */
     height: auto;
     margin-right: 20px;        /* Space between logo and navigation */
 }
 
+nav {
+    /* Ensure nav does not take up extra space and allows its content to dictate width */
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: fit-content; /* NEW: Explicitly tells nav to be only as wide as its content */
+}
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;             /* Keep nav items in a row */
+    justify-content: flex-start; /* Aligns items to the start of the nav ul */
     align-items: center;       /* Vertically align items and stars */
-    flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens */
+    flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens if needed */
+}
+
+nav ul li {
+    /* No additional margins here to prevent spreading */
 }
 
 nav ul li a {
@@ -118,13 +130,19 @@ nav ul li a {
     text-decoration: none;
     color: #000080;           /* Darker blue for nav text */
     font-weight: bold;
-    padding: 0 5px;           /* Small padding around link text */
+    padding: 0 5px;           /* Small padding around link text for spacing */
     white-space: nowrap;      /* Prevent nav links from breaking onto multiple lines */
 }
 
-/* --- Active Page Styling (NEW/UPDATED) --- */
+/* Add margin to nav-separator for spacing between links and stars */
+.nav-separator {
+    display: inline-block;
+    margin: 0 8px; /* Added spacing around the stars */
+}
+
+/* --- Active Page Styling --- */
 nav ul li a.active-page {
-    color: #FF69B4; /* Choose your desired color for the active page. Hot Pink is an example. */
+    color: #C71585; /* Darker pink for the active page (MediumVioletRed) */
     cursor: default; /* Changes cursor to default, indicating it's not clickable */
     font-weight: bold; /* Keep it bold */
     text-decoration: underline; /* Optional: add an underline for visual cue */
@@ -133,7 +151,7 @@ nav ul li a.active-page {
 
 /* Ensure active page doesn't change color on hover */
 nav ul li a.active-page:hover {
-    color: #FF69B4; /* Keep the same color on hover for the active page */
+    color: #C71585; /* Keep the same color on hover for the active page */
     text-decoration: underline; /* Keep the same underline on hover for active page */
 }
 
@@ -146,7 +164,10 @@ nav ul li a:not(.active-page):hover {
 /* --- New Style for the Main Page Logo --- */
 .main-page-logo {
     display: block;            /* Make it a block element to center it */
-    margin: 10px auto;         /* Top/bottom margin, and auto left/right for centering */
+    margin-top: 40px;          /* Keep space above the logo */
+    margin-bottom: 10px;       /* Reduced space below the logo to 10px */
+    margin-left: auto;         /* Center horizontally */
+    margin-right: auto;        /* Center horizontally */
     width: 50%;                /* Adjust size as needed, e.g., 60% or 40% */
     max-width: 450px;          /* Prevent it from becoming too large */
     height: auto;              /* Maintain aspect ratio */
@@ -155,15 +176,6 @@ nav ul li a:not(.active-page):hover {
 /* --- Main Content Area Styling --- */
 main {
     padding: 20px;
-}
-
-h2 { /* Re-applying h2 styles for consistency and to ensure correct margins */
-    font-family: 'Cambria';
-    font-size: 40px;
-    text-align: center;
-    color: #5b70b4;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 /* --- Recipe Grid Layout --- */
