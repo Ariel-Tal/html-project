@@ -122,16 +122,26 @@ nav ul li a {
     white-space: nowrap;      /* Prevent nav links from breaking onto multiple lines */
 }
 
-nav ul li a:hover {
-    color: #007bff;
+/* --- Active Page Styling (NEW/UPDATED) --- */
+nav ul li a.active-page {
+    color: #FF69B4; /* Choose your desired color for the active page. Hot Pink is an example. */
+    cursor: default; /* Changes cursor to default, indicating it's not clickable */
+    font-weight: bold; /* Keep it bold */
+    text-decoration: underline; /* Optional: add an underline for visual cue */
+    pointer-events: none; /* This is crucial: it makes the element truly unclickable */
 }
 
-.nav-separator {
-    color: #000080;           /* Color for the stars, matching nav links */
-    font-size: 18px;          /* Size of the stars */
-    margin: 0 8px;            /* Space around the stars */
-    font-weight: bold;
+/* Ensure active page doesn't change color on hover */
+nav ul li a.active-page:hover {
+    color: #FF69B4; /* Keep the same color on hover for the active page */
+    text-decoration: underline; /* Keep the same underline on hover for active page */
 }
+
+/* General link hover effect (excluding active page) */
+nav ul li a:not(.active-page):hover {
+    color: #007bff; /* This is your existing hover color for *other* links */
+}
+
 
 /* --- New Style for the Main Page Logo --- */
 .main-page-logo {
