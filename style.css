@@ -24,7 +24,7 @@ h2 {
     font-size: 35px; /* Your custom size */
     text-align: center;
     color: #C71585; /* Your custom color */
-    margin-top: 0px; /* Adjusted to reduce space above h2 */
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 
@@ -62,7 +62,7 @@ h6 {
     display: inline-block;
 }
 
-.center-img { /* This class is general for centering images that are not the header or main page logo */
+.center-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -72,7 +72,7 @@ h6 {
     padding: 20px;
 }
 
-a { /* General link styling */
+a {
     font-family: 'Cambria';
     font-size: 25px;
     text-align: center;
@@ -92,13 +92,13 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px 20px; /* Your custom padding */
+    padding: 20px 20px;
     background-color: rgb(255, 240, 245);
-    border-bottom: 3px solid #C71585; /* Your custom border */
+    border-bottom: 3px solid #C71585;
 }
 
 .header-logo {
-    width: 40px; /* Your custom width */
+    width: 40px;
     height: auto;
     margin-right: 20px;
 }
@@ -125,9 +125,9 @@ nav ul li {
 
 nav ul li a {
     font-family: 'Cambria';
-    font-size: 25px; /* Your custom font size */
+    font-size: 25px;
     text-decoration: none;
-    color: #012E52; /* Your custom color */
+    color: #012E52;
     font-weight: bold;
     padding: 0 5px;
     white-space: nowrap;
@@ -157,15 +157,15 @@ nav ul li a:not(.active-page):hover {
 }
 
 
-/* --- Main Page Logo (the large AC Recipes logo) --- */
+/* --- Main Page Logo --- */
 .main-page-logo {
     display: block;
     margin-top: 15px;
     margin-bottom: 0px;
     margin-left: auto;
     margin-right: auto;
-    width: 50%; /* Your custom width */
-    max-width: 450px; /* Your custom max-width */
+    width: 50%;
+    max-width: 450px;
     height: auto;
     object-fit: contain;
 }
@@ -196,7 +196,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 10px; /* This padding applies to the whole link box, keeping text from bottom border */
 }
 
 .recipe-link:hover {
@@ -205,11 +205,11 @@ main {
 }
 
 .recipe-image {
-    width: 250px; /* CHANGED: Fixed width for consistent square shape */
-    height: 250px; /* Your existing fixed height, now matching width */
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 5px; /* ADJUSTED: Reduced space below the image */
 }
 
 /* Styling for the recipe title text */
@@ -218,7 +218,7 @@ main {
     font-size: 20px;
     color: #00254b;
     text-align: center;
-    margin: 0;
+    margin: 0; /* Ensures no default margin on the paragraph */
     padding: 0 10px;
     font-weight: bold;
 }
@@ -239,8 +239,8 @@ main {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     .recipe-image {
-        width: 200px; /* CHANGED: Fixed width for consistent square shape */
-        height: 200px; /* Adjusted for tablets */
+        width: 200px;
+        height: 200px;
     }
     .recipe-title {
         font-size: 18px;
@@ -277,8 +277,8 @@ main {
         padding: 10px;
     }
     .recipe-image {
-        width: 150px; /* CHANGED: Fixed width for consistent square shape */
-        height: 150px; /* Adjusted for mobile */
+        width: 150px;
+        height: 150px;
     }
     .recipe-title {
         font-size: 16px;
