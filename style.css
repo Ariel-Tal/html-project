@@ -21,9 +21,9 @@ h1 {
 
 h2 {
     font-family: 'Cambria';
-    font-size: 35px;
+    font-size: 35px; /* Your custom size */
     text-align: center;
-    color: #C71585;
+    color: #C71585; /* Your custom color */
     margin-top: 0px; /* Adjusted to reduce space above h2 */
     margin-bottom: 30px;
 }
@@ -86,91 +86,88 @@ img {
     border-radius: 8px;
 }
 
-/* --- Header & Navigation Styling (matching your desired top-left look) --- */
+/* --- Header & Navigation Styling --- */
 header {
-    display: flex;             /* Horizontal layout for logo and nav */
+    display: flex;
     flex-direction: row;
-    align-items: center;       /* Vertically align items */
-    justify-content: flex-start; /* Align logo and nav to the start (left) */
-    padding: 20px 20px;        /* Adjusted: Reduced vertical padding to 5px */
-    background-color: rgb(255, 240, 245); /* Light pink background for header */
-    border-bottom: 3px solid #C71585; /* Optional subtle line */
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 20px; /* Your custom padding */
+    background-color: rgb(255, 240, 245);
+    border-bottom: 3px solid #C71585; /* Your custom border */
 }
 
 .header-logo {
-    width: 40px;               /* Small fixed size for the header logo */
+    width: 40px; /* Your custom width */
     height: auto;
-    margin-right: 20px;        /* Space between logo and navigation */
+    margin-right: 20px;
 }
 
 nav {
-    /* Ensure nav does not take up extra space and allows its content to dictate width */
     flex-grow: 0;
     flex-shrink: 0;
-    width: fit-content; /* Explicitly tells nav to be only as wide as its content */
+    width: fit-content;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;             /* Keep nav items in a row */
-    justify-content: flex-start; /* Aligns items to the start of the nav ul */
-    align-items: center;       /* Vertically align items and stars */
-    flex-wrap: wrap;           /* Allow nav items to wrap on smaller screens if needed */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 nav ul li {
-    /* No additional margins here to prevent spreading */
+    /* No additional margins here */
 }
 
 nav ul li a {
-    font-family: 'Cambria';   /* Match your general link font */
-    font-size: 25px;          /* Adjusted size for navigation links */
+    font-family: 'Cambria';
+    font-size: 25px; /* Your custom font size */
     text-decoration: none;
-    color: #012E52;           /* Darker blue for nav text */
+    color: #012E52; /* Your custom color */
     font-weight: bold;
-    padding: 0 5px;           /* Small padding around link text for spacing */
-    white-space: nowrap;      /* Prevent nav links from breaking onto multiple lines */
+    padding: 0 5px;
+    white-space: nowrap;
 }
 
-/* Add margin to nav-separator for spacing between links and stars */
 .nav-separator {
     display: inline-block;
-    margin: 0 8px; /* Added spacing around the stars */
+    margin: 0 8px;
 }
 
 /* --- Active Page Styling --- */
 nav ul li a.active-page {
-    color: #C71585; /* Darker pink for the active page (MediumVioletRed) */
-    cursor: default; /* Changes cursor to default, indicating it's not clickable */
-    font-weight: bold; /* Keep it bold */
-    text-decoration: underline; /* Optional: add an underline for visual cue */
-    pointer-events: none; /* This is crucial: it makes the element truly unclickable */
+    color: #C71585;
+    cursor: default;
+    font-weight: bold;
+    text-decoration: underline;
+    pointer-events: none;
 }
 
-/* Ensure active page doesn't change color on hover */
 nav ul li a.active-page:hover {
-    color: #C71585; /* Keep the same color on hover for the active page */
-    text-decoration: underline; /* Keep the same underline on hover for active page */
+    color: #C71585;
+    text-decoration: underline;
 }
 
-/* General link hover effect (excluding active page) */
 nav ul li a:not(.active-page):hover {
-    color: #007bff; /* This is your existing hover color for *other* links */
+    color: #007bff;
 }
 
 
-/* --- New Style for the Main Page Logo --- */
+/* --- Main Page Logo (the large AC Recipes logo) --- */
 .main-page-logo {
-    display: block;            /* Make it a block element to center it */
-    margin-top: 15px;          /* ADJUSTED: Reduced space above the logo */
-    margin-bottom: 0px;        /* Reduced space below the logo to 0px */
-    margin-left: auto;         /* Center horizontally */
-    margin-right: auto;        /* Center horizontally */
-    width: 50%;                /* Adjust size as needed, e.g., 60% or 40% */
-    max-width: 450px;          /* Prevent it from becoming too large */
-    height: auto;              /* Maintain aspect ratio */
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%; /* Your custom width */
+    max-width: 450px; /* Your custom max-width */
+    height: auto;
+    object-fit: contain;
 }
 
 /* --- Main Content Area Styling --- */
@@ -185,7 +182,7 @@ main {
     gap: 20px;
     justify-items: center;
     max-width: 1200px;
-    margin: 0 auto; /* Center the entire grid */
+    margin: 0 auto;
 }
 
 .recipe-link {
@@ -196,11 +193,10 @@ main {
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    /* To stack image and text vertically within the link */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center image and text horizontally within the link */
-    padding-bottom: 10px; /* Add some padding at the bottom of the link box */
+    align-items: center;
+    padding-bottom: 10px;
 }
 
 .recipe-link:hover {
@@ -209,21 +205,21 @@ main {
 }
 
 .recipe-image {
-    width: 100%;
-    height: 200px; /* Set a fixed height for all recipe images */
-    object-fit: cover; /* Ensures images cover the area without distortion */
+    width: 250px; /* CHANGED: Fixed width for consistent square shape */
+    height: 250px; /* Your existing fixed height, now matching width */
+    object-fit: cover;
     display: block;
-    margin-bottom: 20px; /* More space between image and text */
+    margin-bottom: 20px;
 }
 
 /* Styling for the recipe title text */
 .recipe-title {
     font-family: 'Cambria';
-    font-size: 20px; /* Slightly smaller font size */
-    color: #00254b; /* Match text color to other headings or links */
+    font-size: 20px;
+    color: #00254b;
     text-align: center;
-    margin: 0; /* Remove default paragraph margins */
-    padding: 0 10px; /* Add horizontal padding if needed */
+    margin: 0;
+    padding: 0 10px;
     font-weight: bold;
 }
 
@@ -231,52 +227,60 @@ main {
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .header-logo {
-        width: 50px; /* Adjust logo size for tablets */
+        width: 50px;
     }
     nav ul li a, .nav-separator {
-        font-size: 18px; /* Slightly smaller nav text */
+        font-size: 18px;
     }
     .main-page-logo {
-        width: 60%; /* Adjust main logo size for tablets */
+        width: 60%;
     }
     .recipe-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+    .recipe-image {
+        width: 200px; /* CHANGED: Fixed width for consistent square shape */
+        height: 200px; /* Adjusted for tablets */
+    }
     .recipe-title {
-        font-size: 18px; /* Adjusted for responsive */
+        font-size: 18px;
     }
 }
 
 @media (max-width: 480px) {
     header {
-        flex-direction: column; /* Stack logo and nav vertically on very small screens */
+        flex-direction: column;
         padding: 10px;
     }
     .header-logo {
-        width: 80px; /* Make logo a bit larger when stacked */
-        margin-bottom: 10px; /* Space between logo and nav when stacked */
-        margin-right: 0; /* Remove horizontal margin when stacked */
+        width: 80px;
+        margin-bottom: 10px;
+        margin-right: 0;
     }
     nav ul {
-        flex-direction: column; /* Stack nav items vertically */
+        flex-direction: column;
     }
     nav ul li {
-        margin-bottom: 5px; /* Space between stacked nav items */
+        margin-bottom: 5px;
     }
     nav ul li:last-child {
         margin-bottom: 0;
     }
     .nav-separator {
-        display: none; /* Hide stars when stacking nav items for cleaner look */
+        display: none;
     }
     .main-page-logo {
-        width: 70%; /* Adjust main logo size for mobile */
+        width: 70%;
         margin: 20px auto;
     }
     main {
         padding: 10px;
     }
+    .recipe-image {
+        width: 150px; /* CHANGED: Fixed width for consistent square shape */
+        height: 150px; /* Adjusted for mobile */
+    }
     .recipe-title {
-        font-size: 16px; /* Adjusted for responsive */
+        font-size: 16px;
     }
 }
