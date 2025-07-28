@@ -98,18 +98,10 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* distribute space between nav and logo */
-    padding: 20px 40px; /* added horizontal padding for breathing room */
+    justify-content: space-between;
+    padding: 10px 20px;
     background-color: rgb(255, 240, 245);
     border-bottom: 3px solid #C71585;
-}
-
-.header-left {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 20px;
-    flex-grow: 1;
 }
 
 .header-logo {
@@ -119,9 +111,9 @@ header {
     flex-shrink: 0;
 }
 
-/* Navigation container */
 nav {
     flex-grow: 1;
+    margin: 0 20px;
 }
 
 nav ul {
@@ -129,11 +121,10 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 8px 20px; /* row and column spacing */
-    max-width: 700px; /* constrain nav width so it wraps nicely */
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 nav ul li {
@@ -141,33 +132,71 @@ nav ul li {
     align-items: center;
 }
 
-nav ul li a {
-    font-family: 'Cambria';
-    font-size: 20px;
-    text-decoration: none;
-    color: #012E52;
-    font-weight: bold;
-    padding: 0 5px;
-    white-space: nowrap;
-}
-
 .nav-separator {
     display: inline-block;
     margin: 0 6px;
     user-select: none;
+    color: #C71585;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-/* Active page styling */
+/* Home link styling - text only, no photo */
 nav ul li a.active-page {
+    font-family: 'Cambria';
+    font-size: 20px;
     color: #C71585;
-    cursor: default;
-    font-weight: bold;
     text-decoration: underline;
-    pointer-events: none;
+    padding: 0 8px;
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    cursor: default;
+}
+
+/* Small recipe thumbnail nav links */
+nav ul li a:not(.active-page) {
+    font-size: 0; /* hide text */
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
 }
 
 nav ul li a:not(.active-page):hover {
-    color: #007bff;
+    border-color: #C71585;
+    transform: scale(1.1);
+}
+
+/* Use background images in nav links for thumbnails */
+nav ul li a[href="recipe1.html"] {
+    background: url("Chocolate Chip Cookies.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe2.html"] {
+    background: url("Strawberry Cake.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe3.html"] {
+    background: url("Flatbread Pizza.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe4.html"] {
+    background: url("Garlic Rosemary Focaccia.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe5.html"] {
+    background: url("Cinnamon Rolls.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe6.html"] {
+    background: url("Buttermilk Pancakes.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe7.html"] {
+    background: url("Pretzel Bites.jpg") center center/cover no-repeat;
+}
+nav ul li a[href="recipe8.html"] {
+    background: url("Cheddar Biscuits.jpg") center center/cover no-repeat;
 }
 
 /* Wheel logo on the right side */
@@ -304,7 +333,6 @@ main {
     list-style-type: decimal;
 }
 
-/* To left-align sub-headings within ingredients */
 .recipe-details .ingredients h4 {
     text-align: left;
     color: #00254b;
@@ -312,7 +340,6 @@ main {
     margin-bottom: 10px;
 }
 
-/* Instructions section styling */
 .recipe-details .instructions {
     background-color: rgb(255, 240, 245);
     padding: 20px;
@@ -362,8 +389,12 @@ footer {
     .header-logo {
         width: 50px;
     }
-    nav ul li a {
-        font-size: 16px;
+    nav ul li a:not(.active-page) {
+        width: 35px;
+        height: 35px;
+    }
+    nav ul li a.active-page {
+        font-size: 18px;
     }
     .nav-separator {
         margin: 0 4px;
@@ -379,107 +410,37 @@ footer {
         height: 200px;
     }
     .recipe-title {
-        font-size: 22px;
-    }
-
-    /* Responsive for Recipe Details */
-    .recipe-details {
-        margin: 20px auto;
-        padding: 15px;
-    }
-    .recipe-details h1 {
-        font-size: 35px;
-    }
-    .recipe-details h3 {
-        font-size: 24px;
-    }
-    .recipe-details p,
-    .recipe-details ul,
-    .recipe-details ol {
-        font-size: 16px;
-    }
-    .recipe-details .instructions {
-        padding: 15px;
-    }
-    .recipe-details .instructions ol {
-        font-size: 22px;
+        font-size: 20px;
     }
 }
 
 @media (max-width: 480px) {
     header {
         flex-direction: column;
-        padding: 10px 20px;
         align-items: center;
-    }
-    .header-left {
-        justify-content: center;
-        width: 100%;
-    }
-    .header-logo {
-        width: 80px;
-        margin-bottom: 10px;
-        margin-right: 0;
-        flex-shrink: 0;
+        gap: 10px;
     }
     nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 6px 12px;
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-        list-style: none;
+        gap: 8px;
+        flex-wrap: wrap;
     }
-    nav ul li {
-        margin-bottom: 5px;
+    nav ul li a:not(.active-page) {
+        width: 30px;
+        height: 30px;
     }
-    nav ul li:last-child {
-        margin-bottom: 0;
-    }
-    .nav-separator {
-        display: none;
-    }
-    .wheel-logo {
-        margin-left: 0;
-        margin-top: 10px;
+    nav ul li a.active-page {
+        font-size: 16px;
     }
     .main-page-logo {
-        width: 70%;
-        margin: 20px auto;
+        width: 80%;
     }
-    main {
-        padding: 10px;
+    .recipe-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
     .recipe-image {
-        width: 150px;
-        height: 150px;
-    }
-    .recipe-title {
-        font-size: 16px;
-    }
-
-    /* Responsive for Recipe Details */
-    .recipe-details {
-        margin: 10px;
-        padding: 10px;
-    }
-    .recipe-details h1 {
-        font-size: 30px;
-    }
-    .recipe-details h3 {
-        font-size: 20px;
-    }
-    .recipe-details p,
-    .recipe-details ul,
-    .recipe-details ol {
-        font-size: 15px;
-    }
-    .recipe-details .instructions {
-        padding: 10px;
-    }
-    .recipe-details .instructions ol {
-        font-size: 16px;
+        width: 100%;
+        height: auto;
     }
 }
