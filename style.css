@@ -56,7 +56,12 @@ h2 {
     text-align: center;
     color: var(--primary-color);
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 30px; /* Default h2 margin-bottom */
+}
+
+/* Specific adjustment for the "Made With ♡" heading */
+.heading-above-wheel {
+    margin-bottom: 0px; /* Reduced to zero */
 }
 
 h3 {
@@ -113,7 +118,6 @@ a {
 }
 
 /* Global image border-radius */
-/* This global img rule makes most images have 8px border-radius by default */
 img {
     border-radius: 8px;
 }
@@ -254,7 +258,7 @@ nav ul li a.active-page {
 .main-page-logo {
     display: block;
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 0px; /* Ensure no bottom margin */
     margin-left: auto;
     margin-right: auto;
     width: 40%;
@@ -445,15 +449,17 @@ footer .footer.text:hover {
     padding: 20px;
     box-sizing: border-box;
     background-color: rgb(236, 250, 255);
+    margin-top: 0px; /* Reduced to zero */
 }
 
+/* Adjusted margin-top for the h2 inside wheel-main */
 .wheel-main h2 {
-    margin-top: 20px;
+    margin-top: 0px; /* Reduced to zero */
     margin-bottom: 40px;
     font-family: 'Unna-Font';
     font-style: italic;
     font-size: 40px;
-    color: #0080ff;
+    color: #C71585;
 }
 
 .wheel-container {
@@ -619,7 +625,7 @@ footer .footer.text:hover {
         height: 45px;
     }
     .wheel-logo-button img {
-        width: 100%; /* Adjust image size for tablet */
+        width: 100%;
         height: 100%;
     }
     /* Apply active border responsive to the container */
@@ -683,7 +689,7 @@ footer .footer.text:hover {
         margin-left: 0; /* Remove margin when stacked */
     }
     .wheel-logo-button img {
-        width: 100%; /* Adjust image size for mobile */
+        width: 100%;
         height: 100%;
     }
     /* Apply active border responsive to the container */
