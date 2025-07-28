@@ -1,71 +1,90 @@
+:root {
+    --primary-color: #C71585; /* Raspberry Pink - used for accents, active links, borders */
+    --secondary-color: #0080ff; /* Bright Blue - used for h1 */
+    --dark-blue: #00254b; /* Deep Navy - used for h3, recipe titles */
+    --medium-blue: #2b4258; /* Slate Blue - used for h4, instructions text */
+    --text-color-general: #333; /* Dark Grey - general body text */
+    --background-light-blue: rgb(236, 250, 255); /* Very Light Blue */
+    --background-light-pink: rgb(255, 240, 245); /* Light Pink - header/footer background, instructions block */
+    --border-color-light: #ddd; /* Light Grey Border - for recipe links */
+    --subtle-border-dash: #eee; /* Even Lighter Grey for Dashed Border */
+    --link-color: #137ee9; /* Specific link color */
+    --subtle-text-color: #474357; /* For h5 */
+    --darkest-blue-text: #04122e; /* For h6 */
+}
+
+/* --- Font Definitions --- */
 @font-face {
     font-family: 'Vegan-Font';
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 @font-face {
     font-family: 'Unna-Font';
     src: url("Unna-Regular.ttf") format("truetype");
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 
+/* --- Base Styles --- */
 body {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     margin: 0;
     padding: 0;
-    background-color: rgb(236, 250, 255);
+    background-color: var(--background-light-blue);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
 }
 
 h1 {
-    font-family: 'Vegan-Font';
+    font-family: 'Vegan-Font', cursive, sans-serif; /* Added fallback */
     font-size: 50px;
     text-align: center;
-    color: #0080ff;
-    margin: 0.1px;
+    color: var(--secondary-color);
+    margin: 0 0 10px 0; /* Adjusted margin for clearer spacing */
     font-weight: normal;
 }
 
 h2 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 35px;
     text-align: center;
-    color: #C71585;
-    margin-top: 0px;
+    color: var(--primary-color);
+    margin-top: 0;
     margin-bottom: 30px;
 }
 
 h3 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 30px;
     text-align: center;
-    color: #00254b;
+    color: var(--dark-blue);
     font-style: italic;
-    margin: 0.1px;
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h4 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 25px;
     text-align: center;
-    color: #2b4258;
-    margin: 0.1px;
+    color: var(--medium-blue);
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h5 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 18px;
     text-align: center;
-    color: #474357;
-    margin: 0.1px;
+    color: var(--subtle-text-color);
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h6 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 25px;
     text-align: center;
-    color: #04122e;
-    margin: 0.1px;
+    color: var(--darkest-blue-text);
+    margin: 0 0 5px 0; /* Adjusted margin */
     display: inline-block;
 }
 
@@ -79,17 +98,16 @@ h6 {
     padding: 20px;
 }
 
-/* General anchor tag styling - apply with caution as it affects ALL <a> tags */
+/* Global link styles - be mindful of these affecting all links */
 a {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 25px;
-    text-align: center;
-    margin: 0.1px;
     font-weight: bold;
     text-decoration: none;
-    color: #137ee9;
+    color: var(--link-color);
 }
 
+/* Global image border-radius */
 img {
     border-radius: 8px;
 }
@@ -99,18 +117,10 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* distribute space between nav and logo */
-    padding: 20px 40px; /* added horizontal padding for breathing room */
-    background-color: rgb(255, 240, 245);
-    border-bottom: 3px solid #C71585;
-}
-
-.header-left {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 20px;
-    flex-grow: 1;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--background-light-pink);
+    border-bottom: 3px solid var(--primary-color);
 }
 
 .header-logo {
@@ -120,11 +130,9 @@ header {
     flex-shrink: 0;
 }
 
-/* Navigation container */
 nav {
     flex-grow: 1;
-    display: flex; /* Make nav a flex container to center its ul */
-    justify-content: center; /* Center the ul within the nav */
+    margin: 0 20px;
 }
 
 nav ul {
@@ -132,11 +140,10 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* Kept your original flex-start for individual links */
+    justify-content: center;
     align-items: center;
-    gap: 8px 20px; /* row and column spacing */
-    max-width: 700px; /* constrain nav width so it wraps nicely */
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 nav ul li {
@@ -144,47 +151,86 @@ nav ul li {
     align-items: center;
 }
 
-/* Specific styling for navigation links to override general 'a' tag styles */
-nav ul li a {
-    font-family: 'Cambria'; /* Override general 'a' font */
-    font-size: 20px; /* Override general 'a' font size */
-    text-decoration: none; /* Override general 'a' text decoration */
-    color: #012E52; /* Override general 'a' color */
-    font-weight: bold; /* Override general 'a' font weight */
-    padding: 0 5px;
-    white-space: nowrap;
-    text-align: left; /* Ensure nav links are not center-aligned if it causes issues */
+/* Base styling for all thumbnail links (the <a> tag container) */
+nav ul li a:has(img) { /* Applies to all links that contain an image */
+    display: block;
+    width: 60px; /* Ensuring square container for desktop */
+    height: 60px; /* Ensuring square container for desktop */
+    border-radius: 6px; /* Rounded corners for the container (change to 50% for circles if desired) */
+    overflow: hidden; /* Clips the image to the rounded corners */
+    border: 2px solid transparent; /* Default transparent border */
+    transition: border-color 0.3s ease, box-shadow 0.2s ease; /* Transition for border and shadow */
+    cursor: pointer;
+    display: flex; /* Use flexbox to center the image within */
+    justify-content: center;
+    align-items: center;
 }
 
+/* Styling for the <img> tag INSIDE any nav link */
+nav ul li a img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the square area, cropping as needed */
+    object-position: center; /* Focuses the crop on the center of the image */
+    margin: 0; /* Remove any default margins */
+}
 
+/* Hover effect for non-active thumbnail links */
+nav ul li a:has(img):not(.active-page):hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Styling for the ACTIVE thumbnail link (the <a> tag container with the class) */
+nav ul li a.active-page:has(img) {
+    border: 2px solid var(--primary-color); /* Highlight active thumbnail with primary color border */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Clearer shadow for active */
+    cursor: default; /* No pointer on active link */
+}
+
+/* Nav separator - you might not need this if all nav items are images now */
 .nav-separator {
     display: inline-block;
     margin: 0 6px;
     user-select: none;
-}
-
-/* Active page styling */
-nav ul li a.active-page {
-    color: #C71585;
-    cursor: default;
+    color: var(--primary-color);
     font-weight: bold;
-    text-decoration: underline;
-    pointer-events: none;
+    font-size: 18px;
 }
 
-nav ul li a:not(.active-page):hover {
-    color: #007bff;
+/* --- Wheel Logo Button Styling (NEW) --- */
+.wheel-logo-button {
+    display: block; /* Make it a block element to control its dimensions */
+    width: 60px; /* Match the size of nav thumbnails */
+    height: 60px; /* Match the size of nav thumbnails */
+    border-radius: 6px; /* Keep consistent rounded corners */
+    overflow: hidden;
+    border: 2px solid transparent; /* Default transparent border */
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    margin-left: 20px; /* Add some space to its left */
+    flex-shrink: 0; /* Prevent it from shrinking */
+    display: flex; /* Use flexbox to center the image inside */
+    justify-content: center;
+    align-items: center;
 }
 
-/* Wheel logo on the right side */
-.wheel-logo {
-    width: 50px;
-    height: auto;
-    margin-left: 20px;
-    flex-shrink: 0;
+.wheel-logo-button img {
+    display: block;
+    width: 100%; /* Make image fill the button container */
+    height: 100%; /* Make image fill the button container */
+    object-fit: cover; /* Crop to fit, focus on center */
+    object-position: center;
+    margin: 0; /* Remove any default image margins */
 }
 
-/* --- Main Page Logo --- */
+.wheel-logo-button:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Main Page Logo (for index.html, large logo) --- */
 .main-page-logo {
     display: block;
     margin-top: 15px;
@@ -194,13 +240,13 @@ nav ul li a:not(.active-page):hover {
     width: 50%;
     max-width: 450px;
     height: auto;
-    object-fit: contain;
+    object-fit: contain; /* ensures logo fits without cropping */
 }
 
 /* --- Main Content Area Styling --- */
 main {
     padding: 20px;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows main content to fill available space */
 }
 
 /* --- Recipe Grid Layout (for index.html) --- */
@@ -210,13 +256,13 @@ main {
     gap: 20px;
     justify-items: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centers the grid */
 }
 
 .recipe-link {
     display: block;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color-light);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -224,7 +270,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 10px; /* Space below title */
 }
 
 .recipe-link:hover {
@@ -241,9 +287,9 @@ main {
 }
 
 .recipe-title {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 24px;
-    color: #00254b;
+    color: var(--dark-blue);
     text-align: center;
     margin: 0;
     padding: 0 10px;
@@ -260,39 +306,40 @@ main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.recipe-details h1 {
-    font-family: 'Vegan-Font';
+.recipe-details h1 { /* Specific h1 for recipe details page */
+    font-family: 'Vegan-Font', cursive, sans-serif; /* Added fallback */
     font-size: 45px;
-    color: #C71585;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 30px;
 }
 
-.recipe-details h3 {
-    font-family: 'Cambria';
+.recipe-details h3 { /* Specific h3 for recipe details page sections */
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 28px;
-    color: #00254b;
+    color: var(--dark-blue);
     text-align: left;
     margin-top: 30px;
     margin-bottom: 15px;
-    border-bottom: 1px dashed #eee;
+    border-bottom: 1px dashed var(--subtle-border-dash);
     padding-bottom: 5px;
+    font-style: normal; /* Override default italic from global h3 */
 }
 
 .recipe-details p {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 22px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color-general);
     margin-bottom: 20px;
 }
 
 .recipe-details ul,
 .recipe-details ol {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 22px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color-general);
     margin-left: 25px;
     margin-bottom: 20px;
 }
@@ -310,17 +357,15 @@ main {
     list-style-type: decimal;
 }
 
-/* To left-align sub-headings within ingredients */
 .recipe-details .ingredients h4 {
     text-align: left;
-    color: #00254b;
+    color: var(--dark-blue);
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
-/* Instructions section styling */
 .recipe-details .instructions {
-    background-color: rgb(255, 240, 245);
+    background-color: var(--background-light-pink);
     padding: 20px;
     border-radius: 8px;
     margin-top: 30px;
@@ -329,15 +374,15 @@ main {
 }
 
 .recipe-details .instructions h3 {
-    color: #C71585;
-    border-bottom: 2px solid #C71585;
-    font-style: normal;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    font-style: normal; /* Ensure instructions heading isn't italic */
 }
 
 .recipe-details .instructions ol {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 22px;
-    color: #2b4258;
+    color: var(--medium-blue);
     padding-left: 20px;
 }
 
@@ -345,23 +390,21 @@ main {
     margin-bottom: 12px;
 }
 
+/* --- Footer Styling --- */
 footer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 20px 20px;
-    background-color: rgb(255, 240, 245);
-    border-top: 3px solid #C71585;
-    margin-top: auto; /* Pushes footer to the bottom on pages with less content */
+    background-color: var(--background-light-pink);
+    border-top: 3px solid var(--primary-color);
 }
 
-/* Specific styling for the footer text link */
-footer .footer.text {
-    font-family: 'Unna-Font';
+.footer.text {
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 20px;
-    text-align: center;
-    color: #C71585;
+    color: var(--primary-color);
     text-decoration: none;
     margin: 0;
     font-weight: normal;
@@ -540,15 +583,26 @@ footer .footer.text:hover {
         gap: 6px 15px;
         max-width: 100%;
     }
-    nav ul li a {
-        font-size: 16px;
+    nav ul li a:has(img) { /* Applies to all links that contain an image */
+        width: 45px; /* Smaller square for tablet */
+        height: 45px; /* Smaller square for tablet */
+        border-radius: 6px; /* Ensure rounded corners on tablet */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
+        width: 100%;
+        height: 100%;
     }
     .nav-separator {
         margin: 0 4px;
     }
-    .wheel-logo {
-        width: 40px;
-        margin-left: 15px;
+    /* Wheel logo button responsive */
+    .wheel-logo-button {
+        width: 45px; /* Match responsive size of nav thumbnails */
+        height: 45px; /* Match responsive size of nav thumbnails */
+        border-radius: 6px;
     }
     .main-page-logo {
         width: 60%;
@@ -561,173 +615,52 @@ footer .footer.text:hover {
         height: 200px;
     }
     .recipe-title {
-        font-size: 22px;
-    }
-
-    /* Responsive for Recipe Details */
-    .recipe-details {
-        margin: 20px auto;
-        padding: 15px;
-    }
-    .recipe-details h1 {
-        font-size: 35px;
-    }
-    .recipe-details h3 {
-        font-size: 24px;
-    }
-    .recipe-details p,
-    .recipe-details ul,
-    .recipe-details ol {
-        font-size: 18px;
-    }
-    .recipe-details .instructions {
-        padding: 15px;
-    }
-    .recipe-details .instructions ol {
-        font-size: 19px;
-    }
-
-    /* Responsive for Lucky Wheel */
-    .wheel-main h2 {
-        font-size: 30px;
-        margin-bottom: 30px;
-    }
-    .wheel-container {
-        width: 300px;
-        height: 300px;
-    }
-    .wheel {
-        width: 260px; /* Adjust static wheel size */
-        height: 260px;
-    }
-    .wheel-text span { /* Adjust span for smaller screens */
-        font-size: 12px;
-        transform: translateY(-70px) rotate(0deg); /* Adjust radial position */
-    }
-    .pointer {
-        top: -15px;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-        border-top: 30px solid #C71585;
-    }
-    #spinButton {
         font-size: 20px;
-        padding: 12px 25px;
-    }
-    #resultText {
-        font-size: 18px;
     }
 }
 
 @media (max-width: 480px) {
     header {
         flex-direction: column;
-        padding: 10px 20px;
         align-items: center;
-    }
-    .header-left {
-        justify-content: center;
-        width: 100%;
-    }
-    .header-logo {
-        width: 80px;
-        margin-bottom: 10px;
-        margin-right: 0;
-        flex-shrink: 0;
+        gap: 10px;
     }
     nav {
         justify-content: center;
         width: 100%;
     }
     nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 6px 12px;
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-        list-style: none;
+        gap: 8px;
+        flex-wrap: wrap;
     }
-    nav ul li {
-        margin-bottom: 5px;
+    nav ul li a:has(img) { /* Applies to all links that contain an image */
+        width: 40px; /* Even smaller square for mobile */
+        height: 40px; /* Even smaller square for mobile */
+        border-radius: 6px; /* Ensure rounded corners on mobile */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    nav ul li:last-child {
-        margin-bottom: 0;
+    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
+        width: 100%;
+        height: 100%;
     }
-    .nav-separator {
-        display: none;
-    }
-    .wheel-logo {
-        margin-left: 0;
-        margin-top: 10px;
+    /* Wheel logo button responsive */
+    .wheel-logo-button {
+        width: 40px; /* Match responsive size of nav thumbnails */
+        height: 40px; /* Match responsive size of nav thumbnails */
+        border-radius: 6px;
     }
     .main-page-logo {
-        width: 70%;
-        margin: 20px auto;
+        width: 80%;
     }
-    main {
-        padding: 10px;
+    .recipe-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        gap: 15px;
     }
     .recipe-image {
-        width: 150px;
-        height: 150px;
-    }
-    .recipe-title {
-        font-size: 16px;
-    }
-
-    /* Responsive for Recipe Details */
-    .recipe-details {
-        margin: 10px;
-        padding: 10px;
-    }
-    .recipe-details h1 {
-        font-size: 30px;
-    }
-    .recipe-details h3 {
-        font-size: 20px;
-    }
-    .recipe-details p,
-    .recipe-details ul,
-    .recipe-details ol {
-        font-size: 16px;
-    }
-    .recipe-details .instructions {
-        padding: 10px;
-    }
-    .recipe-details .instructions ol {
-        font-size: 17px;
-    }
-
-    /* Responsive for Lucky Wheel */
-    .wheel-main h2 {
-        font-size: 25px;
-        margin-bottom: 25px;
-    }
-    .wheel-container {
-        width: 250px;
-        height: 250px;
-    }
-    .wheel {
-        width: 210px; /* Adjust static wheel size */
-        height: 210px;
-    }
-    .wheel-text span { /* Adjust span for smaller screens */
-        font-size: 10px; 
-        transform: translateY(-60px) rotate(0deg); /* Adjust radial position */
-    }
-    .pointer {
-        top: -15px;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-        border-top: 30px solid #C71585;
-    }
-    #spinButton {
-        font-size: 18px;
-        padding: 10px 20px;
-    }
-    #resultText {
-        font-size: 16px;
+        width: 100%; /* Image fills container on mobile */
+        height: auto; /* Maintain aspect ratio */
     }
 }
