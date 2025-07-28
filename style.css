@@ -108,7 +108,6 @@ a {
 }
 
 /* Global image border-radius */
-/* This will apply to all images unless overridden, including the main page logo */
 img {
     border-radius: 8px;
 }
@@ -157,7 +156,7 @@ nav ul li a:has(img) { /* Applies to all links that contain an image */
     display: block;
     width: 60px; /* Ensuring square container for desktop */
     height: 60px; /* Ensuring square container for desktop */
-    border-radius: 6px; /* Rounded corners for the container (change to 50% for circles) */
+    border-radius: 6px; /* Rounded corners for the container (change to 50% for circles if desired) */
     overflow: hidden; /* Clips the image to the rounded corners */
     border: 2px solid transparent; /* Default transparent border */
     transition: border-color 0.3s ease, box-shadow 0.2s ease; /* Transition for border and shadow */
@@ -174,7 +173,6 @@ nav ul li a img {
     height: 100%;
     object-fit: cover; /* Ensures the image covers the square area, cropping as needed */
     object-position: center; /* Focuses the crop on the center of the image */
-    /* border-radius property removed from img, as it's on the parent <a> for consistency */
     margin: 0; /* Remove any default margins */
 }
 
@@ -201,12 +199,35 @@ nav ul li a.active-page:has(img) {
     font-size: 18px;
 }
 
-/* Wheel logo on the right side */
-.wheel-logo {
-    width: 50px;
-    height: auto;
-    margin-left: 20px;
-    flex-shrink: 0;
+/* --- Wheel Logo Button Styling (NEW) --- */
+.wheel-logo-button {
+    display: block; /* Make it a block element to control its dimensions */
+    width: 60px; /* Match the size of nav thumbnails */
+    height: 60px; /* Match the size of nav thumbnails */
+    border-radius: 6px; /* Keep consistent rounded corners */
+    overflow: hidden;
+    border: 2px solid transparent; /* Default transparent border */
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    margin-left: 20px; /* Add some space to its left */
+    flex-shrink: 0; /* Prevent it from shrinking */
+    display: flex; /* Use flexbox to center the image inside */
+    justify-content: center;
+    align-items: center;
+}
+
+.wheel-logo-button img {
+    display: block;
+    width: 100%; /* Make image fill the button container */
+    height: 100%; /* Make image fill the button container */
+    object-fit: cover; /* Crop to fit, focus on center */
+    object-position: center;
+    margin: 0; /* Remove any default image margins */
+}
+
+.wheel-logo-button:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* --- Main Page Logo (for index.html, large logo) --- */
@@ -408,6 +429,12 @@ footer {
     .nav-separator {
         margin: 0 4px;
     }
+    /* Wheel logo button responsive */
+    .wheel-logo-button {
+        width: 45px; /* Match responsive size of nav thumbnails */
+        height: 45px; /* Match responsive size of nav thumbnails */
+        border-radius: 6px;
+    }
     .main-page-logo {
         width: 60%;
     }
@@ -445,6 +472,12 @@ footer {
     nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
         width: 100%;
         height: 100%;
+    }
+    /* Wheel logo button responsive */
+    .wheel-logo-button {
+        width: 40px; /* Match responsive size of nav thumbnails */
+        height: 40px; /* Match responsive size of nav thumbnails */
+        border-radius: 6px;
     }
     .main-page-logo {
         width: 80%;
