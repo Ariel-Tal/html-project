@@ -2,20 +2,12 @@
     font-family: 'Vegan-Font';
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
 }
-@font-face {
-    font-family: 'Unna-Font';
-    src: url("Unna-Regular.ttf") format("truetype");
-}
 
 body {
     font-family: 'Unna-Font';
     margin: 0;
     padding: 0;
     background-color: rgb(236, 250, 255);
-    display: flex;
-    flex-direction: column;
-    /* Add this line */
-    min-height: 100vh;
 }
 
 h1 {
@@ -176,7 +168,6 @@ nav ul li a:not(.active-page):hover {
 /* --- Main Content Area Styling --- */
 main {
     padding: 20px;
-    flex-grow: 1;
 }
 
 /* --- Recipe Grid Layout (for index.html) --- */
@@ -312,7 +303,7 @@ main {
 
 .recipe-details .instructions ol {
     font-family: 'Unna-Font'; /* Change font for instruction steps */
-    font-size: 19px; /* Slightly larger font size for readability */
+    font-size: 22px; /* Slightly larger font size for readability */
     color: #2b4258; /* Darker blue/grey for instruction text */
     padding-left: 20px; /* Ensure numbers are visible */
 }
@@ -321,29 +312,22 @@ main {
     margin-bottom: 12px; /* More space between instruction steps */
 }
 
-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 20px;
-    background-color: rgb(255, 240, 245);
-    border-top: 3px solid #C71585;
+/* --- Specific styling for the footer text link --- */
+footer .footer.text {
+    font-family: sans-serif; /* Revert to a more standard font if desired, or keep Cambria */
+    font-size: 15px; /* Smaller, more appropriate size for a footer */
+    text-align: center; /* Center the text within the footer */
+    color: #555; /* A softer, common footer color */
+    text-decoration: none; /* Remove underline by default */
+    display: block; /* Make it a block element to center it correctly */
+    padding: 20px; /* Add some padding around the footer text */
+    background-color: rgb(255, 240, 245); /* Match header/body background if desired, or use a darker shade */
+    border-top: 1px solid #ddd; /* Subtle top border */
+    margin-top: 40px; /* Space above the footer */
 }
 
-/* --- Specific styling for the footer text link --- */
-.footer.text {
-    font-family: 'Unna-Font'; /* Keeping your chosen font */
-    font-size: 20px; /* Keeping your chosen size */
-    color: #C71585; /* Keeping your chosen color */
-    text-decoration: none; /* Keep this to remove underline */
-    /* Remove redundant layout properties that are now handled by the 'footer' parent: */
-    /* text-align: center; */
-    /* display: block; */
-    /* padding: 20px; */
-    /* background-color: rgb(255, 240, 245); */
-    /* border-top: 3px solid #C71585; */
-    margin: 0; /* Ensure no default margins interfere, especially no top margin */
+footer .footer.text:hover {
+    color: #007bff; /* A subtle hover effect */
 }
 
 
