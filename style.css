@@ -14,7 +14,6 @@ body {
     background-color: rgb(236, 250, 255);
     display: flex;
     flex-direction: column;
-    /* Add this line */
     min-height: 100vh;
 }
 
@@ -99,22 +98,30 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    padding: 20px 20px;
+    justify-content: space-between; /* distribute space between nav and logo */
+    padding: 20px 40px; /* added horizontal padding for breathing room */
     background-color: rgb(255, 240, 245);
     border-bottom: 3px solid #C71585;
+}
+
+.header-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 20px;
+    flex-grow: 1;
 }
 
 .header-logo {
     width: 40px;
     height: auto;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 
+/* Navigation container */
 nav {
-    flex-grow: 0;
-    flex-shrink: 0;
-    width: fit-content;
+    flex-grow: 1;
 }
 
 nav ul {
@@ -122,18 +129,21 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 8px 20px; /* row and column spacing */
+    max-width: 700px; /* constrain nav width so it wraps nicely */
 }
 
 nav ul li {
-    /* No additional margins here */
+    display: flex;
+    align-items: center;
 }
 
 nav ul li a {
     font-family: 'Cambria';
-    font-size: 20px; /* Adjusted font size for navigation links */
+    font-size: 20px;
     text-decoration: none;
     color: #012E52;
     font-weight: bold;
@@ -143,10 +153,11 @@ nav ul li a {
 
 .nav-separator {
     display: inline-block;
-    margin: 0 6px; /* Adjusted margin around stars */
+    margin: 0 6px;
+    user-select: none;
 }
 
-/* --- Active Page Styling --- */
+/* Active page styling */
 nav ul li a.active-page {
     color: #C71585;
     cursor: default;
@@ -159,6 +170,13 @@ nav ul li a:not(.active-page):hover {
     color: #007bff;
 }
 
+/* Wheel logo on the right side */
+.wheel-logo {
+    width: 50px;
+    height: auto;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
 
 /* --- Main Page Logo --- */
 .main-page-logo {
@@ -231,27 +249,27 @@ main {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #fff; /* White background for the main recipe box */
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .recipe-details h1 {
-    font-family: 'Vegan-Font'; /* Use your special font for the main recipe title */
+    font-family: 'Vegan-Font';
     font-size: 45px;
-    color: #C71585; /* Changed to a pink color for recipe titles */
+    color: #C71585;
     text-align: center;
     margin-bottom: 30px;
 }
 
-.recipe-details h3 { /* For Description, Ingredients, Instructions, Notes headings */
+.recipe-details h3 {
     font-family: 'Cambria';
     font-size: 28px;
     color: #00254b;
-    text-align: left; /* Align these headings to the left */
+    text-align: left;
     margin-top: 30px;
     margin-bottom: 15px;
-    border-bottom: 1px dashed #eee; /* Subtle separator */
+    border-bottom: 1px dashed #eee;
     padding-bottom: 5px;
 }
 
@@ -269,56 +287,56 @@ main {
     font-size: 22px;
     line-height: 1.6;
     color: #333;
-    margin-left: 25px; /* Indent lists */
+    margin-left: 25px;
     margin-bottom: 20px;
 }
 
 .recipe-details ul li,
 .recipe-details ol li {
-    margin-bottom: 8px; /* Space between list items */
+    margin-bottom: 8px;
 }
 
 .recipe-details ul {
-    list-style-type: disc; /* Bullet points for ingredients/notes */
+    list-style-type: disc;
 }
 
 .recipe-details ol {
-    list-style-type: decimal; /* Numbers for instructions */
+    list-style-type: decimal;
 }
 
-/* To left-align sub-headings within the ingredients section */
+/* To left-align sub-headings within ingredients */
 .recipe-details .ingredients h4 {
     text-align: left;
-    color: #00254b; /* Keeping a consistent color with other headings */
-    margin-top: 20px; /* Add some space above these sub-headings */
-    margin-bottom: 10px; /* Add some space below these sub-headings */
+    color: #00254b;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-/* Specific styling for the Instructions section */
+/* Instructions section styling */
 .recipe-details .instructions {
-    background-color: rgb(255, 240, 245); /* A light pink background */
-    padding: 20px; /* Add padding inside the pink box */
-    border-radius: 8px; /* Slightly rounded corners for the box */
-    margin-top: 30px; /* Space above the instructions box */
-    margin-bottom: 30px; /* Space below the instructions box */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow */
+    background-color: rgb(255, 240, 245);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .recipe-details .instructions h3 {
-    color: #C71585; /* Pink heading color for instructions */
-    border-bottom: 2px solid #C71585; /* Stronger border under instructions heading */
-    font-style: normal; /* Remove italic from this specific heading */
+    color: #C71585;
+    border-bottom: 2px solid #C71585;
+    font-style: normal;
 }
 
 .recipe-details .instructions ol {
     font-family: 'Unna-Font';
-    font-size: 22px; /* Match ingredients and general list styling */
+    font-size: 22px;
     color: #2b4258;
     padding-left: 20px;
 }
 
 .recipe-details .instructions ol li {
-    margin-bottom: 12px; /* More space between instruction steps */
+    margin-bottom: 12px;
 }
 
 footer {
@@ -331,21 +349,13 @@ footer {
     border-top: 3px solid #C71585;
 }
 
-/* --- Specific styling for the footer text link --- */
 .footer.text {
-    font-family: 'Unna-Font'; /* Keeping your chosen font */
-    font-size: 20px; /* Keeping your chosen size */
-    color: #C71585; /* Keeping your chosen color */
-    text-decoration: none; /* Keep this to remove underline */
-    /* Remove redundant layout properties that are now handled by the 'footer' parent: */
-    /* text-align: center; */
-    /* display: block; */
-    /* padding: 20px; */
-    /* background-color: rgb(255, 240, 245); */
-    /* border-top: 3px solid #C71585; */
-    margin: 0; /* Ensure no default margins interfere, especially no top margin */
+    font-family: 'Unna-Font';
+    font-size: 20px;
+    color: #C71585;
+    text-decoration: none;
+    margin: 0;
 }
-
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
@@ -399,15 +409,28 @@ footer {
 @media (max-width: 480px) {
     header {
         flex-direction: column;
-        padding: 10px;
+        padding: 10px 20px;
+        align-items: center;
+    }
+    .header-left {
+        justify-content: center;
+        width: 100%;
     }
     .header-logo {
         width: 80px;
         margin-bottom: 10px;
         margin-right: 0;
+        flex-shrink: 0;
     }
     nav ul {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 12px;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
     nav ul li {
         margin-bottom: 5px;
@@ -417,6 +440,10 @@ footer {
     }
     .nav-separator {
         display: none;
+    }
+    .wheel-logo {
+        margin-left: 0;
+        margin-top: 10px;
     }
     .main-page-logo {
         width: 70%;
@@ -455,23 +482,4 @@ footer {
     .recipe-details .instructions ol {
         font-size: 16px;
     }
-    nav ul {
-  display: flex;
-  flex-wrap: wrap;           /* allow items to wrap to next line */
-  justify-content: center;   /* center align horizontally */
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  gap: 10px 20px;            /* row and column gaps */
-}
-
-nav ul li {
-  display: flex;             /* ensure separators align nicely */
-  align-items: center;
-}
-
-.nav-separator {
-  margin: 0 5px;
-  user-select: none;
-}
 }
