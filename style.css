@@ -24,6 +24,11 @@
     src: url("Unna-Regular.ttf") format("truetype");
     font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
+@font-face {
+    font-family: 'DM-Sans-Font';
+    src: url("DMSans-VariableFont_opsz\,wght.ttf") format("truetype");
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
+}
 
 /* --- Base Styles --- */
 body {
@@ -117,22 +122,23 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* This is key for spreading items */
     padding: 10px 20px;
     background-color: var(--background-light-pink);
     border-bottom: 3px solid var(--primary-color);
 }
 
+/* The cookie logo on the far left of the header */
 .header-logo {
     width: 40px;
     height: auto;
-    margin-right: 20px;
+    margin-right: 20px; /* Space between logo and nav */
     flex-shrink: 0;
 }
 
 nav {
-    flex-grow: 1;
-    margin: 0 20px;
+    flex-grow: 1; /* Allows nav to take up available space in the middle */
+    margin: 0 20px; /* Space on either side of nav */
 }
 
 nav ul {
@@ -140,7 +146,7 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centers the navigation items */
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
@@ -156,10 +162,10 @@ nav ul li a:has(img) { /* Applies to all links that contain an image */
     display: block;
     width: 60px; /* Ensuring square container for desktop */
     height: 60px; /* Ensuring square container for desktop */
-    border-radius: 6px; /* Rounded corners for the container (change to 50% for circles if desired) */
+    border-radius: 6px; /* Rounded corners for the container */
     overflow: hidden; /* Clips the image to the rounded corners */
     border: 2px solid transparent; /* Default transparent border */
-    transition: border-color 0.3s ease, box-shadow 0.2s ease; /* Transition for border and shadow */
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
     cursor: pointer;
     display: flex; /* Use flexbox to center the image within */
     justify-content: center;
@@ -174,19 +180,21 @@ nav ul li a img {
     object-fit: cover; /* Ensures the image covers the square area, cropping as needed */
     object-position: center; /* Focuses the crop on the center of the image */
     margin: 0; /* Remove any default margins */
+    border-radius: 6px; /* Keep consistent with container */
 }
 
 /* Hover effect for non-active thumbnail links */
 nav ul li a:has(img):not(.active-page):hover {
     border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling for the ACTIVE thumbnail link (the <a> tag container with the class) */
-nav ul li a.active-page:has(img) {
-    border: 2px solid var(--primary-color); /* Highlight active thumbnail with primary color border */
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Clearer shadow for active */
-    cursor: default; /* No pointer on active link */
+/* This highlights the container of any active page's image within the main nav */
+nav ul li a.active-page {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    cursor: default;
 }
 
 /* Nav separator - you might not need this if all nav items are images now */
@@ -199,55 +207,66 @@ nav ul li a.active-page:has(img) {
     font-size: 18px;
 }
 
-/* --- Wheel Logo Button Styling --- */
-.wheel-logo-button {
-    display: block; /* Make it a block element to control its dimensions */
-    width: 60px; /* Match the size of nav thumbnails */
-    height: 60px; /* Match the size of nav thumbnails */
-    border-radius: 6px; /* Keep consistent rounded corners */
-    overflow: hidden; /* Important to clip content within rounded borders */
+/* --- SPECIFIC STYLING FOR THE HEADER WHEEL LOGO (moved to far right) --- */
+/* This targets the <a> tag container for the wheel logo on the far right */
+.wheel-logo-button { /* Changed selector to match HTML */
+    display: block;
+    width: 60px; /* Consistent container size as other nav items */
+    height: 60px;
+    border-radius: 6px; /* Consistent container shape */
+    overflow: hidden;
     border: 2px solid transparent; /* Default transparent border */
     transition: border-color 0.3s ease, box-shadow 0.2s ease;
     cursor: pointer;
     margin-left: 20px; /* Add some space to its left */
     flex-shrink: 0; /* Prevent it from shrinking */
-    display: flex; /* Use flexbox to center the image inside */
+    display: flex; /* Use flexbox to center the image within */
     justify-content: center;
     align-items: center;
 }
 
+/* Styling for the <img> tag inside the wheel-logo-button */
 .wheel-logo-button img {
-    display: block;
-    width: 100%; /* Make image fill the button container */
-    height: 100%; /* Make image fill the button container */
-    object-fit: cover; /* Crucial: Crop to fit, ensuring the center is focused */
-    object-position: center; /* Explicitly center the image within the button */
-    border-radius: 6px; /* Apply border-radius to the image itself if desired, or let the parent clip */
-    margin: 0; /* Remove any default image margins */
+    width: 50px; /* Desired size for the wheel logo image itself */
+    height: 50px;
+    object-fit: contain; /* IMPORTANT: Ensures the full wheel logo is visible, not cropped */
+    border: 2px solid var(--primary-color); /* Adds the circular outline */
+    border-radius: 50%; /* Makes the outline perfectly circular */
+    box-sizing: border-box; /* Includes padding and border in the specified width/height */
+    padding: 2px; /* Small inner padding */
 }
 
-.wheel-logo-button:hover {
+/* Active state for the wheel-logo-button (if it's the current page) */
+.wheel-logo-button.active-page {
+    border: 2px solid var(--primary-color); /* Highlight active thumbnail with primary color border */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Clearer shadow for active */
+    cursor: default;
+}
+
+/* Hover for the wheel-logo-button when not active */
+.wheel-logo-button:not(.active-page):hover {
     border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+
 /* --- Main Page Logo (for index.html, large logo) --- */
 .main-page-logo {
     display: block;
-    margin-top: 0px; /* Adjusted to 0 or even negative if needed to pull it higher */
+    margin-top: 0px;
     margin-bottom: 0px;
     margin-left: auto;
     margin-right: auto;
-    width: 40%; /* Reduced width */
-    max-width: 350px; /* Reduced max-width */
+    width: 40%;
+    max-width: 350px;
     height: auto;
-    object-fit: contain; /* ensures logo fits without cropping */
+    object-fit: contain;
 }
 
 /* --- Main Content Area Styling --- */
 main {
     padding: 20px;
-    flex-grow: 1; /* Allows main content to fill available space */
+    flex-grow: 1;
 }
 
 /* --- Recipe Grid Layout (for index.html) --- */
@@ -257,7 +276,7 @@ main {
     gap: 20px;
     justify-items: center;
     max-width: 1200px;
-    margin: 0 auto; /* Centers the grid */
+    margin: 0 auto;
 }
 
 .recipe-link {
@@ -271,7 +290,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px; /* Space below title */
+    padding-bottom: 10px;
 }
 
 .recipe-link:hover {
@@ -288,7 +307,7 @@ main {
 }
 
 .recipe-title {
-    font-family: 'Unna-Font', serif; /* Added fallback */
+    font-family: 'Unna-Font', serif;
     font-size: 24px;
     color: var(--dark-blue);
     text-align: center;
@@ -307,16 +326,16 @@ main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.recipe-details h1 { /* Specific h1 for recipe details page */
-    font-family: 'Vegan-Font', cursive, sans-serif; /* Added fallback */
+.recipe-details h1 {
+    font-family: 'Vegan-Font', cursive, sans-serif;
     font-size: 45px;
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 30px;
 }
 
-.recipe-details h3 { /* Specific h3 for recipe details page sections */
-    font-family: 'Unna-Font'; /* Added fallback */
+.recipe-details h3 {
+    font-family: 'Unna-Font';
     font-size: 28px;
     color: var(--dark-blue);
     text-align: left;
@@ -324,11 +343,11 @@ main {
     margin-bottom: 15px;
     border-bottom: 1px dashed var(--subtle-border-dash);
     padding-bottom: 5px;
-    font-style: normal; /* Override default italic from global h3 */
+    font-style: normal;
 }
 
 .recipe-details p {
-    font-family: 'Unna-Font', serif; /* Added fallback */
+    font-family: 'Unna-Font', serif;
     font-size: 22px;
     line-height: 1.6;
     color: var(--text-color-general);
@@ -337,7 +356,7 @@ main {
 
 .recipe-details ul,
 .recipe-details ol {
-    font-family: 'Unna-Font', serif; /* Added fallback */
+    font-family: 'Unna-Font', serif;
     font-size: 22px;
     line-height: 1.6;
     color: var(--text-color-general);
@@ -377,11 +396,11 @@ main {
 .recipe-details .instructions h3 {
     color: var(--primary-color);
     border-bottom: 2px solid var(--primary-color);
-    font-style: normal; /* Ensure instructions heading isn't italic */
+    font-style: normal;
 }
 
 .recipe-details .instructions ol {
-    font-family: 'Unna-Font', serif; /* Added fallback */
+    font-family: 'Unna-Font', serif;
     font-size: 22px;
     color: var(--medium-blue);
     padding-left: 20px;
@@ -403,25 +422,26 @@ footer {
 }
 
 .footer.text {
-    font-family: 'Unna-Font', serif; /* Applied Unna-Font */
+    font-family: 'Unna-Font', serif;
     font-size: 20px;
-    color: var(--primary-color); /* Set to primary pink color */
-    text-decoration: none; /* Keep as no text-decoration */
+    color: var(--primary-color);
+    text-decoration: none;
     margin: 0;
     font-weight: normal;
 }
 
 footer .footer.text:hover {
-    color: #007bff;
+    color: var(--secondary-color);
 }
 
-/* --- Lucky Wheel Specific Styles --- */
+
+/* --- Lucky Wheel Specific Styles (for the main content wheel) --- */
 .wheel-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+    min-height: calc(100vh - 120px);
     padding: 20px;
     box-sizing: border-box;
     background-color: rgb(236, 250, 255);
@@ -445,67 +465,64 @@ footer .footer.text:hover {
     margin-bottom: 30px;
     border-radius: 50%;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border: 5px solid #C71585; /* Outer border */
-    overflow: hidden; /* Crucial for clipping the inner wheel and its text */
+    border: 5px solid #C71585;
+    overflow: hidden;
 }
 
-/* The outer static circular container */
 .wheel {
     position: relative;
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 3px solid #012E52; /* Inner border of the static wheel */
+    border: 3px solid #012E52;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
-    overflow: hidden; /* Crucial for clipping its child .wheel-content */
+    overflow: hidden;
 }
 
-/* The new inner div that will contain the conic gradient and text, and will spin */
 .wheel-content {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%; /* Make it circular */
+    border-radius: 50%;
     transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    transform-origin: 50% 50%; /* Ensure it spins around its center */
-    
-    will-change: transform; /* Hints to the browser for performance */
-    backface-visibility: hidden; /* Prevents flickering/distortion */
+    transform-origin: 50% 50%;
+    will-change: transform;
+    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-
     clip-path: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
 }
 
-/* Style for the individual text elements on the wheel */
 .wheel-text {
     position: absolute;
-    top: 50%; /* Position text origin at the center of the wheel-content */
+    top: 50%;
     left: 50%;
-    width: 100%; /* Spans the full width of wheel-content */
+    width: 100%;
     height: 100%;
-    transform-origin: 0 0; /* Rotate around top-left corner */
+    transform-origin: 0% 0%;
     font-family: 'Unna-Font', sans-serif;
-    font-size: 14px; /* Adjust font size to fit inside segments */
+    font-size: 14px;
     font-weight: bold;
-    color: #333; /* Default text color */
+    color: #333;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    white-space: nowrap; /* Prevent text wrap */
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.2;
+    box-sizing: border-box;
     pointer-events: none;
 }
 
 .wheel-text span {
     display: block;
-    transform: rotate(90deg) translateY(-80px);
-    transform-origin: left center;
-    max-width: 20px;
-    writing-mode: vertical-rl;
+    transform: translateY(-85px) rotate(0deg);
+    width: 60%;
 }
+
 
 .pointer {
     position: absolute;
@@ -524,33 +541,156 @@ footer .footer.text:hover {
     background-color: #C71585;
     color: white;
     border: none;
-    border-radius: 50px;
-    font-family: 'Vegan-Font', cursive, sans-serif;
-    font-size: 18px;
+    border-radius: 30px;
+    font-family: 'Cambria', sans-serif;
+    font-size: 24px;
     font-weight: bold;
-    padding: 15px 35px;
+    padding: 15px 30px;
     cursor: pointer;
-    box-shadow: 0 5px 10px rgba(199,21,133,0.5);
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 30px;
+    letter-spacing: 1px;
+    outline: none;
 }
 
-#spinButton:hover:not(:disabled) {
-    background-color: #A31370;
+#spinButton:hover {
+    background-color: #d12e94;
+    transform: translateY(-2px);
+}
+
+#spinButton:active {
+    background-color: #a61c71;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 #spinButton:disabled {
-    background-color: #D9A7C0;
+    background-color: #cccccc;
     cursor: not-allowed;
     box-shadow: none;
 }
 
 #resultText {
-    font-family: 'Unna-Font', serif;
-    font-size: 18px;
-    color: #333;
-    text-align: center;
+    font-family: 'Unna-Font', sans-serif;
+    font-size: 22px;
+    color: #00254b;
     margin-top: 20px;
-    min-height: 22px;
-    transition: opacity 0.4s ease;
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+    text-align: center;
+    min-height: auto;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+    .header-logo { /* Cookie logo */
+        width: 40px;
+        height: auto;
+        margin-right: 15px;
+    }
+    nav ul {
+        gap: 6px 15px;
+        max-width: 100%;
+    }
+    nav ul li a:has(img) { /* Applies to all links that contain an image */
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+    }
+    .nav-separator {
+        margin: 0 4px;
+    }
+    /* Responsive for the HEADER WHEEL LOGO (far right) */
+    .wheel-logo-button { /* Changed selector to match HTML */
+        width: 45px; /* Adjust container size for tablet */
+        height: 45px;
+    }
+    .wheel-logo-button img {
+        width: 40px; /* Adjust image size for tablet */
+        height: 40px;
+        border-radius: 50%; /* Ensure circular outline */
+    }
+    .main-page-logo {
+        width: 60%;
+    }
+    .recipe-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .recipe-image {
+        width: 200px;
+        height: 200px;
+    }
+    .recipe-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column; /* Stack items vertically on very small screens */
+        align-items: center;
+        gap: 10px;
+    }
+    .header-logo { /* Cookie logo */
+        width: 35px;
+        height: auto;
+        margin-right: 0; /* Remove margin when stacked */
+    }
+    nav {
+        justify-content: center;
+        width: 100%;
+        margin: 0; /* Remove side margins when stacked */
+    }
+    nav ul {
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    nav ul li a:has(img) {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav ul li a img {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+    }
+    /* Responsive for the HEADER WHEEL LOGO (far right) */
+    .wheel-logo-button { /* Changed selector to match HTML */
+        width: 40px; /* Adjust container size for mobile */
+        height: 40px;
+        margin-left: 0; /* Remove margin when stacked */
+    }
+    .wheel-logo-button img {
+        width: 35px; /* Adjust image size for mobile */
+        height: 35px;
+        border-radius: 50%; /* Ensure circular outline */
+    }
+    .main-page-logo {
+        width: 80%;
+    }
+    .recipe-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .recipe-image {
+        width: 100%;
+        height: auto;
+    }
 }
