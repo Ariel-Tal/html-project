@@ -108,6 +108,7 @@ a {
 }
 
 /* Global image border-radius */
+/* This will apply to all images unless overridden, including the main page logo */
 img {
     border-radius: 8px;
 }
@@ -154,13 +155,16 @@ nav ul li {
 /* Base styling for all thumbnail links (the <a> tag container) */
 nav ul li a:has(img) { /* Applies to all links that contain an image */
     display: block;
-    **width: 60px; /* Ensuring perfect square */
-    height: 60px; /* Ensuring perfect square */**
-    border-radius: 6px;
-    overflow: hidden; /* Important for cropping */
+    width: 60px; /* Ensuring square container for desktop */
+    height: 60px; /* Ensuring square container for desktop */
+    border-radius: 6px; /* Rounded corners for the container (change to 50% for circles) */
+    overflow: hidden; /* Clips the image to the rounded corners */
     border: 2px solid transparent; /* Default transparent border */
     transition: border-color 0.3s ease, box-shadow 0.2s ease; /* Transition for border and shadow */
     cursor: pointer;
+    display: flex; /* Use flexbox to center the image within */
+    justify-content: center;
+    align-items: center;
 }
 
 /* Styling for the <img> tag INSIDE any nav link */
@@ -168,9 +172,9 @@ nav ul li a img {
     display: block;
     width: 100%;
     height: 100%;
-    **object-fit: cover; /* This makes sure the image fills and crops from the center */
-    object-position: center; /* Explicitly center the crop */**
-    border-radius: 6px; /* Match parent container border-radius */
+    object-fit: cover; /* Ensures the image covers the square area, cropping as needed */
+    object-position: center; /* Focuses the crop on the center of the image */
+    /* border-radius property removed from img, as it's on the parent <a> for consistency */
     margin: 0; /* Remove any default margins */
 }
 
@@ -187,7 +191,7 @@ nav ul li a.active-page:has(img) {
     cursor: default; /* No pointer on active link */
 }
 
-/* Nav separator - useful for visual separation if needed between text links */
+/* Nav separator - you might not need this if all nav items are images now */
 .nav-separator {
     display: inline-block;
     margin: 0 6px;
@@ -205,7 +209,7 @@ nav ul li a.active-page:has(img) {
     flex-shrink: 0;
 }
 
-/* --- Main Page Logo --- */
+/* --- Main Page Logo (for index.html, large logo) --- */
 .main-page-logo {
     display: block;
     margin-top: 15px;
@@ -215,7 +219,7 @@ nav ul li a.active-page:has(img) {
     width: 50%;
     max-width: 450px;
     height: auto;
-    object-fit: contain;
+    object-fit: contain; /* ensures logo fits without cropping */
 }
 
 /* --- Main Content Area Styling --- */
@@ -390,8 +394,12 @@ footer {
         width: 50px;
     }
     nav ul li a:has(img) { /* Applies to all links that contain an image */
-        **width: 45px; /* Smaller square for tablet */
-        height: 45px; /* Smaller square for tablet */**
+        width: 45px; /* Smaller square for tablet */
+        height: 45px; /* Smaller square for tablet */
+        border-radius: 6px; /* Ensure rounded corners on tablet */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
         width: 100%;
@@ -427,8 +435,12 @@ footer {
         flex-wrap: wrap;
     }
     nav ul li a:has(img) { /* Applies to all links that contain an image */
-        **width: 40px; /* Even smaller square for mobile */
-        height: 40px; /* Even smaller square for mobile */**
+        width: 40px; /* Even smaller square for mobile */
+        height: 40px; /* Even smaller square for mobile */
+        border-radius: 6px; /* Ensure rounded corners on mobile */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
         width: 100%;
