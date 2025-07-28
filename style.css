@@ -311,10 +311,10 @@ main {
 }
 
 .recipe-details .instructions ol {
-    font-family: 'Unna-Font'; /* Change font for instruction steps */
-    font-size: 19px; /* Slightly larger font size for readability */
-    color: #2b4258; /* Darker blue/grey for instruction text */
-    padding-left: 20px; /* Ensure numbers are visible */
+    font-family: 'Unna-Font';
+    font-size: 22px; /* Match ingredients and general list styling */
+    color: #2b4258;
+    padding-left: 20px;
 }
 
 .recipe-details .instructions ol li {
