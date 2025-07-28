@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultText = document.getElementById('resultText');
 
     const recipes = [
-        { name: "Chocolate Chip Cookies", url: "recipe1.html", color: "#FF0000" },
-        { name: "Strawberry Cake", url: "recipe2.html", color: "#00FF00" },
-        { name: "Flatbread Pizza", url: "recipe3.html", color: "#0000FF" },
-        { name: "Garlic Rosemary Focaccia", url: "recipe4.html", color: "#FFFF00" },
-        { name: "Cinnamon Rolls", url: "recipe5.html", color: "#FFA500" },
-        { name: "Buttermilk Pancakes", url: "recipe6.html", color: "#800080" },
-        { name: "Pretzel Bites", url: "recipe7.html", color: "#FFC0CB" },
-        { name: "Cheddar Biscuits", url: "recipe8.html", color: "#A52A2A" }
+        { name: "Chocolate Chip Cookies", url: "recipe1.html", color: "#C71585" },
+        { name: "Strawberry Cake", url: "recipe2.html", color: "#E2C79D" },
+        { name: "Flatbread Pizza", url: "recipe3.html", color: "#F6EB87" },
+        { name: "Garlic Rosemary Focaccia", url: "recipe4.html", color: "#A0D295" },
+        { name: "Cinnamon Rolls", url: "recipe5.html", color: "#84ADAA" },
+        { name: "Buttermilk Pancakes", url: "recipe6.html", color: "#3D6EC9" },
+        { name: "Pretzel Bites", url: "recipe7.html", color: "#00254B" },
+        { name: "Cheddar Biscuits", url: "recipe8.html", color: "#68346A" }
     ];
 
     const segmentAngle = 360 / recipes.length;
