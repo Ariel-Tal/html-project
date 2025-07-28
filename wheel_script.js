@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const rotationForTextElement = currentGradientAngle + (segmentAngle / 2);
             textElement.style.transform = `rotate(${rotationForTextElement}deg)`;
-            textSpan.style.transform = `rotate(-${rotationForTextElement}deg) translateY(-80px)`;
+            textSpan.style.transform = `rotate(90deg) translateY(-80px)`; // sideways vertical text
 
             wheelContent.appendChild(textElement);
 

@@ -415,7 +415,6 @@ footer .footer.text:hover {
     color: #007bff;
 }
 
-
 /* --- Lucky Wheel Specific Styles --- */
 .wheel-main {
     display: flex;
@@ -453,7 +452,6 @@ footer .footer.text:hover {
 /* The outer static circular container */
 .wheel {
     position: relative;
-    /* Adjusted size to precisely match the inner border of wheel-container, accounting for its border */
     width: 300px;
     height: 300px;
     border-radius: 50%;
@@ -477,12 +475,9 @@ footer .footer.text:hover {
     backface-visibility: hidden; /* Prevents flickering/distortion */
     -webkit-backface-visibility: hidden;
 
-    /* **** CRITICAL ADDITION FOR PRECISE CLIPPING **** */
     clip-path: circle(50% at 50% 50%);
-    -webkit-clip-path: circle(50% at 50% 50%); /* For Webkit browsers */
-    /* ************************************************ */
+    -webkit-clip-path: circle(50% at 50% 50%);
 }
-
 
 /* Style for the individual text elements on the wheel */
 .wheel-text {
@@ -491,27 +486,25 @@ footer .footer.text:hover {
     left: 50%;
     width: 100%; /* Spans the full width of wheel-content */
     height: 100%;
-    transform-origin: 0% 0%; /* Rotate around the center of wheel-content */
+    transform-origin: 0 0; /* Rotate around top-left corner */
     font-family: 'Unna-Font', sans-serif;
     font-size: 14px; /* Adjust font size to fit inside segments */
     font-weight: bold;
     color: #333; /* Default text color */
-    text-align: center; /* Center the text within its rotated container */
+    text-align: center;
     display: flex;
-    justify-content: center; /* Center horizontally within its rotated space */
-    align-items: flex-start; /* Align text to the top of its rotated space (towards edge) */
-    white-space: normal; /* Allow text to wrap */
-    word-wrap: break-word; /* Break long words */
-    line-height: 1.2;
-    box-sizing: border-box;
-    pointer-events: none; /* Allow clicks to pass through to the wheel */
+    justify-content: center;
+    align-items: flex-start;
+    white-space: nowrap; /* Prevent text wrap */
+    pointer-events: none;
 }
 
 .wheel-text span {
     display: block;
-    /* Adjusted translateY slightly to potentially bring text further in */
-    transform: translateY(-85px) rotate(0deg); /* Initial state, JS will apply rotation */
-    width: 60%; /* Limit text width to fit within segment */
+    transform: rotate(90deg) translateY(-80px);
+    transform-origin: left center;
+    max-width: 20px;
+    writing-mode: vertical-rl;
 }
 
 .pointer {
@@ -530,144 +523,34 @@ footer .footer.text:hover {
 #spinButton {
     background-color: #C71585;
     color: white;
-    font-family: 'Cambria', sans-serif;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 15px 30px;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
+    font-family: 'Vegan-Font', cursive, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 35px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    margin-top: 30px;
-    letter-spacing: 1px;
-    outline: none;
+    box-shadow: 0 5px 10px rgba(199,21,133,0.5);
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 
-#spinButton:hover {
-    background-color: #d12e94;
-    transform: translateY(-2px);
-}
-
-#spinButton:active {
-    background-color: #a61c71;
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+#spinButton:hover:not(:disabled) {
+    background-color: #A31370;
 }
 
 #spinButton:disabled {
-    background-color: #cccccc;
+    background-color: #D9A7C0;
     cursor: not-allowed;
     box-shadow: none;
 }
 
 #resultText {
-    font-family: 'Unna-Font', sans-serif;
-    font-size: 22px;
-    color: #00254b;
-    margin-top: 20px;
-    font-weight: bold;
-    transition: opacity 0.5s ease;
+    font-family: 'Unna-Font', serif;
+    font-size: 18px;
+    color: #333;
     text-align: center;
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-    }
-    .header-logo {
-        width: 50px;
-        margin-right: 15px;
-    }
-    nav ul {
-        gap: 6px 15px;
-        max-width: 100%;
-    }
-    nav ul li a:has(img) { /* Applies to all links that contain an image */
-        width: 45px; /* Smaller square for tablet */
-        height: 45px; /* Smaller square for tablet */
-        border-radius: 6px; /* Ensure rounded corners on tablet */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
-        width: 100%;
-        height: 100%;
-    }
-    .nav-separator {
-        margin: 0 4px;
-    }
-    /* Wheel logo button responsive */
-    .wheel-logo-button {
-        width: 45px; /* Match responsive size of nav thumbnails */
-        height: 45px; /* Match responsive size of nav thumbnails */
-        border-radius: 6px;
-    }
-    .wheel-logo-button img {
-        border-radius: 6px; /* Ensure image border-radius is applied on mobile */
-    }
-    .main-page-logo {
-        width: 60%;
-    }
-    .recipe-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    .recipe-image {
-        width: 200px;
-        height: 200px;
-    }
-    .recipe-title {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    nav {
-        justify-content: center;
-        width: 100%;
-    }
-    nav ul {
-        justify-content: center;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-    nav ul li a:has(img) { /* Applies to all links that contain an image */
-        width: 40px; /* Even smaller square for mobile */
-        height: 40px; /* Even smaller square for mobile */
-        border-radius: 6px; /* Ensure rounded corners on mobile */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
-        width: 100%;
-        height: 100%;
-    }
-    /* Wheel logo button responsive */
-    .wheel-logo-button {
-        width: 40px; /* Match responsive size of nav thumbnails */
-        height: 40px; /* Match responsive size of nav thumbnails */
-        border-radius: 6px;
-    }
-    .wheel-logo-button img {
-        border-radius: 6px; /* Ensure image border-radius is applied on mobile */
-    }
-    .main-page-logo {
-        width: 80%;
-    }
-    .recipe-grid {
-        grid-template-columns: 1fr; /* Single column on very small screens */
-        gap: 15px;
-    }
-    .recipe-image {
-        width: 100%; /* Image fills container on mobile */
-        height: auto; /* Maintain aspect ratio */
-    }
+    margin-top: 20px;
+    min-height: 22px;
+    transition: opacity 0.4s ease;
 }
