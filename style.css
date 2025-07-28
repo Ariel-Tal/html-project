@@ -450,7 +450,9 @@ footer .footer.text:hover {
 .wheel-main h2 {
     margin-top: 20px;
     margin-bottom: 40px;
-    font-family: 'Vegan-Font';
+    font-family: 'Unna-Font';
+    font-style: italic;
+    font-weight: 900;
     font-size: 40px;
     color: #0080ff;
 }
@@ -542,7 +544,7 @@ footer .footer.text:hover {
     color: white;
     border: none;
     border-radius: 30px;
-    font-family: 'Cambria', sans-serif;
+    font-family: 'Unna-Font', sans-serif;
     font-size: 24px;
     font-weight: bold;
     padding: 15px 30px;
