@@ -209,7 +209,7 @@ nav ul li a.active-page {
 
 /* --- SPECIFIC STYLING FOR THE HEADER WHEEL LOGO (moved to far right) --- */
 /* This targets the <a> tag container for the wheel logo on the far right */
-.wheel-logo-button { /* Changed selector to match HTML */
+.wheel-logo-button {
     display: block;
     width: 60px; /* Consistent container size as other nav items */
     height: 60px;
@@ -226,19 +226,21 @@ nav ul li a.active-page {
 }
 
 /* Styling for the <img> tag inside the wheel-logo-button */
+/* No border/radius here by default */
 .wheel-logo-button img {
     width: 50px; /* Desired size for the wheel logo image itself */
     height: 50px;
-    object-fit: contain; /* IMPORTANT: Ensures the full wheel logo is visible, not cropped */
-    border: 2px solid var(--primary-color); /* Adds the circular outline */
-    border-radius: 50%; /* Makes the outline perfectly circular */
+    object-fit: contain; /* Ensures the full wheel logo is visible, not cropped */
+    /* Remove border and border-radius from here */
     box-sizing: border-box; /* Includes padding and border in the specified width/height */
     padding: 2px; /* Small inner padding */
 }
 
 /* Active state for the wheel-logo-button (if it's the current page) */
-.wheel-logo-button.active-page {
-    border: 2px solid var(--primary-color); /* Highlight active thumbnail with primary color border */
+/* Apply the border and square radius ONLY when active */
+.wheel-logo-button.active-page img { /* Targeting the image *inside* the active link */
+    border: 2px solid var(--primary-color); /* Adds the square outline */
+    border-radius: 6px; /* Makes the outline square */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Clearer shadow for active */
     cursor: default;
 }
@@ -613,14 +615,17 @@ footer .footer.text:hover {
         margin: 0 4px;
     }
     /* Responsive for the HEADER WHEEL LOGO (far right) */
-    .wheel-logo-button { /* Changed selector to match HTML */
+    .wheel-logo-button {
         width: 45px; /* Adjust container size for tablet */
         height: 45px;
     }
     .wheel-logo-button img {
         width: 40px; /* Adjust image size for tablet */
         height: 40px;
-        border-radius: 50%; /* Ensure circular outline */
+    }
+    .wheel-logo-button.active-page img { /* Apply active border responsive */
+        border: 2px solid var(--primary-color);
+        border-radius: 6px;
     }
     .main-page-logo {
         width: 60%;
@@ -672,7 +677,7 @@ footer .footer.text:hover {
         border-radius: 6px;
     }
     /* Responsive for the HEADER WHEEL LOGO (far right) */
-    .wheel-logo-button { /* Changed selector to match HTML */
+    .wheel-logo-button {
         width: 40px; /* Adjust container size for mobile */
         height: 40px;
         margin-left: 0; /* Remove margin when stacked */
@@ -680,7 +685,10 @@ footer .footer.text:hover {
     .wheel-logo-button img {
         width: 35px; /* Adjust image size for mobile */
         height: 35px;
-        border-radius: 50%; /* Ensure circular outline */
+    }
+    .wheel-logo-button.active-page img { /* Apply active border responsive */
+        border: 2px solid var(--primary-color);
+        border-radius: 6px;
     }
     .main-page-logo {
         width: 80%;
