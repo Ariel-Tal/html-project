@@ -455,4 +455,23 @@ footer {
     .recipe-details .instructions ol {
         font-size: 16px;
     }
+    nav ul {
+  display: flex;
+  flex-wrap: wrap;           /* allow items to wrap to next line */
+  justify-content: center;   /* center align horizontally */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: 10px 20px;            /* row and column gaps */
+}
+
+nav ul li {
+  display: flex;             /* ensure separators align nicely */
+  align-items: center;
+}
+
+.nav-separator {
+  margin: 0 5px;
+  user-select: none;
+}
 }
