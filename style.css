@@ -79,6 +79,7 @@ h6 {
     padding: 20px;
 }
 
+/* General anchor tag styling - apply with caution as it affects ALL <a> tags */
 a {
     font-family: 'Cambria';
     font-size: 25px;
@@ -122,6 +123,8 @@ header {
 /* Navigation container */
 nav {
     flex-grow: 1;
+    display: flex; /* Make nav a flex container to center its ul */
+    justify-content: center; /* Center the ul within the nav */
 }
 
 nav ul {
@@ -130,7 +133,7 @@ nav ul {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Kept your original flex-start for individual links */
     align-items: center;
     gap: 8px 20px; /* row and column spacing */
     max-width: 700px; /* constrain nav width so it wraps nicely */
@@ -141,15 +144,18 @@ nav ul li {
     align-items: center;
 }
 
+/* Specific styling for navigation links to override general 'a' tag styles */
 nav ul li a {
-    font-family: 'Cambria';
-    font-size: 20px;
-    text-decoration: none;
-    color: #012E52;
-    font-weight: bold;
+    font-family: 'Cambria'; /* Override general 'a' font */
+    font-size: 20px; /* Override general 'a' font size */
+    text-decoration: none; /* Override general 'a' text decoration */
+    color: #012E52; /* Override general 'a' color */
+    font-weight: bold; /* Override general 'a' font weight */
     padding: 0 5px;
     white-space: nowrap;
+    text-align: left; /* Ensure nav links are not center-aligned if it causes issues */
 }
+
 
 .nav-separator {
     display: inline-block;
@@ -347,26 +353,202 @@ footer {
     padding: 20px 20px;
     background-color: rgb(255, 240, 245);
     border-top: 3px solid #C71585;
+    margin-top: auto; /* Pushes footer to the bottom on pages with less content */
 }
 
-.footer.text {
+/* Specific styling for the footer text link */
+footer .footer.text {
     font-family: 'Unna-Font';
     font-size: 20px;
+    text-align: center;
     color: #C71585;
     text-decoration: none;
     margin: 0;
+    font-weight: normal;
+}
+
+footer .footer.text:hover {
+    color: #007bff;
+}
+
+
+/* --- Lucky Wheel Specific Styles --- */
+.wheel-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgb(236, 250, 255);
+}
+
+.wheel-main h2 {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-family: 'Vegan-Font';
+    font-size: 40px;
+    color: #0080ff;
+}
+
+.wheel-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 5px solid #C71585; /* Outer border */
+    overflow: hidden; /* Crucial for clipping the inner wheel and its text */
+}
+
+/* The outer static circular container */
+.wheel {
+    position: relative;
+    /* Adjusted size to precisely match the inner border of wheel-container, accounting for its border */
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 3px solid #012E52; /* Inner border of the static wheel */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+    overflow: hidden; /* Crucial for clipping its child .wheel-content */
+}
+
+/* The new inner div that will contain the conic gradient and text, and will spin */
+.wheel-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Make it circular */
+    transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform-origin: 50% 50%; /* Ensure it spins around its center */
+    
+    will-change: transform; /* Hints to the browser for performance */
+    backface-visibility: hidden; /* Prevents flickering/distortion */
+    -webkit-backface-visibility: hidden;
+
+    /* **** CRITICAL ADDITION FOR PRECISE CLIPPING **** */
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%); /* For Webkit browsers */
+    /* ************************************************ */
+}
+
+
+/* Style for the individual text elements on the wheel */
+.wheel-text {
+    position: absolute;
+    top: 50%; /* Position text origin at the center of the wheel-content */
+    left: 50%;
+    width: 100%; /* Spans the full width of wheel-content */
+    height: 100%;
+    transform-origin: 0% 0%; /* Rotate around the center of wheel-content */
+    font-family: 'Unna-Font', sans-serif;
+    font-size: 14px; /* Adjust font size to fit inside segments */
+    font-weight: bold;
+    color: #333; /* Default text color */
+    text-align: center; /* Center the text within its rotated container */
+    display: flex;
+    justify-content: center; /* Center horizontally within its rotated space */
+    align-items: flex-start; /* Align text to the top of its rotated space (towards edge) */
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break long words */
+    line-height: 1.2;
+    box-sizing: border-box;
+    pointer-events: none; /* Allow clicks to pass through to the wheel */
+}
+
+.wheel-text span {
+    display: block;
+    /* Adjusted translateY slightly to potentially bring text further in */
+    transform: translateY(-85px) rotate(0deg); /* Initial state, JS will apply rotation */
+    width: 60%; /* Limit text width to fit within segment */
+}
+
+.pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 40px solid #C71585;
+    z-index: 10;
+}
+
+#spinButton {
+    background-color: #C71585;
+    color: white;
+    font-family: 'Cambria', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 30px;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+#spinButton:hover {
+    background-color: #d12e94;
+    transform: translateY(-2px);
+}
+
+#spinButton:active {
+    background-color: #a61c71;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#spinButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#resultText {
+    font-family: 'Unna-Font', sans-serif;
+    font-size: 22px;
+    color: #00254b;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+    text-align: center;
 }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
     .header-logo {
         width: 50px;
+        margin-right: 15px;
+    }
+    nav ul {
+        gap: 6px 15px;
+        max-width: 100%;
     }
     nav ul li a {
         font-size: 16px;
     }
     .nav-separator {
         margin: 0 4px;
+    }
+    .wheel-logo {
+        width: 40px;
+        margin-left: 15px;
     }
     .main-page-logo {
         width: 60%;
@@ -396,13 +578,44 @@ footer {
     .recipe-details p,
     .recipe-details ul,
     .recipe-details ol {
-        font-size: 16px;
+        font-size: 18px;
     }
     .recipe-details .instructions {
         padding: 15px;
     }
     .recipe-details .instructions ol {
-        font-size: 22px;
+        font-size: 19px;
+    }
+
+    /* Responsive for Lucky Wheel */
+    .wheel-main h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    .wheel-container {
+        width: 300px;
+        height: 300px;
+    }
+    .wheel {
+        width: 260px; /* Adjust static wheel size */
+        height: 260px;
+    }
+    .wheel-text span { /* Adjust span for smaller screens */
+        font-size: 12px;
+        transform: translateY(-70px) rotate(0deg); /* Adjust radial position */
+    }
+    .pointer {
+        top: -15px;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 30px solid #C71585;
+    }
+    #spinButton {
+        font-size: 20px;
+        padding: 12px 25px;
+    }
+    #resultText {
+        font-size: 18px;
     }
 }
 
@@ -421,6 +634,10 @@ footer {
         margin-bottom: 10px;
         margin-right: 0;
         flex-shrink: 0;
+    }
+    nav {
+        justify-content: center;
+        width: 100%;
     }
     nav ul {
         flex-direction: row;
@@ -474,12 +691,43 @@ footer {
     .recipe-details p,
     .recipe-details ul,
     .recipe-details ol {
-        font-size: 15px;
+        font-size: 16px;
     }
     .recipe-details .instructions {
         padding: 10px;
     }
     .recipe-details .instructions ol {
+        font-size: 17px;
+    }
+
+    /* Responsive for Lucky Wheel */
+    .wheel-main h2 {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+    .wheel-container {
+        width: 250px;
+        height: 250px;
+    }
+    .wheel {
+        width: 210px; /* Adjust static wheel size */
+        height: 210px;
+    }
+    .wheel-text span { /* Adjust span for smaller screens */
+        font-size: 10px; 
+        transform: translateY(-60px) rotate(0deg); /* Adjust radial position */
+    }
+    .pointer {
+        top: -15px;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 30px solid #C71585;
+    }
+    #spinButton {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+    #resultText {
         font-size: 16px;
     }
 }
