@@ -1,71 +1,90 @@
+:root {
+    --primary-color: #C71585; /* Raspberry Pink - used for accents, active links, borders */
+    --secondary-color: #0080ff; /* Bright Blue - used for h1 */
+    --dark-blue: #00254b; /* Deep Navy - used for h3, recipe titles */
+    --medium-blue: #2b4258; /* Slate Blue - used for h4, instructions text */
+    --text-color-general: #333; /* Dark Grey - general body text */
+    --background-light-blue: rgb(236, 250, 255); /* Very Light Blue */
+    --background-light-pink: rgb(255, 240, 245); /* Light Pink - header/footer background, instructions block */
+    --border-color-light: #ddd; /* Light Grey Border - for recipe links */
+    --subtle-border-dash: #eee; /* Even Lighter Grey for Dashed Border */
+    --link-color: #137ee9; /* Specific link color */
+    --subtle-text-color: #474357; /* For h5 */
+    --darkest-blue-text: #04122e; /* For h6 */
+}
+
+/* --- Font Definitions --- */
 @font-face {
     font-family: 'Vegan-Font';
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 @font-face {
     font-family: 'Unna-Font';
     src: url("Unna-Regular.ttf") format("truetype");
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 
+/* --- Base Styles --- */
 body {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     margin: 0;
     padding: 0;
-    background-color: rgb(236, 250, 255);
+    background-color: var(--background-light-blue);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
 }
 
 h1 {
-    font-family: 'Vegan-Font';
+    font-family: 'Vegan-Font', cursive, sans-serif; /* Added fallback */
     font-size: 50px;
     text-align: center;
-    color: #0080ff;
-    margin: 0.1px;
+    color: var(--secondary-color);
+    margin: 0 0 10px 0; /* Adjusted margin for clearer spacing */
     font-weight: normal;
 }
 
 h2 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 35px;
     text-align: center;
-    color: #C71585;
-    margin-top: 0px;
+    color: var(--primary-color);
+    margin-top: 0;
     margin-bottom: 30px;
 }
 
 h3 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 30px;
     text-align: center;
-    color: #00254b;
+    color: var(--dark-blue);
     font-style: italic;
-    margin: 0.1px;
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h4 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 25px;
     text-align: center;
-    color: #2b4258;
-    margin: 0.1px;
+    color: var(--medium-blue);
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h5 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 18px;
     text-align: center;
-    color: #474357;
-    margin: 0.1px;
+    color: var(--subtle-text-color);
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h6 {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 25px;
     text-align: center;
-    color: #04122e;
-    margin: 0.1px;
+    color: var(--darkest-blue-text);
+    margin: 0 0 5px 0; /* Adjusted margin */
     display: inline-block;
 }
 
@@ -79,16 +98,16 @@ h6 {
     padding: 20px;
 }
 
+/* Global link styles - be mindful of these affecting all links */
 a {
-    font-family: 'Cambria';
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 25px;
-    text-align: center;
-    margin: 0.1px;
     font-weight: bold;
     text-decoration: none;
-    color: #137ee9;
+    color: var(--link-color);
 }
 
+/* Global image border-radius */
 img {
     border-radius: 8px;
 }
@@ -100,8 +119,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: rgb(255, 240, 245);
-    border-bottom: 3px solid #C71585;
+    background-color: var(--background-light-pink);
+    border-bottom: 3px solid var(--primary-color);
 }
 
 .header-logo {
@@ -132,71 +151,50 @@ nav ul li {
     align-items: center;
 }
 
+/* Base styling for all thumbnail links (the <a> tag container) */
+nav ul li a:has(img) { /* Applies to all links that contain an image */
+    display: block;
+    **width: 60px; /* Ensuring perfect square */
+    height: 60px; /* Ensuring perfect square */**
+    border-radius: 6px;
+    overflow: hidden; /* Important for cropping */
+    border: 2px solid transparent; /* Default transparent border */
+    transition: border-color 0.3s ease, box-shadow 0.2s ease; /* Transition for border and shadow */
+    cursor: pointer;
+}
+
+/* Styling for the <img> tag INSIDE any nav link */
+nav ul li a img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    **object-fit: cover; /* This makes sure the image fills and crops from the center */
+    object-position: center; /* Explicitly center the crop */**
+    border-radius: 6px; /* Match parent container border-radius */
+    margin: 0; /* Remove any default margins */
+}
+
+/* Hover effect for non-active thumbnail links */
+nav ul li a:has(img):not(.active-page):hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Styling for the ACTIVE thumbnail link (the <a> tag container with the class) */
+nav ul li a.active-page:has(img) {
+    border: 2px solid var(--primary-color); /* Highlight active thumbnail with primary color border */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Clearer shadow for active */
+    cursor: default; /* No pointer on active link */
+}
+
+/* Nav separator - useful for visual separation if needed between text links */
 .nav-separator {
     display: inline-block;
     margin: 0 6px;
     user-select: none;
-    color: #C71585;
+    color: var(--primary-color);
     font-weight: bold;
     font-size: 18px;
-}
-
-/* Home link styling - text only, no photo */
-nav ul li a.active-page {
-    font-family: 'Cambria';
-    font-size: 20px;
-    color: #C71585;
-    text-decoration: underline;
-    padding: 0 8px;
-    width: auto;
-    height: auto;
-    background: none;
-    border: none;
-    cursor: default;
-}
-
-/* Small recipe thumbnail nav links */
-nav ul li a:not(.active-page) {
-    font-size: 0; /* hide text */
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-}
-
-nav ul li a:not(.active-page):hover {
-    border-color: #C71585;
-    transform: scale(1.1);
-}
-
-/* Use background images in nav links for thumbnails */
-nav ul li a[href="recipe1.html"] {
-    background: url("Chocolate Chip Cookies.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe2.html"] {
-    background: url("Strawberry Cake.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe3.html"] {
-    background: url("Flatbread Pizza.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe4.html"] {
-    background: url("Garlic Rosemary Focaccia.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe5.html"] {
-    background: url("Cinnamon Rolls.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe6.html"] {
-    background: url("Buttermilk Pancakes.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe7.html"] {
-    background: url("Pretzel Bites.jpg") center center/cover no-repeat;
-}
-nav ul li a[href="recipe8.html"] {
-    background: url("Cheddar Biscuits.jpg") center center/cover no-repeat;
 }
 
 /* Wheel logo on the right side */
@@ -223,7 +221,7 @@ nav ul li a[href="recipe8.html"] {
 /* --- Main Content Area Styling --- */
 main {
     padding: 20px;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows main content to fill available space */
 }
 
 /* --- Recipe Grid Layout (for index.html) --- */
@@ -233,13 +231,13 @@ main {
     gap: 20px;
     justify-items: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centers the grid */
 }
 
 .recipe-link {
     display: block;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color-light);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -247,7 +245,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 10px; /* Space below title */
 }
 
 .recipe-link:hover {
@@ -264,9 +262,9 @@ main {
 }
 
 .recipe-title {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 24px;
-    color: #00254b;
+    color: var(--dark-blue);
     text-align: center;
     margin: 0;
     padding: 0 10px;
@@ -283,39 +281,40 @@ main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.recipe-details h1 {
-    font-family: 'Vegan-Font';
+.recipe-details h1 { /* Specific h1 for recipe details page */
+    font-family: 'Vegan-Font', cursive, sans-serif; /* Added fallback */
     font-size: 45px;
-    color: #C71585;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 30px;
 }
 
-.recipe-details h3 {
-    font-family: 'Cambria';
+.recipe-details h3 { /* Specific h3 for recipe details page sections */
+    font-family: 'Cambria', Georgia, serif; /* Added fallback */
     font-size: 28px;
-    color: #00254b;
+    color: var(--dark-blue);
     text-align: left;
     margin-top: 30px;
     margin-bottom: 15px;
-    border-bottom: 1px dashed #eee;
+    border-bottom: 1px dashed var(--subtle-border-dash);
     padding-bottom: 5px;
+    font-style: normal; /* Override default italic from global h3 */
 }
 
 .recipe-details p {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 22px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color-general);
     margin-bottom: 20px;
 }
 
 .recipe-details ul,
 .recipe-details ol {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 22px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color-general);
     margin-left: 25px;
     margin-bottom: 20px;
 }
@@ -335,13 +334,13 @@ main {
 
 .recipe-details .ingredients h4 {
     text-align: left;
-    color: #00254b;
+    color: var(--dark-blue);
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
 .recipe-details .instructions {
-    background-color: rgb(255, 240, 245);
+    background-color: var(--background-light-pink);
     padding: 20px;
     border-radius: 8px;
     margin-top: 30px;
@@ -350,15 +349,15 @@ main {
 }
 
 .recipe-details .instructions h3 {
-    color: #C71585;
-    border-bottom: 2px solid #C71585;
-    font-style: normal;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    font-style: normal; /* Ensure instructions heading isn't italic */
 }
 
 .recipe-details .instructions ol {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 22px;
-    color: #2b4258;
+    color: var(--medium-blue);
     padding-left: 20px;
 }
 
@@ -366,20 +365,21 @@ main {
     margin-bottom: 12px;
 }
 
+/* --- Footer Styling --- */
 footer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 20px 20px;
-    background-color: rgb(255, 240, 245);
-    border-top: 3px solid #C71585;
+    background-color: var(--background-light-pink);
+    border-top: 3px solid var(--primary-color);
 }
 
 .footer.text {
-    font-family: 'Unna-Font';
+    font-family: 'Unna-Font', serif; /* Added fallback */
     font-size: 20px;
-    color: #C71585;
+    color: var(--primary-color);
     text-decoration: none;
     margin: 0;
 }
@@ -389,12 +389,13 @@ footer {
     .header-logo {
         width: 50px;
     }
-    nav ul li a:not(.active-page) {
-        width: 35px;
-        height: 35px;
+    nav ul li a:has(img) { /* Applies to all links that contain an image */
+        **width: 45px; /* Smaller square for tablet */
+        height: 45px; /* Smaller square for tablet */**
     }
-    nav ul li a.active-page {
-        font-size: 18px;
+    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
+        width: 100%;
+        height: 100%;
     }
     .nav-separator {
         margin: 0 4px;
@@ -425,22 +426,23 @@ footer {
         gap: 8px;
         flex-wrap: wrap;
     }
-    nav ul li a:not(.active-page) {
-        width: 30px;
-        height: 30px;
+    nav ul li a:has(img) { /* Applies to all links that contain an image */
+        **width: 40px; /* Even smaller square for mobile */
+        height: 40px; /* Even smaller square for mobile */**
     }
-    nav ul li a.active-page {
-        font-size: 16px;
+    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
+        width: 100%;
+        height: 100%;
     }
     .main-page-logo {
         width: 80%;
     }
     .recipe-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column on very small screens */
         gap: 15px;
     }
     .recipe-image {
-        width: 100%;
-        height: auto;
+        width: 100%; /* Image fills container on mobile */
+        height: auto; /* Maintain aspect ratio */
     }
 }
