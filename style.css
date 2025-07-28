@@ -452,7 +452,6 @@ footer .footer.text:hover {
     margin-bottom: 40px;
     font-family: 'Unna-Font';
     font-style: italic;
-    font-weight: 900;
     font-size: 40px;
     color: #0080ff;
 }
@@ -544,7 +543,7 @@ footer .footer.text:hover {
     color: white;
     border: none;
     border-radius: 30px;
-    font-family: 'Unna-Font', sans-serif;
+    font-family: 'Cambria', sans-serif;
     font-size: 24px;
     font-weight: bold;
     padding: 15px 30px;
