@@ -43,10 +43,10 @@ body {
 
 /* Grouping common heading styles */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Unna-Font', serif; /* Default font for most headings */
+    font-family: 'Unna-Font'; /* Default font for most headings */
     text-align: center;
     margin: 0; /* Reset margins to control individually */
-    font-weight: normal;
+    font-weight: bold;
     color:#C71585;
 }
 
