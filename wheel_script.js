@@ -1,9 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const wheelContent = document.getElementById('wheelContent');
-    const spinButton = document.getElementById('spinButton');
-    const resultText = document.getElementById('resultText');
+document.addEventListener('DOMContentLoaded', function() {
+    // Get DOM elements using var for basic JavaScript compatibility
+    var wheelContent = document.getElementById('wheelContent');
+    var spinButton = document.getElementById('spinButton');
+    var resultText = document.getElementById('resultText');
 
-    const recipes = [
+    // Recipe data
+    var recipes = [
         { name: "Chocolate Chip Cookies", url: "recipe1.html", color: "#C71585" },
         { name: "Strawberry Cake", url: "recipe2.html", color: "#E2C79D" },
         { name: "Flatbread Pizza", url: "recipe3.html", color: "#F6EB87" },
@@ -14,75 +16,92 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Cheddar Biscuits", url: "recipe8.html", color: "#68346A" }
     ];
 
-    const segmentAngle = 360 / recipes.length;
-    let currentRotation = 0;
+    var segmentAngle = 360 / recipes.length;
+    var currentRotation = 0; // This variable's purpose is largely for conceptual understanding now, as CSS handles the actual visual rotation
 
+    // Function to generate the wheel's visual appearance
     function generateWheel() {
+        var conicGradientParts = [];
+        var currentGradientAngle = 0;
+
+        // Clear existing content
         wheelContent.innerHTML = '';
-        let conicGradientString = 'conic-gradient(';
-        let currentGradientAngle = 0;
 
-        recipes.forEach((recipe, index) => {
-            const textElement = document.createElement('div');
-            textElement.classList.add('wheel-text');
+        for (var i = 0; i < recipes.length; i++) {
+            var recipe = recipes[i];
+            var startAngle = i * segmentAngle;
+            var endAngle = (i + 1) * segmentAngle;
 
-            const textSpan = document.createElement('span');
+            // Build conic gradient string part by part
+            conicGradientParts.push(recipe.color + ' ' + startAngle + 'deg ' + endAngle + 'deg');
+
+            // Create and position text elements
+            var textElement = document.createElement('div');
+            textElement.className = 'wheel-text'; // Use className for older compatibility
+
+            var textSpan = document.createElement('span'); // Span for actual text content
             textSpan.textContent = recipe.name;
             textElement.appendChild(textSpan);
 
-            const rotationForTextElement = currentGradientAngle + (segmentAngle / 2);
-            textElement.style.transform = `rotate(${rotationForTextElement}deg)`;
-            textSpan.style.transform = `rotate(90deg) translateY(-80px)`; // sideways vertical text
+            // Calculate rotation for the text element itself
+            var rotationForTextElement = currentGradientAngle + (segmentAngle / 2);
+            textElement.style.transform = 'rotate(' + rotationForTextElement + 'deg)';
+
+            // Rotate the span content to be upright/readable
+            textSpan.style.transform = 'rotate(90deg) translateY(-80px)'; // Adjusted for sideways vertical text
 
             wheelContent.appendChild(textElement);
-
-            conicGradientString += `${recipe.color} ${currentGradientAngle}deg ${currentGradientAngle + segmentAngle}deg`;
-            if (index < recipes.length - 1) conicGradientString += ', ';
             currentGradientAngle += segmentAngle;
-        });
-        conicGradientString += ')';
-        wheelContent.style.background = conicGradientString;
+        }
+
+        // Apply the generated conic gradient background
+        wheelContent.style.background = 'conic-gradient(' + conicGradientParts.join(', ') + ')';
     }
 
+    // Call generateWheel to set up the wheel when the page loads
     generateWheel();
 
-    spinButton.addEventListener('click', () => {
-        spinButton.disabled = true;
+    // Event listener for the spin button
+    spinButton.addEventListener('click', function() {
+        spinButton.disabled = true; // Disable button during spin
         resultText.style.opacity = 1;
         resultText.textContent = "Spinning...";
 
-        const randomIndex = Math.floor(Math.random() * recipes.length);
-        const selectedRecipe = recipes[randomIndex];
+        // Select a random recipe
+        var randomIndex = Math.floor(Math.random() * recipes.length);
+        var selectedRecipe = recipes[randomIndex];
 
-        const targetSegmentMidpoint = randomIndex * segmentAngle + (segmentAngle / 2);
-        const degreesToCenterSegment = (360 - targetSegmentMidpoint) % 360;
+        // Calculate the target rotation for the spin
+        var minFullRotations = 5;
+        var degreesToCenterSegment = (360 - (randomIndex * segmentAngle + (segmentAngle / 2))) % 360;
+        var smallOffset = Math.random() * 10 - 5; // Small random offset for variety
 
-        const minFullRotations = 5;
-        const maxFullRotations = 10;
-        const randomFullRotations = Math.floor(Math.random() * (maxFullRotations - minFullRotations + 1)) + minFullRotations;
+        // The total degrees the wheel will rotate
+        var finalAbsoluteRotation = currentRotation + (minFullRotations * 360) + degreesToCenterSegment + smallOffset;
 
-        const smallOffset = Math.random() * 10 - 5;
-        let finalAbsoluteRotation = currentRotation + (randomFullRotations * 360) + degreesToCenterSegment + smallOffset;
-
-        // Reset previous transition
-        wheelContent.style.transition = 'none';
-        wheelContent.offsetHeight;
-
-        // Smooth spin easing
+        // Apply the transition and transform
         wheelContent.style.transition = 'transform 4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
-        wheelContent.style.transform = `rotate(${finalAbsoluteRotation}deg)`;
+        wheelContent.style.transform = 'rotate(' + finalAbsoluteRotation + 'deg)';
 
-        currentRotation = finalAbsoluteRotation % 360;
+        // Update currentRotation for next spin (maintaining visual continuity if desired)
+        currentRotation = finalAbsoluteRotation % 360; // Keep currentRotation within 0-359
 
-        wheelContent.addEventListener('transitionend', function handler() {
-            wheelContent.removeEventListener('transitionend', handler);
-            resultText.textContent = `You got: ${selectedRecipe.name}! Redirecting...`;
+        // Function to handle the end of the transition
+        function onTransitionEndHandler() {
+            // Remove the event listener to prevent it from firing on subsequent transitions
+            wheelContent.removeEventListener('transitionend', onTransitionEndHandler);
 
-            setTimeout(() => {
+            resultText.textContent = 'You got: ' + selectedRecipe.name + '! Redirecting...';
+
+            // Redirect after a short delay
+            setTimeout(function() {
                 window.location.href = selectedRecipe.url;
             }, 1500);
 
-            spinButton.disabled = false;
-        });
+            spinButton.disabled = false; // Re-enable the button
+        }
+
+        // Add event listener for when the CSS transition completes
+        wheelContent.addEventListener('transitionend', onTransitionEndHandler);
     });
 });
