@@ -7,14 +7,13 @@
     --background-light: rgb(236, 250, 255);
     --background-accent: rgb(255, 240, 245);
     --border-color: #ddd;
-    --font-heading: 'Vegan-Font', cursive;
+    --font-heading: 'Leckerli-Font', cursive;
     --font-body: 'Unna-Font', serif;
     --font-sans: 'DM-Sans-Font', sans-serif;
 }
 
-@font-face { font-family: 'Vegan-Font'; src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: 'Leckerli-Font'; src: url("LeckerliOne-Regular.ttf") format("truetype"); font-display: swap; }
 @font-face { font-family: 'Unna-Font'; src: url("Unna-Regular.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: 'DM-Sans-Font'; src: url("DMSans-VariableFont_opsz\,wght.ttf") format("truetype"); font-display: swap; }
 
 body {
     font-family: var(--font-body);
