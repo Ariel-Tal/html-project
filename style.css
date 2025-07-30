@@ -47,6 +47,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin: 0; /* Reset margins to control individually */
     font-weight: normal;
+    color:#C71585;
 }
 
 h1 {
@@ -488,7 +489,7 @@ footer .footer.text:hover {
     color: white;
     border: none;
     border-radius: 30px;
-    font-family: 'Unna-Font', sans-serif;
+    font-family: 'Unna-Font';
     font-size: 24px;
     font-weight: bold;
     padding: 15px 30px;
