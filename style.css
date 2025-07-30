@@ -27,12 +27,10 @@ body {
 }
 
 body.wheel-page {
-    background-image: url('Kitchen Background.jpg');
+    background-image: url('Kitchen\ Background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-color: rgba(236, 250, 255, 0.85);
-    background-blend-mode: lighten;
 }
 
 main { flex-grow: 1; padding: 20px; }
