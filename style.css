@@ -1,60 +1,61 @@
 :root {
-    --primary-color: #C71585; /* Raspberry Pink - used for accents, active links, borders */
-    --secondary-color: #0080ff; /* Bright Blue - used for h1 */
-    --dark-blue: #00254b; /* Deep Navy - used for h3, recipe titles */
-    --medium-blue: #2b4258; /* Slate Blue - used for h4, instructions text */
-    --text-color-general: #333; /* Dark Grey - general body text */
-    --background-light-blue: rgb(236, 250, 255); /* Very Light Blue */
-    --background-light-pink: rgb(255, 240, 245); /* Light Pink - header/footer background, instructions block */
-    --border-color-light: #ddd; /* Light Grey Border - for recipe links */
-    --subtle-border-dash: #eee; /* Even Lighter Grey for Dashed Border */
-    --link-color: #137ee9; /* Specific link color */
-    --subtle-text-color: #474357; /* For h5 */
-    --darkest-blue-text: #04122e; /* For h6 */
+    --primary-color: #C71585;
+    --secondary-color: #0080ff;
+    --dark-blue: #00254b;
+    --medium-blue: #2b4258;
+    --text-color: #333;
+    --background-light: rgb(236, 250, 255);
+    --background-accent: rgb(255, 240, 245);
+    --border-color: #ddd;
+    --font-heading: 'Vegan-Font', cursive;
+    --font-body: 'Unna-Font', serif;
+    --font-sans: 'DM-Sans-Font', sans-serif;
 }
 
-/* --- Font Definitions --- */
-@font-face {
-    font-family: 'Vegan-Font';
-    src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
-    font-display: swap; /* Improves performance by showing fallback text while font loads */
-}
-@font-face {
-    font-family: 'Unna-Font';
-    src: url("Unna-Regular.ttf") format("truetype");
-    font-display: swap; /* Improves performance by showing fallback text while font loads */
-}
-@font-face {
-    font-family: 'DM-Sans-Font';
-    src: url("DMSans-VariableFont_opsz\,wght.ttf") format("truetype");
-    font-display: swap; /* Improves performance by showing fallback text while font loads */
-}
+@font-face { font-family: 'Vegan-Font'; src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: 'Unna-Font'; src: url("Unna-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: 'DM-Sans-Font'; src: url("DMSans-VariableFont_opsz\,wght.ttf") format("truetype"); font-display: swap; }
 
-/* --- Base Styles --- */
 body {
-    font-family: 'Unna-Font', serif; /* Added fallback */
+    font-family: var(--font-body);
     margin: 0;
-    padding: 0;
-    background-color: var(--background-light-blue);
+    background-color: var(--background-light);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    min-height: 100vh;
 }
 
-/* Grouping common heading styles */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Unna-Font'; /* Default font for most headings */
+main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+header, footer {
+    background-color: var(--background-accent);
+    border-top: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer {
+    justify-content: center;
+    border-bottom: none;
+}
+
+h1, h2, h3, h4 {
     text-align: center;
-    margin: 0; /* Reset margins to control individually */
+    margin: 0 0 15px 0;
     font-weight: bold;
-    color:#C71585;
 }
 
 h1 {
-    font-family: 'Vegan-Font', cursive, sans-serif; /* Specific font for H1 */
+    font-family: var(--font-heading);
     font-size: 50px;
     color: var(--secondary-color);
-    margin-bottom: 10px;
 }
 
 h2 {
@@ -64,166 +65,79 @@ h2 {
 }
 
 h3 {
-    font-size: 30px;
+    font-size: 28px;
     color: var(--dark-blue);
-    font-style: italic;
-    margin-bottom: 5px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 5px;
+    margin-top: 30px;
+    text-align: left;
 }
 
 h4 {
     font-size: 25px;
     color: var(--medium-blue);
-    margin-bottom: 5px;
+    text-align: left;
 }
 
-h5 {
-    font-size: 18px;
-    color: var(--subtle-text-color);
-    margin-bottom: 5px;
-}
-
-h6 {
-    font-size: 25px;
-    color: var(--darkest-blue-text);
-    margin-bottom: 5px;
-    display: inline-block;
-}
-
-.center-img {
-    display: block;
-    margin: 10px auto; /* Combines margin-left/right auto and top/bottom */
-    width: 50%;
-    padding: 20px;
-}
-
-/* Global link styles */
-a {
-    font-family: 'Unna-Font', serif;
-    font-size: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--link-color);
-}
-
-/* Global image border-radius - applied to all images */
 img {
     border-radius: 8px;
 }
 
-/* --- Header & Navigation Styling --- */
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: var(--background-light-pink);
-    border-bottom: 3px solid var(--primary-color);
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+a {
+    color: #137ee9;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.header-logo {
+.header-logo, .wheel-logo-button img, nav a img {
     width: 40px;
-    height: auto;
-    margin-right: 20px;
-    flex-shrink: 0;
+    height: 40px;
 }
 
-nav {
-    flex-grow: 1;
-    margin: 0 20px;
-}
-
-nav ul {
+header nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 12px;
-    flex-wrap: wrap;
 }
 
-/* Common styling for all image links in the header navigation */
-nav ul li a:has(img),
-.wheel-logo-button {
-    display: flex; /* Use flexbox to center the image within */
-    justify-content: center;
-    align-items: center;
+header nav a, .wheel-logo-button {
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
     width: 60px;
     height: 60px;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    flex-shrink: 0; /* Prevent shrinking for fixed size */
 }
 
-/* Styling for the <img> tag INSIDE any nav link or wheel button */
-nav ul li a img,
-.wheel-logo-button img {
-    display: block;
+header nav a img, .wheel-logo-button img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    margin: 0;
-    border-radius: 6px; /* Keep consistent with container */
+    border-radius: 4px;
 }
 
-/* Hover effect for non-active image links in header */
-nav ul li a:has(img):not(.active-page):hover,
-.wheel-logo-button:not(.active-page):hover {
+header nav a.active-page, .wheel-logo-button.active-page {
     border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
-/* Styling for the ACTIVE image link (includes nav and wheel button) */
-nav ul li a.active-page,
-.wheel-logo-button.active-page {
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    cursor: default;
+header nav a:not(.active-page):hover, .wheel-logo-button:not(.active-page):hover {
+    border-color: var(--primary-color);
 }
 
-/* Specific margin for the wheel logo button */
-.wheel-logo-button {
-    margin-left: 20px;
-}
-
-/* Nav separator - if needed for non-image links */
-.nav-separator {
-    display: inline-block;
-    margin: 0 6px;
-    user-select: none;
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 18px;
-}
-
-/* --- Main Page Logo (for index.html, large logo) --- */
 .main-page-logo {
     display: block;
-    margin: 0 auto; /* Combines margin top/bottom 0 and auto for left/right */
+    margin: 0 auto;
     width: 40%;
     max-width: 350px;
-    height: auto;
-    object-fit: contain;
 }
 
-/* --- Main Content Area Styling --- */
-main {
-    padding: 20px;
-    flex-grow: 1;
-}
-
-/* --- Recipe Grid Layout (for index.html) --- */
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    justify-items: center;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -232,13 +146,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    border: 1px solid var(--border-color-light);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    padding-bottom: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .recipe-link:hover {
@@ -247,24 +159,19 @@ main {
 }
 
 .recipe-image {
-    width: 250px;
+    width: 100%;
     height: 250px;
     object-fit: cover;
-    display: block;
-    margin-bottom: 5px;
 }
 
 .recipe-title {
-    font-family: 'Unna-Font', serif;
     font-size: 24px;
     color: var(--dark-blue);
     text-align: center;
-    margin: 0;
-    padding: 0 10px;
+    padding: 10px;
     font-weight: bold;
 }
 
-/* --- Recipe Content Specific Styling (for recipe1.html, etc.) --- */
 .recipe-details {
     max-width: 800px;
     margin: 40px auto;
@@ -274,362 +181,58 @@ main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.recipe-details h1 {
-    font-family: 'Vegan-Font', cursive, sans-serif;
-    font-size: 45px;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.recipe-details h3 {
-    font-family: 'Unna-Font', serif; /* Ensured serif fallback */
-    font-size: 28px;
-    color: var(--dark-blue);
-    text-align: left;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    border-bottom: 1px dashed var(--subtle-border-dash);
-    padding-bottom: 5px;
-    font-style: normal;
-}
-
-.recipe-details p {
-    font-family: 'Unna-Font', serif;
+.recipe-details p, .recipe-details ul, .recipe-details ol {
     font-size: 22px;
     line-height: 1.6;
-    color: var(--text-color-general);
-    margin-bottom: 20px;
 }
 
-.recipe-details ul,
-.recipe-details ol {
-    font-family: 'Unna-Font', serif;
-    font-size: 22px;
-    line-height: 1.6;
-    color: var(--text-color-general);
+.recipe-details ul, .recipe-details ol {
     margin-left: 25px;
     margin-bottom: 20px;
 }
 
-.recipe-details ul li,
-.recipe-details ol li {
-    margin-bottom: 8px;
-}
-
-.recipe-details ul {
-    list-style-type: disc;
-}
-
-.recipe-details ol {
-    list-style-type: decimal;
-}
-
-.recipe-details .ingredients h4 {
-    text-align: left;
-    color: var(--dark-blue);
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
 .recipe-details .instructions {
-    background-color: var(--background-light-pink);
+    background-color: var(--background-accent);
     padding: 20px;
     border-radius: 8px;
     margin-top: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .recipe-details .instructions h3 {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
-    font-style: normal;
+    border-bottom-color: var(--primary-color);
 }
 
-.recipe-details .instructions ol {
-    font-family: 'Unna-Font', serif;
-    font-size: 22px;
-    color: var(--medium-blue);
-    padding-left: 20px;
-}
-
-.recipe-details .instructions ol li {
-    margin-bottom: 12px;
-}
-
-/* --- Footer Styling --- */
-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 20px;
-    background-color: var(--background-light-pink);
-    border-top: 3px solid var(--primary-color);
-}
-
-.footer.text {
-    font-family: 'Unna-Font', serif;
+.footer-text {
     font-size: 20px;
     color: var(--primary-color);
-    text-decoration: none;
-    margin: 0;
     font-weight: normal;
 }
 
-footer .footer.text:hover {
+.footer-text:hover {
     color: var(--secondary-color);
 }
 
-/* --- Lucky Wheel Specific Styles (for the main content wheel) --- */
-.wheel-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 120px);
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: rgb(236, 250, 255);
-}
-
-.wheel-main h2 {
-    margin-top: 20px;
-    margin-bottom: 40px;
-    font-family: 'Unna-Font', serif; /* Added fallback */
-    font-style: italic;
-    font-weight: bold;
-    font-size: 40px;
-    color: #C71585;
-}
-
-.wheel-container {
-    position: relative;
-    width: 350px;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border: 5px solid #C71585;
-    overflow: hidden;
-}
-
-.wheel {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 3px solid #012E52;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-.wheel-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    transform-origin: 50% 50%;
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    clip-path: circle(50% at 50% 50%);
-    -webkit-clip-path: circle(50% at 50% 50%);
-}
-
-.wheel-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform-origin: 0% 0%;
-    font-family: 'Unna-Font', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    white-space: normal;
-    word-wrap: break-word;
-    line-height: 1.2;
-    box-sizing: border-box;
-    pointer-events: none; /* Allows clicks to pass through to the wheel content */
-}
-
-.wheel-text span {
-    display: block;
-    transform: translateY(-85px) rotate(0deg);
-    width: 60%;
-}
-
-.pointer {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 40px solid #C71585;
-    z-index: 10;
-}
-
-#spinButton {
-    background-color: #C71585;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-family: 'Unna-Font';
-    font-size: 24px;
-    font-weight: bold;
-    padding: 15px 30px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    margin-top: 30px;
-    letter-spacing: 1px;
-    outline: none;
-}
-
-#spinButton:hover {
-    background-color: #d12e94;
-    transform: translateY(-2px);
-}
-
-#spinButton:active {
-    background-color: #a61c71;
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-#spinButton:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-#resultText {
-    font-family: 'Unna-Font', sans-serif;
-    font-size: 22px;
-    color: #00254b;
-    margin-top: 20px;
-    font-weight: bold;
-    transition: opacity 0.5s ease;
-    text-align: center;
-    min-height: auto;
-}
+/* --- Lucky Wheel Specific Styles --- */
+.wheel-main { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.wheel-main h2 { font-style: italic; font-size: 40px; color: var(--primary-color); }
+.wheel-container { position: relative; width: 350px; height: 350px; margin-bottom: 30px; }
+.wheel-content { position: absolute; width: 100%; height: 100%; border-radius: 50%; transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1); }
+.wheel-text { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform-origin: 0% 0%; font-size: 14px; text-align: center; }
+.wheel-text span { display: block; transform: translateY(-85px); width: 60%; }
+.pointer { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--primary-color); z-index: 10; }
+#spinButton { background-color: var(--primary-color); color: white; border: none; border-radius: 30px; font-family: var(--font-body); font-size: 24px; padding: 15px 30px; cursor: pointer; transition: background-color 0.3s ease; }
+#spinButton:hover { background-color: #d12e94; }
+#spinButton:disabled { background-color: #ccc; cursor: not-allowed; }
+#resultText { font-size: 22px; color: var(--dark-blue); margin-top: 20px; font-weight: bold; }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-    }
-    .header-logo {
-        width: 40px;
-        height: auto;
-        margin-right: 15px;
-    }
-    nav ul {
-        gap: 6px 15px;
-        max-width: 100%;
-    }
-    /* Grouped responsive sizing for all image links in header */
-    nav ul li a:has(img),
-    .wheel-logo-button {
-        width: 45px;
-        height: 45px;
-        border-radius: 6px; /* Ensure consistency */
-    }
-    nav ul li a img,
-    .wheel-logo-button img {
-        width: 100%;
-        height: 100%;
-        border-radius: 6px; /* Ensure consistency */
-    }
-    /* Active border responsive for header image links */
-    nav ul li a.active-page,
-    .wheel-logo-button.active-page {
-        border: 2px solid var(--primary-color);
-        border-radius: 6px;
-    }
-    .nav-separator {
-        margin: 0 4px;
-    }
-    .main-page-logo {
-        width: 60%;
-    }
-    .recipe-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    .recipe-image {
-        width: 200px;
-        height: 200px;
-    }
-    .recipe-title {
-        font-size: 20px;
-    }
+    header { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .recipe-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 }
 
 @media (max-width: 480px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    .header-logo {
-        width: 35px;
-        height: auto;
-        margin-right: 0;
-    }
-    nav {
-        justify-content: center;
-        width: 100%;
-        margin: 0;
-    }
-    nav ul {
-        justify-content: center;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-    /* Grouped responsive sizing for all image links in header for small screens */
-    nav ul li a:has(img),
-    .wheel-logo-button {
-        width: 40px;
-        height: 40px;
-        border-radius: 6px; /* Ensure consistency */
-    }
-    nav ul li a img,
-    .wheel-logo-button img {
-        width: 100%;
-        height: 100%;
-        border-radius: 6px; /* Ensure consistency */
-    }
-    /* Active border responsive for header image links for small screens */
-    nav ul li a.active-page,
-    .wheel-logo-button.active-page {
-        border: 2px solid var(--primary-color);
-        border-radius: 6px;
-    }
-    .main-page-logo {
-        width: 80%;
-    }
-    .recipe-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    .recipe-image {
-        width: 100%;
-        height: auto;
-    }
+    header { flex-direction: column; }
+    .recipe-grid { grid-template-columns: 1fr; }
 }
