@@ -1,64 +1,59 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Get elements
-  var wheel = document.getElementById('wheelContent');
-  var button = document.getElementById('spinButton');
-  var result = document.getElementById('resultText');
+  const wheelContent = document.getElementById('wheelContent');
+  const spinButton = document.getElementById('spinButton');
+  const resultText = document.getElementById('resultText');
 
-  // Recipe names, links, and colors
-  var recipes = ["Cookies", "Cake", "Pizza", "Focaccia", "Rolls", "Pancakes", "Pretzels", "Biscuits"];
-  var links = ["recipe1.html", "recipe2.html", "recipe3.html", "recipe4.html", "recipe5.html", "recipe6.html", "recipe7.html", "recipe8.html"];
-  var colors = ["#C71585", "#E2C79D", "#F6EB87", "#A0D295", "#84ADAA", "#3D6EC9", "#00254B", "#68346A"];
+  // CHANGE: New array with the full recipe names for the result text.
+  const fullRecipeNames = ["Chocolate Chip Cookies", "Strawberry Cake", "Flatbread Pizza", "Garlic Rosemary Focaccia", "Cinnamon Rolls", "Buttermilk Pancakes", "Pretzel Bites", "Cheddar Biscuits"];
+  const links = ["recipe1.html", "recipe2.html", "recipe3.html", "recipe4.html", "recipe5.html", "recipe6.html", "recipe7.html", "recipe8.html"];
+  const colors = ["#C71585", "#E2C79D", "#F6EB87", "#A0D295", "#84ADAA", "#3D6EC9", "#00254B", "#68346A"];
 
-  var angle = 360 / recipes.length;
-  var rotation = 0;
+  const sliceAngle = 360 / fullRecipeNames.length;
+  let currentRotation = 0;
+  let isSpinning = false;
 
-  // Draw the wheel
   function drawWheel() {
-    wheel.innerHTML = '';
-    var background = [];
+    wheelContent.innerHTML = ''; // Clear previous content
+    const background = [];
 
-    for (var i = 0; i < recipes.length; i++) {
-      var start = i * angle;
-      var end = start + angle;
-      background.push(colors[i] + ' ' + start + 'deg ' + end + 'deg');
+    // CHANGE: This loop now ONLY builds the background colors. No text is added.
+    fullRecipeNames.forEach((recipe, i) => {
+      const startAngle = i * sliceAngle;
+      const endAngle = startAngle + sliceAngle;
+      const sliceColor = colors[i % colors.length];
+      background.push(`${sliceColor} ${startAngle}deg ${endAngle}deg`);
+    });
 
-      var label = document.createElement('div');
-      label.className = 'wheel-text';
-      label.style.transform = 'rotate(' + (start + angle / 2) + 'deg)';
-
-      var span = document.createElement('span');
-      span.textContent = recipes[i];
-      span.style.transform = 'rotate(90deg) translateY(-80px)';
-
-      label.appendChild(span);
-      wheel.appendChild(label);
-    }
-
-    wheel.style.background = 'conic-gradient(' + background.join(', ') + ')';
+    wheelContent.style.background = `conic-gradient(${background.join(', ')})`;
   }
 
-  drawWheel();
+  spinButton.addEventListener('click', () => {
+    if (isSpinning) return;
 
-  // Spin the wheel
-  button.addEventListener('click', function() {
-    button.disabled = true;
-    result.textContent = "Spinning...";
+    isSpinning = true;
+    spinButton.disabled = true;
+    resultText.textContent = "Spinning...";
+    resultText.style.opacity = 1;
 
-    var pick = Math.floor(Math.random() * recipes.length);
-    var target = (360 - (pick * angle + angle / 2)) % 360;
-    var spinAmount = rotation + 360 * 5 + target + (Math.random() * 10 - 5);
+    const randomIndex = Math.floor(Math.random() * fullRecipeNames.length);
+    const targetAngle = 360 - (randomIndex * sliceAngle);
+    const midSliceCorrection = sliceAngle / 2;
 
-    wheel.style.transition = 'transform 4s ease-out';
-    wheel.style.transform = 'rotate(' + spinAmount + 'deg)';
-    rotation = spinAmount % 360;
+    const spinAmount = currentRotation + (360 * 5) + targetAngle - midSliceCorrection;
+    
+    wheelContent.style.transition = 'transform 4s ease-out';
+    wheelContent.style.transform = `rotate(${spinAmount}deg)`;
+    
+    wheelContent.addEventListener('transitionend', () => {
+      currentRotation = spinAmount % 360;
+      // CHANGE: The result now uses the full recipe name.
+      resultText.textContent = `You got: ${fullRecipeNames[randomIndex]}!`;
 
-    wheel.addEventListener('transitionend', function done() {
-      wheel.removeEventListener('transitionend', done);
-      result.textContent = "You got: " + recipes[pick] + "!";
-      setTimeout(function() {
-        window.location.href = links[pick];
+      setTimeout(() => {
+        window.location.href = links[randomIndex];
       }, 1500);
-      button.disabled = false;
-    });
+    }, { once: true });
   });
+  
+  drawWheel();
 });

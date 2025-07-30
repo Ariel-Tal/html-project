@@ -6,33 +6,36 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="Favicon2.png" type="image/png">
 </head>
-<body>
+<!-- CHANGE: Added class="wheel-page" to the body tag -->
+<body class="wheel-page">
     <header>
-    <img src="Favicon2.png" alt="AC Recipes Logo" class="header-logo">
-    <nav>
-        <ul>
-            <li><a href="index.html"><img src="Home Page Logo.png" alt="Home"></a></li>
-            <li><a href="recipe1.html"><img src="Chocolate Chip Cookies.jpg" alt="Chocolate Chip Cookies"></a></li>
-            <li><a href="recipe2.html"><img src="Strawberry Cake.jpg" alt="Strawberry Cake"></a></li>
-            <li><a href="recipe3.html"><img src="Flatbread Pizza.jpg" alt="Flatbread Pizza"></a></li>
-            <li><a href="recipe4.html"><img src="Garlic Rosemary Focaccia.jpg" alt="Garlic Rosemary Focaccia"></a></li>
-            <li><a href="recipe5.html"><img src="Cinnamon Rolls.jpg" alt="Cinnamon Rolls"></a></li>
-            <li><a href="recipe6.html"><img src="Buttermilk Pancakes.jpg" alt="Buttermilk Pancakes"></a></li>
-            <li><a href="recipe7.html"><img src="Pretzel Bites.jpg" alt="Pretzel Bites"></a></li>
-            <li><a href="recipe8.html"><img src="Cheddar Biscuits.jpg" alt="Cheddar Biscuits"></a></li>
-        </ul>
-    </nav>
-    <a href="wheel.html" class="wheel-logo-button active-page"><img src="wheel-logo.png" alt="Wheel Logo"></a>
+        <img src="Favicon2.png" alt="AC Recipes Logo" class="header-logo">
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="Home Page Logo.png" alt="Home"></a></li>
+                <li><a href="recipe1.html"><img src="Chocolate Chip Cookies.jpg" alt="Chocolate Chip Cookies"></a></li>
+                <li><a href="recipe2.html"><img src="Strawberry Cake.jpg" alt="Strawberry Cake"></a></li>
+                <li><a href="recipe3.html"><img src="Flatbread Pizza.jpg" alt="Flatbread Pizza"></a></li>
+                <li><a href="recipe4.html"><img src="Garlic Rosemary Focaccia.jpg" alt="Garlic Rosemary Focaccia"></a></li>
+                <li><a href="recipe5.html"><img src="Cinnamon Rolls.jpg" alt="Cinnamon Rolls"></a></li>
+                <li><a href="recipe6.html"><img src="Buttermilk Pancakes.jpg" alt="Buttermilk Pancakes"></a></li>
+                <li><a href="recipe7.html"><img src="Pretzel Bites.jpg" alt="Pretzel Bites"></a></li>
+                <li><a href="recipe8.html"><img src="Cheddar Biscuits.jpg" alt="Cheddar Biscuits"></a></li>
+            </ul>
+        </nav>
+        <a href="wheel.html" class="wheel-logo-button active-page"><img src="wheel-logo.png" alt="Wheel Logo"></a>
     </header>
 
     <main>
         <img src="Logo_new.png" alt="AC Recipes Logo" class="main-page-logo">
-        <h2 class="heading-above-wheel">Made With ♡</h2> <div class="wheel-main">
+        <h2 class="heading-above-wheel">Made With ♡</h2> 
+        <div class="wheel-main">
             <h2>Spin to be redirected to a random recipe!</h2>
 
             <div class="wheel-container">
                 <div class="wheel">
                     <div class="wheel-content" id="wheelContent">
+                        <!-- Javascript will build the wheel here -->
                     </div>
                 </div>
                 <div class="pointer"></div>
@@ -44,7 +47,7 @@
     </main>
 
     <footer>
-        <a class="footer text">coded and designed by Ariel & Carmi</a>
+        <a class="footer-text">coded and designed by Ariel & Carmi</a>
     </footer>
 
     <script src="wheel_script.js"></script>
