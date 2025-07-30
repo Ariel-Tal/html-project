@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get DOM elements using var for basic JavaScript compatibility
+    // Get all the elements we'll be working with.
+    // Using 'var' for variables is a very basic JavaScript way to declare them.
     var wheelContent = document.getElementById('wheelContent');
     var spinButton = document.getElementById('spinButton');
     var resultText = document.getElementById('resultText');
 
-    // Recipe data
+    // Here are all the recipes for our spinning wheel.
+    // Each recipe has a name, a link to its page, and a color for the wheel segment.
     var recipes = [
         { name: "Chocolate Chip Cookies", url: "recipe1.html", color: "#C71585" },
         { name: "Strawberry Cake", url: "recipe2.html", color: "#E2C79D" },
@@ -16,92 +18,100 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: "Cheddar Biscuits", url: "recipe8.html", color: "#68346A" }
     ];
 
+    // Calculate how big each slice of the wheel should be in degrees.
     var segmentAngle = 360 / recipes.length;
-    var currentRotation = 0; // This variable's purpose is largely for conceptual understanding now, as CSS handles the actual visual rotation
+    // This variable will help us remember how much the wheel has rotated so far.
+    var lastKnownRotation = 0;
 
-    // Function to generate the wheel's visual appearance
+    // This function draws the wheel and puts the recipe names on it.
     function generateWheel() {
-        var conicGradientParts = [];
-        var currentGradientAngle = 0;
+        var conicGradientParts = []; // We'll build a list of colors for the wheel's background.
+        var currentGradientAngle = 0; // Helps us keep track of where each color starts.
 
-        // Clear existing content
+        // Clear anything that might already be inside the wheel.
         wheelContent.innerHTML = '';
 
+        // Go through each recipe one by one.
         for (var i = 0; i < recipes.length; i++) {
-            var recipe = recipes[i];
-            var startAngle = i * segmentAngle;
-            var endAngle = (i + 1) * segmentAngle;
+            var recipe = recipes[i]; // Get the current recipe.
+            var startAngle = i * segmentAngle; // Calculate where this segment starts.
+            var endAngle = (i + 1) * segmentAngle; // Calculate where this segment ends.
 
-            // Build conic gradient string part by part
+            // Add the current recipe's color and angles to our list for the wheel's background.
             conicGradientParts.push(recipe.color + ' ' + startAngle + 'deg ' + endAngle + 'deg');
 
-            // Create and position text elements
+            // Now, let's create a place for the recipe name on the wheel.
             var textElement = document.createElement('div');
-            textElement.className = 'wheel-text'; // Use className for older compatibility
+            textElement.className = 'wheel-text'; // Give it a class for styling.
 
-            var textSpan = document.createElement('span'); // Span for actual text content
-            textSpan.textContent = recipe.name;
-            textElement.appendChild(textSpan);
+            var textSpan = document.createElement('span'); // Create a 'span' to hold the actual text.
+            textSpan.textContent = recipe.name; // Put the recipe name in the span.
+            textElement.appendChild(textSpan); // Add the span to the text element.
 
-            // Calculate rotation for the text element itself
+            // Figure out how much to rotate this text element so it's in the middle of its segment.
             var rotationForTextElement = currentGradientAngle + (segmentAngle / 2);
+            // Apply the rotation to the text element.
             textElement.style.transform = 'rotate(' + rotationForTextElement + 'deg)';
 
-            // Rotate the span content to be upright/readable
-            textSpan.style.transform = 'rotate(90deg) translateY(-80px)'; // Adjusted for sideways vertical text
+            // Rotate the actual text inside the span to make it readable (sideways vertical).
+            textSpan.style.transform = 'rotate(90deg) translateY(-80px)';
 
+            // Add this text element to the wheel.
             wheelContent.appendChild(textElement);
-            currentGradientAngle += segmentAngle;
+            currentGradientAngle += segmentAngle; // Move to the start of the next segment.
         }
 
-        // Apply the generated conic gradient background
+        // Apply all the colors we collected to make the wheel's background.
         wheelContent.style.background = 'conic-gradient(' + conicGradientParts.join(', ') + ')';
     }
 
-    // Call generateWheel to set up the wheel when the page loads
+    // Call this function right away to set up the wheel when the page loads.
     generateWheel();
 
-    // Event listener for the spin button
+    // Set up what happens when the spin button is clicked.
     spinButton.addEventListener('click', function() {
-        spinButton.disabled = true; // Disable button during spin
-        resultText.style.opacity = 1;
-        resultText.textContent = "Spinning...";
+        spinButton.disabled = true; // Stop people from clicking the button again while spinning.
+        resultText.style.opacity = 1; // Make sure the "Spinning..." text is visible.
+        resultText.textContent = "Spinning..."; // Show the spinning message.
 
-        // Select a random recipe
+        // Pick a random recipe from our list.
         var randomIndex = Math.floor(Math.random() * recipes.length);
-        var selectedRecipe = recipes[randomIndex];
+        var selectedRecipe = recipes[randomIndex]; // This is the recipe we landed on!
 
-        // Calculate the target rotation for the spin
-        var minFullRotations = 5;
-        var degreesToCenterSegment = (360 - (randomIndex * segmentAngle + (segmentAngle / 2))) % 360;
-        var smallOffset = Math.random() * 10 - 5; // Small random offset for variety
+        // Calculate how much the wheel needs to spin.
+        var minFullRotations = 5; // Spin at least 5 full times for a dramatic effect.
+        // Figure out the angle needed to land the *center* of the selected segment at the top.
+        var degreesToCenterSegment = (360 - (randomIndex * segmentAngle + (segmentAngle / 2)));
+        var smallOffset = Math.random() * 10 - 5; // Add a tiny random wobble so it doesn't always land exactly the same.
 
-        // The total degrees the wheel will rotate
-        var finalAbsoluteRotation = currentRotation + (minFullRotations * 360) + degreesToCenterSegment + smallOffset;
+        // Calculate the total rotation needed from its *current* position.
+        var totalRotation = (minFullRotations * 360) + degreesToCenterSegment + smallOffset;
+        // Add this to where the wheel was last, so it keeps spinning in the same direction.
+        var targetRotation = lastKnownRotation + totalRotation;
 
-        // Apply the transition and transform
+        // Make the wheel smoothly spin using CSS transitions.
         wheelContent.style.transition = 'transform 4s cubic-bezier(0.15, 0.85, 0.35, 1.2)';
-        wheelContent.style.transform = 'rotate(' + finalAbsoluteRotation + 'deg)';
+        wheelContent.style.transform = 'rotate(' + targetRotation + 'deg)';
 
-        // Update currentRotation for next spin (maintaining visual continuity if desired)
-        currentRotation = finalAbsoluteRotation % 360; // Keep currentRotation within 0-359
+        // Remember this new rotation for the next time someone spins.
+        lastKnownRotation = targetRotation;
 
-        // Function to handle the end of the transition
+        // This function will run when the spinning animation finishes.
         function onTransitionEndHandler() {
-            // Remove the event listener to prevent it from firing on subsequent transitions
+            // Remove this listener so it doesn't accidentally run multiple times.
             wheelContent.removeEventListener('transitionend', onTransitionEndHandler);
 
             resultText.textContent = 'You got: ' + selectedRecipe.name + '! Redirecting...';
 
-            // Redirect after a short delay
+            // Wait a moment, then go to the recipe page.
             setTimeout(function() {
                 window.location.href = selectedRecipe.url;
-            }, 1500);
+            }, 1500); // Wait 1.5 seconds.
 
-            spinButton.disabled = false; // Re-enable the button
+            spinButton.disabled = false; // Enable the spin button again.
         }
 
-        // Add event listener for when the CSS transition completes
+        // Listen for when the CSS animation finishes.
         wheelContent.addEventListener('transitionend', onTransitionEndHandler);
     });
 });
