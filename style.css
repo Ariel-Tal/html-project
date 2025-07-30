@@ -1,9 +1,9 @@
 :root {
     --primary-color: #C71585; /* Raspberry Pink - used for accents, active links, borders */
-    --secondary-color: #0080ff; /* Bright Blue - used for h1, wheel-main h2 */
-    --dark-blue: #00254b; /* Deep Navy - used for h3, recipe titles, resultText */
+    --secondary-color: #0080ff; /* Bright Blue - used for h1 */
+    --dark-blue: #00254b; /* Deep Navy - used for h3, recipe titles */
     --medium-blue: #2b4258; /* Slate Blue - used for h4, instructions text */
-    --text-color-general: #333; /* Dark Grey - general body text, wheel-text */
+    --text-color-general: #333; /* Dark Grey - general body text */
     --background-light-blue: rgb(236, 250, 255); /* Very Light Blue */
     --background-light-pink: rgb(255, 240, 245); /* Light Pink - header/footer background, instructions block */
     --border-color-light: #ddd; /* Light Grey Border - for recipe links */
@@ -17,48 +17,41 @@
 @font-face {
     font-family: 'Vegan-Font';
     src: url("VeganStylePersonalUse-5Y58.ttf") format("truetype");
-    font-display: swap;
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 @font-face {
     font-family: 'Unna-Font';
     src: url("Unna-Regular.ttf") format("truetype");
-    font-display: swap;
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 @font-face {
     font-family: 'DM-Sans-Font';
     src: url("DMSans-VariableFont_opsz\,wght.ttf") format("truetype");
-    font-display: swap;
+    font-display: swap; /* Improves performance by showing fallback text while font loads */
 }
 
 /* --- Base Styles --- */
 body {
-    font-family: 'Unna-Font', serif;
+    font-family: 'Unna-Font', serif; /* Added fallback */
     margin: 0;
     padding: 0;
     background-color: var(--background-light-blue);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Grouping common heading styles */
-h1, h2, h3, h4, h5, h6, a, .recipe-title, .recipe-details p,
-.recipe-details ul, .recipe-details ol, .recipe-details .instructions ol,
-.wheel-text, #spinButton, #resultText, footer .footer.text {
-    font-family: 'Unna-Font', serif; /* Set Unna-Font as default for many elements */
-    margin: 0 0 5px 0; /* Default margin for most headings */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
 }
 
 h1 {
-    font-family: 'Vegan-Font', cursive, sans-serif;
+    font-family: 'Vegan-Font', cursive, sans-serif; /* Added fallback */
     font-size: 50px;
     text-align: center;
     color: var(--secondary-color);
-    margin-bottom: 10px;
+    margin: 0 0 10px 0; /* Adjusted margin for clearer spacing */
     font-weight: normal;
 }
 
 h2 {
+    font-family: 'Unna-Font'; /* Added fallback */
     font-size: 30px;
     text-align: center;
     color: var(--primary-color);
@@ -67,40 +60,52 @@ h2 {
 }
 
 h3 {
+    font-family: 'Unna-Font'; /* Added fallback */
     font-size: 30px;
     text-align: center;
     color: var(--dark-blue);
     font-style: italic;
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h4 {
+    font-family: 'Unna-Font'; /* Added fallback */
     font-size: 25px;
     text-align: center;
     color: var(--medium-blue);
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h5 {
+    font-family: 'Unna-Font'; /* Added fallback */
     font-size: 18px;
     text-align: center;
     color: var(--subtle-text-color);
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 h6 {
+    font-family: 'Unna-Font'; /* Added fallback */
     font-size: 25px;
     text-align: center;
     color: var(--darkest-blue-text);
+    margin: 0 0 5px 0; /* Adjusted margin */
     display: inline-block;
 }
 
 .center-img {
     display: block;
-    margin: 10px auto; /* Shorthand for margin-top, margin-bottom, margin-left, margin-right */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 50%;
     padding: 20px;
 }
 
-/* Global link styles */
+/* Global link styles - be mindful of these affecting all links */
 a {
+    font-family: 'Unna-Font'; /* Added fallback */
     font-size: 25px;
     font-weight: bold;
     text-decoration: none;
@@ -108,6 +113,7 @@ a {
 }
 
 /* Global image border-radius */
+/* This global img rule makes most images have 8px border-radius by default */
 img {
     border-radius: 8px;
 }
@@ -115,23 +121,25 @@ img {
 /* --- Header & Navigation Styling --- */
 header {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* This is key for spreading items */
     padding: 10px 20px;
     background-color: var(--background-light-pink);
     border-bottom: 3px solid var(--primary-color);
 }
 
+/* The cookie logo on the far left of the header */
 .header-logo {
     width: 40px;
     height: auto;
-    margin-right: 20px;
+    margin-right: 20px; /* Space between logo and nav */
     flex-shrink: 0;
 }
 
 nav {
-    flex-grow: 1;
-    margin: 0 20px;
+    flex-grow: 1; /* Allows nav to take up available space in the middle */
+    margin: 0 20px; /* Space on either side of nav */
 }
 
 nav ul {
@@ -139,7 +147,7 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centers the navigation items */
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
@@ -150,54 +158,47 @@ nav ul li {
     align-items: center;
 }
 
-/* Reusable styles for image-based navigation buttons */
-.nav-img-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 2px solid transparent;
+/* Base styling for all thumbnail links (the <a> tag container) */
+nav ul li a:has(img) { /* Applies to all links that contain an image */
+    display: block;
+    width: 60px; /* Ensuring square container for desktop */
+    height: 60px; /* Ensuring square container for desktop */
+    border-radius: 6px; /* Rounded corners for the container */
+    overflow: hidden; /* Clips the image to the rounded corners */
+    border: 2px solid transparent; /* Default transparent border */
     transition: border-color 0.3s ease, box-shadow 0.2s ease;
     cursor: pointer;
+    display: flex; /* Use flexbox to center the image within */
+    justify-content: center;
+    align-items: center;
 }
 
-.nav-img-button img {
+/* Styling for the <img> tag INSIDE any nav link */
+nav ul li a img {
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    margin: 0;
-    border-radius: 6px;
+    width: 100%; /* Make image fill its <a> container */
+    height: 100%; /* Make image fill its <a> container */
+    object-fit: cover; /* Ensures the image covers the square area, cropping as needed */
+    object-position: center; /* Focuses the crop on the center of the image */
+    margin: 0; /* Remove any default margins */
+    border-radius: 6px; /* Keep consistent with container, for initial global img rule */
 }
 
-.nav-img-button:not(.active-page):hover {
+/* Hover effect for non-active thumbnail links */
+nav ul li a:has(img):not(.active-page):hover {
     border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.nav-img-button.active-page {
+/* Styling for the ACTIVE thumbnail link (the <a> tag container with the class) */
+/* This highlights the container of any active page's image within the main nav */
+nav ul li a.active-page {
     border: 2px solid var(--primary-color);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
     cursor: default;
 }
 
-/* Apply reusable class to specific nav items */
-nav ul li a:has(img) {
-    @extend .nav-img-button; /* This is conceptual. In pure CSS, you'd apply the class directly. */
-}
-
-/* Specific styling for the header wheel logo */
-.wheel-logo-button {
-    @extend .nav-img-button; /* This is conceptual. In pure CSS, you'd apply the class directly. */
-    margin-left: 20px;
-    flex-shrink: 0;
-}
-
-
+/* Nav separator - you might not need this if all nav items are images now */
 .nav-separator {
     display: inline-block;
     margin: 0 6px;
@@ -207,10 +208,55 @@ nav ul li a:has(img) {
     font-size: 18px;
 }
 
+/* --- SPECIFIC STYLING FOR THE HEADER WHEEL LOGO (moved to far right) --- */
+/* This targets the <a> tag container for the wheel logo on the far right */
+.wheel-logo-button {
+    display: block;
+    width: 60px; /* Consistent container size as other nav items */
+    height: 60px;
+    border-radius: 6px; /* Consistent container shape */
+    overflow: hidden;
+    border: 2px solid transparent; /* Default transparent border */
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    margin-left: 20px; /* Add some space to its left */
+    flex-shrink: 0; /* Prevent it from shrinking */
+    display: flex; /* Use flexbox to center the image within */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for the <img> tag inside the wheel-logo-button */
+.wheel-logo-button img {
+    width: 100%; /* Make image fill its <a> container */
+    height: 100%; /* Make image fill its <a> container */
+    object-fit: cover; /* Ensures the image covers the square area, cropping as needed */
+    /* Remove any specific border, border-radius, padding from here - it's handled by the parent <a> tag now */
+}
+
+/* Active state for the wheel-logo-button (if it's the current page) */
+/* Apply the border and square radius to the <a> container itself when active */
+.wheel-logo-button.active-page {
+    border: 2px solid var(--primary-color); /* Adds the square outline */
+    border-radius: 6px; /* Makes the outline square */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Clearer shadow for active */
+    cursor: default;
+}
+
+/* Hover for the wheel-logo-button when not active */
+.wheel-logo-button:not(.active-page):hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
 /* --- Main Page Logo (for index.html, large logo) --- */
 .main-page-logo {
     display: block;
-    margin: 0 auto; /* Shorthand for centered margins */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
     width: 40%;
     max-width: 350px;
     height: auto;
@@ -234,15 +280,16 @@ main {
 }
 
 .recipe-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     text-decoration: none;
     border: 1px solid var(--border-color-light);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-bottom: 10px;
 }
 
@@ -260,9 +307,11 @@ main {
 }
 
 .recipe-title {
+    font-family: 'Unna-Font', serif;
     font-size: 24px;
     color: var(--dark-blue);
     text-align: center;
+    margin: 0;
     padding: 0 10px;
     font-weight: bold;
 }
@@ -281,10 +330,12 @@ main {
     font-family: 'Vegan-Font', cursive, sans-serif;
     font-size: 45px;
     color: var(--primary-color);
+    text-align: center;
     margin-bottom: 30px;
 }
 
 .recipe-details h3 {
+    font-family: 'Unna-Font';
     font-size: 28px;
     color: var(--dark-blue);
     text-align: left;
@@ -295,9 +346,8 @@ main {
     font-style: normal;
 }
 
-.recipe-details p,
-.recipe-details ul,
-.recipe-details ol {
+.recipe-details p {
+    font-family: 'Unna-Font', serif;
     font-size: 22px;
     line-height: 1.6;
     color: var(--text-color-general);
@@ -306,7 +356,12 @@ main {
 
 .recipe-details ul,
 .recipe-details ol {
+    font-family: 'Unna-Font', serif;
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--text-color-general);
     margin-left: 25px;
+    margin-bottom: 20px;
 }
 
 .recipe-details ul li,
@@ -345,6 +400,7 @@ main {
 }
 
 .recipe-details .instructions ol {
+    font-family: 'Unna-Font', serif;
     font-size: 22px;
     color: var(--medium-blue);
     padding-left: 20px;
@@ -357,17 +413,20 @@ main {
 /* --- Footer Styling --- */
 footer {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 20px;
     background-color: var(--background-light-pink);
     border-top: 3px solid var(--primary-color);
 }
 
 .footer.text {
+    font-family: 'Unna-Font', serif;
     font-size: 20px;
     color: var(--primary-color);
     text-decoration: none;
+    margin: 0;
     font-weight: normal;
 }
 
@@ -385,15 +444,16 @@ footer .footer.text:hover {
     min-height: calc(100vh - 120px);
     padding: 20px;
     box-sizing: border-box;
-    background-color: var(--background-light-blue); /* Used variable */
+    background-color: rgb(236, 250, 255);
 }
 
 .wheel-main h2 {
     margin-top: 20px;
     margin-bottom: 40px;
+    font-family: 'Unna-Font';
     font-style: italic;
     font-size: 40px;
-    color: var(--secondary-color); /* Used variable */
+    color: #0080ff;
 }
 
 .wheel-container {
@@ -406,7 +466,7 @@ footer .footer.text:hover {
     margin-bottom: 30px;
     border-radius: 50%;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border: 5px solid var(--primary-color); /* Used variable */
+    border: 5px solid #C71585;
     overflow: hidden;
 }
 
@@ -415,7 +475,7 @@ footer .footer.text:hover {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 3px solid #012E52; /* This color is not a variable, consider adding one */
+    border: 3px solid #012E52;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
     overflow: hidden;
 }
@@ -443,9 +503,10 @@ footer .footer.text:hover {
     width: 100%;
     height: 100%;
     transform-origin: 0% 0%;
+    font-family: 'Unna-Font', sans-serif;
     font-size: 14px;
     font-weight: bold;
-    color: var(--text-color-general); /* Used variable */
+    color: #333;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -463,6 +524,7 @@ footer .footer.text:hover {
     width: 60%;
 }
 
+
 .pointer {
     position: absolute;
     top: -20px;
@@ -472,15 +534,16 @@ footer .footer.text:hover {
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-top: 40px solid var(--primary-color); /* Used variable */
+    border-top: 40px solid #C71585;
     z-index: 10;
 }
 
 #spinButton {
-    background-color: var(--primary-color); /* Used variable */
+    background-color: #C71585;
     color: white;
     border: none;
     border-radius: 30px;
+    font-family: 'Unna-Font', sans-serif;
     font-size: 24px;
     font-weight: bold;
     padding: 15px 30px;
@@ -493,12 +556,12 @@ footer .footer.text:hover {
 }
 
 #spinButton:hover {
-    background-color: #d12e94; /* Consider adding a variable for hover state */
+    background-color: #d12e94;
     transform: translateY(-2px);
 }
 
 #spinButton:active {
-    background-color: #a61c71; /* Consider adding a variable for active state */
+    background-color: #a61c71;
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
@@ -510,8 +573,9 @@ footer .footer.text:hover {
 }
 
 #resultText {
+    font-family: 'Unna-Font', sans-serif;
     font-size: 22px;
-    color: var(--dark-blue); /* Used variable */
+    color: #00254b;
     margin-top: 20px;
     font-weight: bold;
     transition: opacity 0.5s ease;
@@ -520,25 +584,48 @@ footer .footer.text:hover {
 }
 
 /* --- Responsive Adjustments --- */
-/* Extracted common responsive styles into mixins for concept, apply directly in pure CSS */
 @media (max-width: 768px) {
     header {
         padding: 15px 20px;
     }
-    .header-logo {
+    .header-logo { /* Cookie logo */
         width: 40px;
+        height: auto;
         margin-right: 15px;
     }
     nav ul {
         gap: 6px 15px;
         max-width: 100%;
     }
-    .nav-img-button { /* Applies to nav a:has(img) and wheel-logo-button */
+    nav ul li a:has(img) { /* Applies to all links that contain an image */
         width: 45px;
         height: 45px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav ul li a img { /* Apply to all images inside nav links for consistent sizing */
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
     }
     .nav-separator {
         margin: 0 4px;
+    }
+    /* Responsive for the HEADER WHEEL LOGO (far right) */
+    .wheel-logo-button {
+        width: 45px; /* Adjust container size for tablet */
+        height: 45px;
+    }
+    .wheel-logo-button img {
+        width: 100%; /* Adjust image size for tablet */
+        height: 100%;
+    }
+    /* Apply active border responsive to the container */
+    .wheel-logo-button.active-page {
+        border: 2px solid var(--primary-color);
+        border-radius: 6px;
     }
     .main-page-logo {
         width: 60%;
@@ -557,24 +644,52 @@ footer .footer.text:hover {
 
 @media (max-width: 480px) {
     header {
-        flex-direction: column;
+        flex-direction: column; /* Stack items vertically on very small screens */
         align-items: center;
         gap: 10px;
     }
-    .header-logo {
+    .header-logo { /* Cookie logo */
         width: 35px;
-        margin-right: 0;
+        height: auto;
+        margin-right: 0; /* Remove margin when stacked */
     }
     nav {
+        justify-content: center;
         width: 100%;
-        margin: 0;
+        margin: 0; /* Remove side margins when stacked */
     }
     nav ul {
+        justify-content: center;
         gap: 8px;
+        flex-wrap: wrap;
     }
-    .nav-img-button { /* Applies to nav a:has(img) and wheel-logo-button */
+    nav ul li a:has(img) {
         width: 40px;
         height: 40px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav ul li a img {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+    }
+    /* Responsive for the HEADER WHEEL LOGO (far right) */
+    .wheel-logo-button {
+        width: 40px; /* Adjust container size for mobile */
+        height: 40px;
+        margin-left: 0; /* Remove margin when stacked */
+    }
+    .wheel-logo-button img {
+        width: 100%; /* Adjust image size for mobile */
+        height: 100%;
+    }
+    /* Apply active border responsive to the container */
+    .wheel-logo-button.active-page {
+        border: 2px solid var(--primary-color);
+        border-radius: 6px;
     }
     .main-page-logo {
         width: 80%;
