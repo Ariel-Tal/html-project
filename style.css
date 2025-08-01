@@ -1,3 +1,5 @@
+/* --- variables --- */
+/* variables that define colors and font stacks*/
 :root {
     --primary-color: #C71585;
     --secondary-color: #0080ff;
@@ -7,33 +9,43 @@
     --background-light: rgb(236, 250, 255);
     --background-accent: rgb(255, 240, 245);
     --border-color: #ddd;
-    --font-heading: 'Leckerli-Font', cursive;
+    --font-heading: 'Leckerli-Font', cursive; /* Reverted to Leckerli-Font */
     --font-body: 'Unna-Font', serif;
     --font-sans: 'DM-Sans-Font', sans-serif;
 }
 
-@font-face { font-family: 'Leckerli-Font'; src: url("LeckerliOne-Regular.ttf") format("truetype"); font-display: swap; }
+/* --- font imports --- */
+/* font-display: swap; is a feature that makes sure there's faster text rendering. */
+@font-face { font-family: 'Leckerli-Font'; src: url("LeckerliOne-Regular.ttf") format("truetype"); font-display: swap; } /* Reverted to Leckerli-Font import */
 @font-face { font-family: 'Unna-Font'; src: url("Unna-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: 'DM-Sans-Font'; src: url("DMSans-VariableFont_opsz\,wght.ttf") format("truetype"); font-display: swap; }
 
+/* --- base body & layout --- */
 body {
     font-family: var(--font-body);
     margin: 0;
     background-color: var(--background-light);
     color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    display: flex; /* enables flexbox for vertical layout */
+    flex-direction: column; /* stacks header, main, and footer vertically */
+    min-height: 100vh; /* ensures the body always takes full viewport height for the footer */
 }
 
 body.wheel-page {
-    background-image: url('Kitchen\ Background.png');
+    background-image: url('Kitchen Background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-color: rgba(236, 250, 255, 0.85);
+    background-blend-mode: lighten; /* blends background color and image for a faded effect */
 }
 
-main { flex-grow: 1; padding: 20px; }
+main {
+    flex-grow: 1; /* allows main to expand and push the footer to the bottom */
+    padding: 20px;
+}
 
+/* --- header & footer --- */
 header, footer {
     background-color: var(--background-accent);
     border-top: 3px solid var(--primary-color);
@@ -44,68 +56,111 @@ header, footer {
     justify-content: space-between;
 }
 
-footer { justify-content: center; border-bottom: none; }
+footer {
+    justify-content: center; /* overrides alignment to center footer content */
+    border-bottom: none;
+}
 
+/* --- headings --- */
 h1, h2, h3, h4 { text-align: center; margin: 0 0 15px 0; font-weight: bold; }
 h1 { font-family: var(--font-heading); font-size: 50px; color: var(--secondary-color); }
-.recipe-details h1 { color: var(--primary-color); }
+.recipe-details h1 { color: var(--primary-color); } /* specific h1 color for recipe detail pages */
 h2 { font-size: 30px; color: var(--primary-color); }
-main > h2 { margin-bottom: 20px; }
+main > h2 { margin-bottom: 20px; } /* targets h2s directly within main for specific margin */
 h3 { font-size: 28px; color: var(--dark-blue); border-bottom: 1px dashed var(--border-color); padding-bottom: 5px; margin-top: 30px; text-align: left; }
 h4 { font-size: 25px; color: var(--medium-blue); text-align: left; }
 
+/* --- general elements --- */
 img { border-radius: 8px; }
 a { color: #137ee9; text-decoration: none; font-weight: bold; }
 
+/* --- header navigation & logos --- */
 .header-logo, .wheel-logo-button img, nav a img { width: 40px; height: 40px; }
 header nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 12px; }
-header nav a, .wheel-logo-button { display: block; border: 2px solid transparent; border-radius: 6px; transition: border-color 0.3s ease; width: 60px; height: 60px; }
+header nav a, .wheel-logo-button {
+    display: block;
+    border: 2px solid transparent; /* transparent border which prevents the layout from shifting on hover */
+    border-radius: 6px;
+    transition: border-color 0.3s ease; /* smooth transition for the border color changing */
+    width: 60px;
+    height: 60px;
+}
 header nav a img, .wheel-logo-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
 header nav a.active-page, .wheel-logo-button.active-page { border-color: var(--primary-color); box-shadow: 0 0 8px rgba(0,0,0,0.2); }
 header nav a:not(.active-page):hover, .wheel-logo-button:not(.active-page):hover { border-color: var(--primary-color); }
 
+/* --- main page logo --- */
 .main-page-logo { display: block; margin: 0 auto; width: 40%; max-width: 350px; }
 
-.recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-.recipe-link { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+/* --- recipe grid layout --- */
+.recipe-grid {
+    display: grid; /* enables css grid for a self optimizing layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* creates flexible columns that adapt to the screen size for viewing on diffrent devices */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.recipe-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* smooth hover effects */
+}
 .recipe-link:hover { transform: translateY(-5px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 .recipe-image { width: 100%; height: 250px; object-fit: cover; }
 .recipe-title { font-size: 24px; color: var(--dark-blue); text-align: center; padding: 10px; font-weight: bold; }
 
+/* --- recipe details page --- */
 .recipe-details { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.recipe-details p, .recipe-details ul, .recipe-details ol { font-size: 22px; line-height: 1.6; }
+.recipe-details p, .recipe-details ul, .recipe-details ol { font-size: 22px; line-height: 1.6; } /* increased line height for readability */
 .recipe-details ul, .recipe-details ol { margin-left: 25px; margin-bottom: 20px; }
 .recipe-details .instructions { background-color: var(--background-accent); padding: 20px; border-radius: 8px; margin-top: 30px; }
 .recipe-details .instructions h3 { color: var(--primary-color); border-bottom-color: var(--primary-color); }
 
-/* --- Footer Text Styling --- */
+/* --- footer text styling --- */
 .footer-text {
     font-size: 20px;
     color: var(--primary-color);
-    /* CHANGE: font-weight changed from normal to bold */
     font-weight: bold;
 }
 
-/* CHANGE: The hover rule has been removed */
-
-/* --- Lucky Wheel Styles --- */
-.wheel-main { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 250px); }
+/* --- lucky wheel styles --- */
+.wheel-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 250px);
+}
 .wheel-main h2 { font-style: italic; font-size: 40px; color: var(--primary-color); }
 .wheel-container { position: relative; width: 350px; height: 350px; display: flex; justify-content: center; align-items: center; margin-bottom: 30px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 5px solid var(--primary-color); overflow: hidden; }
 .wheel { position: relative; width: 300px; height: 300px; border-radius: 50%; border: 3px solid #012E52; box-shadow: inset 0 0 15px rgba(0,0,0,0.1); overflow: hidden; }
-.wheel-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1); }
-.pointer { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--primary-color); z-index: 10; }
+.wheel-content {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+    transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1); /* defines the spinning animation properties */
+}
+.pointer {
+    position: absolute; top: -20px; left: 50%; transform: translateX(-50%); /* centers pointer horizontally above wheel */
+    width: 0; height: 0; /* creates a triangle shape using borders */
+    border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--primary-color);
+    z-index: 10;
+}
 #spinButton { background-color: var(--primary-color); color: white; border: none; border-radius: 30px; font-family: var(--font-body); font-size: 24px; padding: 15px 30px; cursor: pointer; transition: background-color 0.3s ease; z-index: 5; position: relative; }
 #spinButton:hover { background-color: #d12e94; }
 #spinButton:disabled { background-color: #ccc; cursor: not-allowed; }
 #resultText { font-size: 22px; color: var(--dark-blue); margin-top: 20px; font-weight: bold; min-height: 25px; }
 
-/* --- Responsive Adjustments --- */
+/* --- responsive adjustments --- */
+/* adjustments that adapt the layout for different screen sizes (tablets, mobile phones, ect). */
 @media (max-width: 768px) {
     header { flex-wrap: wrap; justify-content: center; gap: 10px; }
     .recipe-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 }
 @media (max-width: 480px) {
     header { flex-direction: column; }
-    .recipe-grid { grid-template-columns: 1fr; }
+    .recipe-grid { grid-template-columns: 1fr; } /* forces a single column layout for small screens */
 }
