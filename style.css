@@ -9,7 +9,7 @@
     --background-light: rgb(236, 250, 255);
     --background-accent: rgb(255, 240, 245);
     --border-color: #ddd;
-    --font-heading: 'Leckerli-Font', cursive; /* Reverted to Leckerli-Font */
+    --font-heading: 'Leckerli-Font', cursive;
     --font-body: 'Unna-Font', serif;
     --font-sans: 'DM-Sans-Font', sans-serif;
 }
